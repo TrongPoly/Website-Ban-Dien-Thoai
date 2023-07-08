@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header class="header_area sticky-header">
+		<div class="main_menu">
+			<nav class="navbar navbar-expand-lg navbar-light main_box">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<a class="navbar-brand logo_h" href="index.html"><img
+						th:src="@{/img/logo.jpg}" width="200px" alt=""></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse offset"
+						id="navbarSupportedContent">
+						<ul class="nav navbar-nav menu_nav ml-auto">
+							<li class="nav-item active"><a class="nav-link"
+								th:href="@{/index}">Home</a></li>
+							<li class="nav-item submenu dropdown"><a href="#"
+								class="nav-link dropdown-toggle" data-toggle="dropdown"
+								role="button" aria-haspopup="true" aria-expanded="false">Category</a>
+								<ul class="dropdown-menu">
+									<li th:each="item : ${loaiSP}" class="nav-item"><a class="nav-link"
+										th:href="@{/category?loai=__${item.id}__}" th:text="${item.tenLoai}"></a></li>
+									
+								</ul></li>
+							<li class="nav-item submenu dropdown"><a href="#"
+								class="nav-link dropdown-toggle" data-toggle="dropdown"
+								role="button" aria-haspopup="true" aria-expanded="false">accessory</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link"
+										href="TrangLienKet">Bàn Phím</a></li>
+									<li class="nav-item"><a class="nav-link"
+										href="TrangLienKet">Loa</a></li>
+									<li class="nav-item"><a class="nav-link"
+										href="TrangLienKet">Tay Nghe</a></li>
+								</ul></li>
+							<!-- IF THIS IS USER -->
+							<li th:if="${isUser}" class="nav-item submenu dropdown"><a
+								href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+								role="button" aria-haspopup="true" th:text="${emailAccount}"
+								aria-expanded="false"></a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" th:href="@{/Profile}">Profile</a></li>
+									<li class="nav-item"><a class="nav-link"
+										th:href="@{/viewCart}">Cart</a></li>
+									<li class="nav-item"><a class="nav-link"
+										th:href="@{/invoice/view}">Invoice</a></li>
+
+									<li class="nav-item"><a class="nav-link"
+										th:href="@{/account/changePassword}">Change Password</a></li>
+									<li class="nav-item"><a class="nav-link"
+										th:href="@{/logout}">Logout</a></li>
+
+								</ul></li>
+							<!-- ELSE THIS IS CUSTOMER -->
+							<li th:unless="${isUser}" class="nav-item submenu dropdown"><a
+								href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+								role="button" aria-haspopup="true" aria-expanded="false">Account</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+									<li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+
+								</ul></li>
+
+							<!-- END USER & CUSTOMER -->
+						</ul>
+						
+					</div>
+				</div>
+			</nav>
+		</div>
+		
+	</header>
+</body>
+</html>
