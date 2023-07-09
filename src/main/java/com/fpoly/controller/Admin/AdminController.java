@@ -5,15 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 	
-	@RequestMapping("/admin/index")
-	public String layout() {
-		return "Admin/layout";
-	}
 	
-	
-	@RequestMapping("/admin")
+	@RequestMapping("/index")
 	public String admin(Model model) {
 		
 		return "Admin/admin";

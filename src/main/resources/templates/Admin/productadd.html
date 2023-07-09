@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/Admin/layout:: viewAdmin(~{::body})}">
 <head>
 <meta charset="utf-8">
 <head>
@@ -36,7 +36,7 @@
 <body>
 
 	<!-- Start Header Area -->
-	<div th:replace="~{fragments/AdminHeader :: header}"></div>
+
 
 	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
@@ -140,7 +140,7 @@
 	</section>
 
 
-			<div th:replace="~{fragments/footer :: footer}"></div>	
+		
 	
 
 

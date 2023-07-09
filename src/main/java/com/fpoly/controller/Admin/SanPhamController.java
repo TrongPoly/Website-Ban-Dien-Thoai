@@ -5,14 +5,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/admin")
 public class SanPhamController {
 	
-	@RequestMapping("/admin/productTable")
+	@RequestMapping("/productTable")
 	public String TableProduct(Model model) {
 		return "Admin/productTabled";
 	}
 	
-	@RequestMapping("/admin/product")
+	@RequestMapping("/product")
 	public String form(Model model) {
 		return "Admin/productadd";
 	}

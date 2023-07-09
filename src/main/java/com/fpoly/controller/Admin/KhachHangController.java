@@ -5,14 +5,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/admin")
 public class KhachHangController {
 
-	@RequestMapping("/admin/customerTable")
+	@RequestMapping("/customerTable")
 	public String Table(Model model) {
 		return "Admin/customerTabled";
 	}
 
-	@RequestMapping("/admin/customer")
+	@RequestMapping("/customer")
 	public String KhachHang(Model model) {
 		return "/Admin/customered";
 	}

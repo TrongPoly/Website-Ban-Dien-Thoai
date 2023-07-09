@@ -5,16 +5,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/admin")
 public class HangKhachHangController {
 	
 	
 
-	@RequestMapping("/admin/customerRankTable")
+	@RequestMapping("/customerRankTable")
 	public String Table(Model model) {
 		return "Admin/customerRankTabled";
 	}
 	
-	@RequestMapping("/admin/customerRank")
+	@RequestMapping("/customerRank")
 	public String HangKhachHang(Model model) {
 		
 		return "Admin/customerRanked";
