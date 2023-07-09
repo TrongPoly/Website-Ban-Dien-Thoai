@@ -5,12 +5,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<header class="header_area sticky-header">
+<header class="header_area sticky-header" th:fragment="adminHeader">
 		<div class="main_menu">
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
+					<a class="navbar-brand logo_h" href="index.html"><img th:src="@{/img/logo.jpg}" style="width: 150px"></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -23,24 +23,24 @@
 							<li class="nav-item"><a class="nav-link" href="/admin">Home</a></li>
            
 							<li class="nav-item submenu dropdown">
-								<a href="/admin/customerTabled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+								<a th:href="@{/admin/customerTable}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Khách hàng</a>
 								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="/admin/customerTabled">Khách hàng</a></li>
-									<li class="nav-item"><a class="nav-link" href="/admin/customerRanked">Hạng khách hàng</a></li>
+									<li class="nav-item"><a class="nav-link" th:href="@{/admin/customerTable}">Khách hàng</a></li>
+									<li class="nav-item"><a class="nav-link" th:href="@{/admin/customerRank}">Hạng khách hàng</a></li>
 								</ul>
 							</li>
 							<li class="nav-item submenu dropdown">
-								<a href="/admin/customerTabled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Thống kê</a>
 								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" th:href="@{/admin/doanhThu}">Doanh thu</a></li>
-									<li class="nav-item"><a class="nav-link" th:href="@{/admin/sanPham}">Sản Phẩm</a></li>
+									<li class="nav-item"><a class="nav-link" th:href="@{/report/doanhThu}">Doanh thu</a></li>
+									<li class="nav-item"><a class="nav-link" th:href="@{/report/SanPham}">Sản Phẩm</a></li>
 								</ul>
 							</li>
-                    	        <li class="nav-item"><a class="nav-link" href="/admin/product">Sản phẩm</a></li>	
+                    	        <li class="nav-item"><a class="nav-link" th:href="@{/admin/product}">Sản phẩm</a></li>	
 
-                    	        <li class="nav-item"><a class="nav-link" href="/logout">Đăng xuất</a></li>	
+                    	        <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Đăng xuất</a></li>	
 
                            
 						</ul>
