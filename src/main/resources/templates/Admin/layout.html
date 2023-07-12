@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/Admin/layout:: viewAdmin(~{::body})}">
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:fragment="viewAdmin(view)">
 <head>
 <meta charset="utf-8">
 <head>
@@ -17,11 +18,11 @@
 <!-- meta character set -->
 <meta charset="UTF-8">
 <!-- Site Title -->
-<title>T electronic device</title>
+
 
 <!--
 		CSS
-		============================================= -->
+============================================= -->
 <link rel="stylesheet" th:href="@{/css/linearicons.css}">
 <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
 <link rel="stylesheet" th:href="@{/css/themify-icons.css}">
@@ -31,87 +32,21 @@
 <link rel="stylesheet" th:href="@{/css/nouislider.min.css}">
 <link rel="stylesheet" th:href="@{/css/ion.rangeSlider.css}" />
 <link rel="stylesheet" th:href="@{/css/ion.rangeSlider.skinFlat.css}" />
-<link rel="stylesheet" th:href="@{/css/mainForm.css}">
+<link rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
 
 <body>
 
+	<!-- Start Header Area -->
+	<div th:insert="~{fragments/AdminHeader.html :: adminHeader}"></div>
 	
-
-	<!-- Start Banner Area -->
-	<section class="banner-area organic-breadcrumb">
-		<div class="container">
-			<div
-				class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-				<div class="col-first">
-					<h1>Welcome To Page Customer Table</h1>
-
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Banner Area -->
-
-
-	<!--================Form Box Area =================-->
-	<form action="#" th:action="@{/admin/customer/search}"
-		class=" col-6 offset-1 order-rable d-flex">
-		<input th:name="name" type="text" class="form-control"
-			id="search_input" placeholder="Tên Khách Hàng">
-		<button type="submit" class="btn btn-success offset-1">tìm</button>
-
-	</form>
-	<div class="col-10 offset-1">
-		<h5 class="text-primary" th:text="${msg}"></h5>
-		<section class="section_gap">
-			<div class="search_input"></div>
-			<div class="">
-				<table class="table ">
-
-
-					<thead class="thead-white">
-						<tr>
-
-							<th scope="col">Mã Khách Hàng</th>
-							<th scope="col">Họ Và Tên</th>
-							<th scope="col">Số Điện Thoại</th>
-							<th scope="col">Email</th>
-							<th scope="col">Địa Chỉ</th>
-							<th scope="col">CCCD</th>
-							<th scope="col">Trạng Thái</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr >
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><a class="btn btn-warning">Sửa</a> <a><span
-									class="btn btn-danger">Xoá</span></a></td>
-
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</section>
-	</div>
-
-
-
-
-
-
-	<!--================End Login Box Area =================-->
-
-
-
-
+	<div th:replace="${view}"></div>
 	
+	<!-- Start Footer Area -->
+	<div th:insert="~{fragments/footer.html :: adminFooter}"></div>
+
+
+
 
 
 	<script src="js/vendor/jquery-2.2.4.min.js"></script>

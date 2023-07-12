@@ -1,10 +1,11 @@
-package com.fpoly.controller;
+package com.fpoly.controller.Admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/admin")
 public class ReportController {
 	@RequestMapping("/report/doanhThu")
 	public String DoanhThu(Model model) {
