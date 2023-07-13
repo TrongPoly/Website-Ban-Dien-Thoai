@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/User/layout.html :: dynamic(~{::body})}">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/User/layout.html :: dynamic(~{::body})}">
 <head>
 
 </head>
@@ -27,8 +28,20 @@
 	<!--================Single Product Area =================-->
 	<div class="col-md-10 offset-1">
 		<h2 class="text-success">GIỎ HÀNG</h2>
+		<div class="form-group">
+			<label for="diaChiGiaoHang">Địa chỉ giao hàng:</label>
+			<br> <select
+				class="form-control" id="diaChiGiaoHang">
+				<option>Địa chỉ 1</option>
+				<option>Địa chỉ 2</option>
+				<option>Địa chỉ 3</option>
+				<option>Thêm địa chỉ mới</option>
+			</select>
+			
+		</div>
+		<br>
 		<h4 class="text-danger" th:text="${messageSLSP}"></h4>
-		<table th:if="${total}!=null" class="table table-bordered table-default">
+		<table class="table table-bordered table-default">
 			<tr>
 				<th>Tên sản phẩm</th>
 				<th>Hình ảnh</th>
@@ -37,7 +50,7 @@
 				<th>Thành tiền</th>
 				<th>Action</th>
 			</tr>
-			<tbody>
+		<!-- <tbody>
 
 				<tr th:each="item, iStat : ${cartSP}">
 					<td th:text="${item.maSanPham.tenSanPham}"></td>
@@ -45,10 +58,10 @@
 						th:src="@{/img/product/__${item.maSanPham.anhSanPham}__}"
 						height="100px"></td>
 					<td th:text="${item.maSanPham.donGia}"></td>
-					<td><input type="number"  onchange="capNhatSLSP(this)"
-						th:value="${item.soLuong}"> <br>
-						<a th:if="${item.soLuong}==${item.maSanPham.soLuongTon}">*Số lượng tối đa có thể đặt</a>
-						</td>
+					<td><input type="number" onchange="capNhatSLSP(this)"
+						th:value="${item.soLuong}"> <br> <a
+						th:if="${item.soLuong}==${item.maSanPham.soLuongTon}">*Số
+							lượng tối đa có thể đặt</a></td>
 					<td class="amount"
 						th:text="${#numbers.formatInteger(item.maSanPham.donGia*item.soLuong,0)}">
 					</td>
@@ -58,22 +71,39 @@
 						th:text="Xóa"></a></td>
 				</tr>
 			</tbody>
+			-->
+			<tbody>
+
+				<tr >
+					<td>Sản phẩm 1</td>
+					<td><img alt=""
+						src="/img/product/ip11.jpg"
+						height="100px"></td>
+					<td >12,000,000</td>
+					<td><input type="number" value=1> <br></td>
+					<td 
+						>12,000,000
+					</td>
+					<td class="text-danger"><a
+						>Xóa</a></td>
+				</tr>
+			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="6" th:text="'Tổng tiền: '+${total}"></td>
+					<td colspan="6" th:text="'Tổng tiền: 12,000,000'"></td>
 				</tr>
 			</tfoot>
 		</table>
-		<a th:if="${total}!=null" th:href="@{/invoice/add}"
+
+		<a  th:href="@{/invoice/index}"
 			onclick="return confirm('Xác nhận đặt hàng?');"
 			class="btn btn-success" style="margin-bottom: 10px; color: white">Đặt
-			hàng</a>
-			<br>
-			<h4 class="text-danger" th:text="${haha}"></h4>
-			
+			hàng</a> <br>
+		
 	</div>
-
 	
+
+
 	<script th:src="@{/js/vendor/jquery-2.2.4.min.js}"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
