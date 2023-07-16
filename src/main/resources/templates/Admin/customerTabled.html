@@ -1,128 +1,129 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/Admin/layout:: viewAdmin(~{::body})}">
-<head>
-<meta charset="utf-8">
-<head>
-<!-- Mobile Specific Meta -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Favicon-->
-<link rel="shortcut icon" href="img/fav.png">
-<!-- Author Meta -->
-<meta name="author" content="CodePixar">
-<!-- Meta Description -->
-<meta name="description" content="">
-<!-- Meta Keyword -->
-<meta name="keywords" content="">
-<!-- meta character set -->
-<meta charset="UTF-8">
-<!-- Site Title -->
-<title>T electronic device</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/Admin/layout:: viewAdmin(~{::body})}">
+  <head>
+  
+  </head>
 
-<!--
-		CSS
-		============================================= -->
+  <body>
+   
 
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Khách Hàng <small>nơi lưu trữ thông tin khách hàng</small></h3>
+              </div>
 
-</head>
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-secondary" type="button">Go!</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-<body>
+            <div class="clearfix"></div>
 
-	
-
-	<!-- Start Banner Area -->
-	<section class="banner-area organic-breadcrumb">
-		<div class="container">
-			<div
-				class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-				<div class="col-first">
-					<h1>Welcome To Page Customer Table</h1>
-
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Banner Area -->
-
-
-	<!--================Form Box Area =================-->
-	<form action="#" th:action="@{/admin/customer/search}"
-		class=" col-6 offset-1 order-rable d-flex">
-		<input th:name="name" type="text" class="form-control"
-			id="search_input" placeholder="Tên Khách Hàng">
-		<button type="submit" class="btn btn-success offset-1">tìm</button>
-
-	</form>
-	<div class="col-10 offset-1">
-		<h5 class="text-primary" th:text="${msg}"></h5>
-		<section class="section_gap">
-			<div class="search_input"></div>
-			<div class="">
-				<table class="table ">
-
-
-					<thead class="thead-white">
-						<tr>
-
-							<th scope="col">Mã Khách Hàng</th>
-							<th scope="col">Họ Và Tên</th>
-							<th scope="col">Số Điện Thoại</th>
-							<th scope="col">Email</th>
-							<th scope="col">Địa Chỉ</th>
-							<th scope="col">CCCD</th>
-							<th scope="col">Trạng Thái</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr >
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><a class="btn btn-warning">Sửa</a> <a><span
-									class="btn btn-danger">Xoá</span></a></td>
-
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</section>
-	</div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Bảng Khách Hàng <small>Customers</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+             
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                      <div class="row">
+                          <div class="col-sm-12">
+                            <div class="card-box table-responsive">
+                   
+                    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                      <thead>
+                        <tr>
+                          <th>Mã Khách Hàng</th>
+                          <th>Tên Khách Hàng</th>
+                          <th>Số Điện Thoại</th>
+                          <th>Email</th>
+                          <th>Địa Chỉ</th>
+                          <th>CCCD</th>
+                          <th>Điểm Tích Lũy</th>
+                          <th>Hạng </th>
+                          <th>Action</th>
+                          
+                        </tr>
+                      </thead>
 
 
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Võ Phước Lộc</td>
+                          <td>0795634231</td>
+                          <td>locvp@gmail.com</td>
+                          <td>Nguyễn Văn Cừ</td>
+                          <td>092003001002</td>
+                          <td>1500</td>
+                          <td>3</td>
+                          <td>
+                            <a class="btn btn-warning">Sửa</a> <a><span
+								class="btn btn-danger">Xoá</span></a>
+                                
+                            </td>
+                              
+                          
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Võ Phước Tính</td>
+                            <td>0795634232</td>
+                            <td>tinhvp@gmail.com</td>
+                            <td>Nguyễn Văn Cừ</td>
+                            <td>092003001002</td>
+                            <td>2000</td>
+                            <td>2</td>
+                            <td>
+                              <a class="btn btn-warning">Sửa</a> <a><span
+                                  class="btn btn-danger">Xoá</span></a>
+                                  
+                              </td>
+                                
+                            
+                          </tr>
+                       
+
+                      
+                       
+                      </tbody>
+                    </table>
+                  </div>
+                  </div>
+              </div>
+            </div>
+                </div>
+              </div>
 
 
+             
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
 
+        <!-- footer content -->
+       
+        <!-- /footer content -->
+    
 
-	<!--================End Login Box Area =================-->
-
-
-
-
-	
-
-
-	<script src="js/vendor/jquery-2.2.4.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-		crossorigin="anonymous"></script>
-	<script src="js/vendor/bootstrap.min.js"></script>
-	<script src="js/jquery.ajaxchimp.min.js"></script>
-	<script src="js/jquery.nice-select.min.js"></script>
-	<script src="js/jquery.sticky.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<!--gmaps Js-->
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-	<script src="js/gmaps.min.js"></script>
-	<script src="js/main.js"></script>
-</body>
-
+  </body>
 </html>

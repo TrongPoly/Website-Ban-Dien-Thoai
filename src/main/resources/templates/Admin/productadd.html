@@ -1,155 +1,117 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/Admin/layout:: viewAdmin(~{::body})}">
-<head>
-<meta charset="utf-8">
-<head>
-	<!-- Mobile Specific Meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Favicon-->
-	<link rel="shortcut icon" href="img/fav.png">
-	<!-- Author Meta -->
-	<meta name="author" content="CodePixar">
-	<!-- Meta Description -->
-	<meta name="description" content="">
-	<!-- Meta Keyword -->
-	<meta name="keywords" content="">
-	<!-- meta character set -->
-	<meta charset="UTF-8">
-	<!-- Site Title -->
-	<title> T electronic device</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/Admin/layout:: viewAdmin(~{::body})}">
+  <head>
+  
+  </head>
 
-	<!--
-		CSS
-		============================================= -->
-
-
-</head>	
-
-<body>
-
-	<!-- Start Header Area -->
-
-
-	<!-- Start Banner Area -->
-	<section class="banner-area organic-breadcrumb">
-		<div class="container">
-			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-				<div class="col-first">
-					<h1>Welcome To  <br> Page product management</h1>
-				
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Banner Area -->
-
-	<!--================Login Box Area =================-->
-	<section class="login_box_area section_gap">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="login_box_img">
-						<img class="img-fluid" src="/img/login.jpg" >
-						<div class="hover">
-							<h4>New Product?</h4>
-							<p>This is the page to add new product</p> <br>
-							<p>And this is the page to list products</p>
-							<a class="primary-btn" href="/admin/productTable">Product Details</a>
-						</div>
-					</div>
-				</div>
-                <div class="col-lg-6">
-					<div class="login_form_inner">
-						<h3>Product Form</h3>
-						<form class="row login_form" action="#"  method="post" id="contactForm" novalidate="novalidate"
-					 enctype="multipart/form-data">
-
-							
-							<div class="col-md-12 form-group ">
-							<label class="pull-left">Mã Sản Phẩm</label>
-								<input type="text" readonly="true" class="form-control" id="last" name="name">
-								
-							</div>
-							
-							<div class="col-md-12 form-group ">
-							<label class="pull-left">Tên Sản Phẩm</label>
-								<input  type="text" class="form-control" id="last" name="name">
-								
-								
-							</div>
-                            <div class="col-md-12 form-group">
-                            <label class="pull-left">Ảnh Sản Phẩm</label>
-                                <input   type="file" class="form-control" id="file" name="file">
-                               
-                            </div>
-							<div class="col-md-12 form-group ">
-							<label class="pull-left">Loại Sản Phẩm</label>
-							<select  class="col-md-12 form-group ">
-											 <option>1</option>
-											  <option>2</option>
-											   <option>3</option>
-											</select>
-											 
-							</div>
-						
-						<div class="col-md-12 form-group p_star">
-						<label class="pull-left">Đơn Giá</label>
-								<input  type="number" min="0" class="form-control" id="" name="" >
-                               
-                            </div>
-						
-
-							<div class="col-md-12 form-group p_star">
-							<label class="pull-left">Số Lượng Tồn</label>
-								<input  type="number" min="0" class="form-control" id="" name=""  >
-                           
-                            </div>
-						
-                           
-							<div class="col-md-12 form-group p_star">
-								<div class="creat_account"  style="display: none;">
-									<input type="radio"  value="true" name="option1" id="radio_con_hang" > còn hàng
-									<label ></label>
-                                   
-                                    <input type="radio" checked="false"  value="false" name="option1"  id="radio_het_hang" > hết hàng
-									<label ></label>
-								</div>
-								 
-							</div>
-							<div class="col-md-12 form-group">
-								
-									<button type="save" value="save" class="primary-btn" onclick="return confirm('Bạn có chắc muốn thêm sản phẩm này?');">Save</button>
-								
-								
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-			</div>
-		<!-- Add these divs for the success and error messages -->
-
-	</section>
-
-
-		
+<body >
 	
 
+			<!-- page content -->
+			<div class="right_col" role="main">
+				<div class="">
+					<div class="page-title">
+						<div class="title_left">
+							<h3>Form Sản Phẩm</h3>
+						</div>
 
-	<script src="js/vendor/jquery-2.2.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-	 crossorigin="anonymous"></script>
-	<script src="js/vendor/bootstrap.min.js"></script>
-	<script src="js/jquery.ajaxchimp.min.js"></script>
-	<script src="js/jquery.nice-select.min.js"></script>
-	<script src="js/jquery.sticky.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<!--gmaps Js-->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-	<script src="js/gmaps.min.js"></script>
-	<script src="js/main.js"></script>
-</body>
+						<div class="title_right">
+							<div class="col-md-5 col-sm-5  form-group pull-right top_search">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Search for...">
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="button">Go!</button>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+					<div class="row">
+						<div class="col-md-12 col-sm-12 ">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2>Form Sản Phẩm <small></small></h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+										</li>
+									
+										<li><a class="close-link"><i class="fa fa-close"></i></a>
+										</li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<br />
+									<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
-</html>
+										<div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="id-product">Mã Sản Phẩm <span>*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input type="text" id=""  class="form-control ">
+											</div>
+										</div>
+										<div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="full-name">Tên Sản Phẩm<span>*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input type="text" id="" name="full-name"  class="form-control">
+											</div>
+										</div>
+										<div class="item form-group custom-file">
+											<label for="" class="col-form-label col-md-3 col-sm-3 label-align">Ảnh Sản Phẩm *</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input id="file" class="file" type="file" name="file">
+											</div>
+										</div>
+                                        <div class="item form-group ">
+											<label class="col-form-label col-md-3 col-sm-3 label-align">Hãng Sản Phẩm *</label>
+											<div class="col-md-6 col-sm-6 ">
+												<select class="select2_single form-control" tabindex="-1">
+													<option></option>
+													<option value="AK">Apple</option>
+													<option value="HI">SamSung</option>
+													<option value="HI">Xiaomi</option>
+												</select>
+											</div>
+										</div>
+                                        <div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="price">Đơn Giá<span >*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input type="number" id="last-name" name="price"  class="form-control">
+											</div>
+										</div>
+                                        <div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="">Số Lượng<span >*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input type="number" id="last-name" name="soLuong" class="form-control">
+											</div>
+										</div>
+										<div class="ln_solid"></div>
+										<div class="item form-group">
+											<div class="col-md-6 col-sm-6 offset-md-3">
+												
+												<button type="submit" class="btn btn-success">Submit</button>
+											</div>
+										</div>
+
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+</div>
+</div>
+				
+			<!-- /page content -->
+
+			<!-- footer content -->
+			
+			<!-- /footer content -->
+		
+
+</body></html>
