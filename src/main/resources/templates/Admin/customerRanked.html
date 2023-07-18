@@ -1,140 +1,118 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/Admin/layout:: viewAdmin(~{::body})}">
-<head>
-<meta charset="utf-8">
-<head>
-<!-- Mobile Specific Meta -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Favicon-->
-<link rel="shortcut icon" href="img/fav.png">
-<!-- Author Meta -->
-<meta name="author" content="CodePixar">
-<!-- Meta Description -->
-<meta name="description" content="">
-<!-- Meta Keyword -->
-<meta name="keywords" content="">
-<!-- meta character set -->
-<meta charset="UTF-8">
-<!-- Site Title -->
-<title>T electronic device</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/Admin/layout:: viewAdmin(~{::body})}">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-<!--
-		CSS
-		============================================= -->
+   
+  </head>
 
+<body >
 
-</head>
+		
+			<!-- /top navigation -->
 
-<body>
-
-	
-
-	<!-- Start Banner Area -->
-	<section class="banner-area organic-breadcrumb">
-		<div class="container">
-			<div
-				class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-				<div class="col-first">
-					<h1>
-						Welcome To Customer <br> Rank management
-					</h1>
-
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Banner Area -->
-
-	<!--================Login Box Area =================-->
-	<section class="login_box_area section_gap">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="login_box_img">
-						<img class="img-fluid" src="/img/login.jpg" alt="">
-						<div class="hover">
-							<h4>New Customer Rank?</h4>
-							<p>This is the page to add new Rank</p>
-							<br>
-							<p>And this is the page to list customer rank</p>
-							<a class="primary-btn" href="/admin/customerRanktabled">Customer
-								Rank Details</a>
+			<!-- page content -->
+			<div class="right_col" role="main">
+				<div class="">
+					<div class="page-title">
+						<div class="title_left">
+							<h3>Form Hạng</h3>
 						</div>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="login_form_inner">
-						<h3>Costumer Form</h3>
-						<form class="row login_form" action="#" method="post" id="contactForm" >
-							<div class="col-md-12 form-group p_star">
-								<label class="pull-left">Mã Hạng</label> <input
-									type="text" class="form-control" readonly="true">
 
-							</div>
-							<div class="col-md-12 form-group p_star">
-								<label class="pull-left">Tên Hạng</label> <input type="text"
-									class="form-control">
-
-							</div>
-							<div class="col-md-12 form-group p_star">
-								<label class="pull-left">Điểm Tối Thiểu</label> <input
-									type="text" class="form-control">
-
-							</div>
-
-							<div class="col-md-12 form-group p_star">
-								<label class="pull-left">Mô Tả</label> <input type="text"
-									class="form-control">
-
-							</div>
-
-
-							<div class="col-md-12 form-group p_star">
-								<div class="creat_account" style="display: none;">
-									<input type="radio" id="f-option1" name="selector"
-										value="option1"> <label for="f-option1">Lựa
-										Chọn 1</label> <input type="radio" id="f-option2" name="selector"
-										value="option2"> <label for="f-option2">Lựa
-										Chọn 2</label>
+						<div class="title_right">
+							<div class="col-md-5 col-sm-5  form-group pull-right top_search">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Search for...">
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="button">Go!</button>
+									</span>
 								</div>
 							</div>
-							<div class="col-md-12 form-group">
-
-								<button type="save" value="save" class="primary-btn">Save</button>
-
-
-							</div>
-						</form>
+						</div>
 					</div>
-				</div>
-			</div>
+					<div class="clearfix"></div>
+					<div class="row">
+						<div class="col-md-12 col-sm-12 ">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2>Form Khách Hàng <small></small></h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+										</li>
+									
+										<li><a class="close-link"><i class="fa fa-close"></i></a>
+										</li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<br />
+									<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+										<div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="id-product">Mã Hạng <span>*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input type="text" id=""  class="form-control ">
+											</div>
+										</div>
+										<div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="full-name">Tên Hạng <span>*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input type="text" id="" name="full-name"  class="form-control">
+											</div>
+										</div>
+								  
+                                        <div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="price">Điểm Tối Thiểu<span >*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input type="number" id="" name="price"  class="form-control">
+											</div>
+										</div>
+                                        <div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="full-name">Mô Tả <span>*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<textarea id="message" class="form-control" name="message" data-parsley-trigger="keyup"
+                                                 data-parsley-minlength="20" data-parsley-maxlength="100" 
+                                                 data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
+                                                 data-parsley-validation-threshold="10"></textarea>
+											</div>
+										</div>
+								  
+										<div class="ln_solid"></div>
+										<div class="item form-group">
+											<div class="col-md-6 col-sm-6 offset-md-3">
+												
+												<button type="submit" class="btn btn-success">Submit</button>
+											</div>
+										</div>
+
+									</form>
+								</div>
+								
+							</div>
+						
+						</div>
+					
+					</div>
+			
+				
+			<!-- /page content -->
+
+			<!-- footer content -->
+			
+		
+			<!-- /footer content -->
 		</div>
-		</div>
-	</section>
+	</div>
 
 
-
-
-
-
-	<script src="js/vendor/jquery-2.2.4.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-		crossorigin="anonymous"></script>
-	<script src="js/vendor/bootstrap.min.js"></script>
-	<script src="js/jquery.ajaxchimp.min.js"></script>
-	<script src="js/jquery.nice-select.min.js"></script>
-	<script src="js/jquery.sticky.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<!--gmaps Js-->
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-	<script src="js/gmaps.min.js"></script>
-	<script src="js/main.js"></script>
-</body>
-
-</html>
+</body></html>

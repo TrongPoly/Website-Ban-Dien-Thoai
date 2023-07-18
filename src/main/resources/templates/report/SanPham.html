@@ -1,127 +1,140 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/Admin/layout:: viewAdmin(~{::body})}">
-<head>
-<meta charset="utf-8">
-<head>
-<!-- Mobile Specific Meta -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Favicon-->
-<link rel="shortcut icon" href="img/fav.png">
-<!-- Author Meta -->
-<meta name="author" content="CodePixar">
-<!-- Meta Description -->
-<meta name="description" content="">
-<!-- Meta Keyword -->
-<meta name="keywords" content="">
-<!-- meta character set -->
-<meta charset="UTF-8">
-<!-- Site Title -->
-<title>T electronic device</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/Admin/layout:: viewAdmin(~{::body})}">
+  <head>
+   
+  </head>
 
-<!--
-		CSS
-		============================================= -->
+  <body >
+   
 
-</head>
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Thống Kê Sản Phẩm <small></small></h3>
+              </div>
 
-<body>
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-secondary" type="button">Go!</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-	<!-- Start Header Area -->
-	<div th:replace="~{fragments/AdminHeader :: header}"></div>
-	<!-- End Header Area -->
+            <div class="clearfix"></div>
 
-	<!-- Start Banner Area -->
-	<section class="banner-area organic-breadcrumb">
-		<div class="container">
-			<div
-				class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-				<div class="col-first">
-					<h1>Welcome To Page Report</h1>
-				</div>
-			</div>
-		</div>
-	</section>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Bảng Thống Kê Sản Phẩm <small></small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+             
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <form class="row" action="#">
+                    <div class="col-4" >
+                    <div class="form-group">
+                        <label for="month-select">Tháng:</label> <select
+                            class="form-control" id="month-select" name="month">
+                            <option ></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="year-select">Năm:</label>
+                         <select class="form-control"
+                            id="year-select" name="year">
+                            <option ></option>
+                        </select>
+                    </div>
+                    </div>
+                    <div class="col-4">
+                    <div class="form-group">
+                        <label for="loai-select">Loại:</label>
+                         <select class="form-control"
+                            id="loai-select" name="loai">
+                            <option value="0">Không</option>
+                            <option ></option>
+                        </select>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-success">Lọc</button>
+                    </div>
+                </form> <br> <hr>
 
-	<div class="col-md-10 offset-1">
-		<h2 class="text-success">Sản Phẩm</h2>
-		<form class="row" action="#">
-			<div class="col-4" >
-			<div class="form-group">
-				<label for="month-select">Tháng:</label> <select
-					class="form-control" id="month-select" name="month">
-					<option ></option>
-				</select>
-			</div>
-			<div class="form-group">
-				<label for="year-select">Năm:</label>
-				 <select class="form-control"
-					id="year-select" name="year">
-					<option ></option>
-				</select>
-			</div>
-			</div>
-			<div class="col-4">
-			<div class="form-group">
-				<label for="loai-select">Loại:</label>
-				 <select class="form-control"
-					id="loai-select" name="loai">
-					<option value="0">Không</option>
-					<option ></option>
-				</select>
-			</div>
-			<br>
-			<button type="submit" class="btn btn-primary">Lọc</button>
-			</div>
-		</form>
-	<br>
-		<h5 class="text-success" ></h5>
-		<table class="table table-bordered table-default">
-			<tr>
-				<th>Tên sản phẩm</th>
-				<th>Tổng số lượng đã bán</th>
-				<th>Số lượng hiện có</th>
-			</tr>
-			<tbody>
-
-				<tr >
-					<td ></td>
-					<td ></td>
-					<td ></td>
-				</tr>
-			</tbody>
-			
-		</table>
-		
-	</div>
-	<!-- End Banner Area -->
-
-	<!--================Footer Area =================-->
-	<!-- start footer Area -->
-	<div th:replace="~{fragments/footer :: footer}"></div>
-
-	<!--================End Footer Area =================-->
+                  <div class="x_content">
+                      <div class="row">
+                          <div class="col-sm-12">
+                            <div class="card-box table-responsive">
+                   
+                    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                      <thead>
+                        <tr>
+                          <th>Hãng SP</th>
+                          <th>Tổng SP đã bán</th>
+                          <th>Số Lượng hiện có</th>
+                         
+                         
+                          
+                        </tr>
+                      </thead>
 
 
+                      <tbody>
+                        <tr>
+                          <td>Apple</td>
+                          <td>9</td>
+                          <td>2</td>
+                          
+    
+                        </tr>
+                       <tr>
+                          <td>Apple</td>
+                          <td>9</td>
+                          <td>2</td>
+                          
+    
+                        </tr>
+                        <tr>
+                          <td>Apple</td>
+                          <td>9</td>
+                          <td>2</td>
+                          
+    
+                        </tr>
+
+                      
+                       
+                      </tbody>
+                    </table>
+                  </div>
+                  </div>
+              </div>
+            </div>
+                </div>
+              </div>
 
 
-	<script src="js/vendor/jquery-2.2.4.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-		crossorigin="anonymous"></script>
-	<script src="js/vendor/bootstrap.min.js"></script>
-	<script src="js/jquery.ajaxchimp.min.js"></script>
-	<script src="js/jquery.nice-select.min.js"></script>
-	<script src="js/jquery.sticky.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<!--gmaps Js-->
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-	<script src="js/gmaps.min.js"></script>
-	<script src="js/main.js"></script>
-</body>
+             
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
 
+        <!-- footer content -->
+      
+        <!-- /footer content -->
+    
+  </body>
 </html>

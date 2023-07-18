@@ -5,56 +5,85 @@
 <title>Insert title here</title>
 </head>
 <body>
-<header class="header_area sticky-header" th:fragment="adminHeader">
-		<div class="main_menu">
-			<nav class="navbar navbar-expand-lg navbar-light main_box">
-				<div class="container">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h"  th:href="@{/admin/index}"><img th:src="@{/img/logo.jpg}" style="width: 150px"></a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" th:href="@{/admin/index}">Home</a></li>
-           
-							<li class="nav-item submenu dropdown">
-								<a th:href="@{/admin/customerTable}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Khách hàng</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" th:href="@{/admin/customerTable}">Khách hàng</a></li>
-									<li class="nav-item"><a class="nav-link" th:href="@{/admin/customerRank}">Hạng khách hàng</a></li>
-								</ul>
-							</li>
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Thống kê</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" th:href="@{/admin/report/doanhThu}">Doanh thu</a></li>
-									<li class="nav-item"><a class="nav-link" th:href="@{/admin/report/SanPham}">Sản Phẩm</a></li>
-								</ul>
-							</li>
-                    	        <li class="nav-item"><a class="nav-link" th:href="@{/admin/product}">Sản phẩm</a></li>	
+<div class="col-md-3 left_col" th:fragment="adminHeader">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a th:href="@{/admin/index}" class="site_title"><i class="fa fa-paw"></i> <span>Admin</span></a>
+            </div>
 
-                    	        <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Đăng xuất</a></li>	
+            <div class="clearfix"></div>
 
-                           
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
-							<li class="nav-item">
-								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</div>
-		
-	</header>
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+                <div class="profile_pic">
+                    <img src="/build/images/img.jpg" alt="..." class="img-circle profile_img">
+                </div>
+                <div class="profile_info">
+                    <span>Welcome,</span>
+                    <h2>Thiên Lê</h2>
+                </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+            
+                  <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a th:href="@{/admin/product}">Sản Phẩm</a></li>
+                      <li><a th:href="@{/admin/customer}">Khách Hàng</a></li>
+                      <li><a th:href="@{/admin/customerRank}">Hạng Khách Hàng</a></li>
+                      <li><a href="#">Phiếu Giảm Giá</a></li>   
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a th:href="@{/admin/invoice}">Bảng Đơn Hàng</a></li>
+                      <li><a th:href="@{/admin/productTable}">Bảng Sản Phẩm</a></li>
+                      <li><a th:href="@{/admin/customerTable}">Bảng Khách Hàng</a></li>
+                      <li><a th:href="@{/admin/customerRankTable}">Bảng Hạng Khách Hàng</a></li>
+                      <li><a href="#">Bảng Phiếu Giảm Giá</a></li>
+                    </ul>
+                  </li>
+
+                    <li><a><i class="fa fa-bar-chart-o"></i> statistics <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a th:href="@{/admin/report/SanPham}">Sản Phẩm</a></li>
+                      <li><a th:href="@{/admin/report/doanhThu}">Doanh Thu</a></li>
+                      
+                    
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+            
+          </div>
+        </div>
 </body>
 </html>
