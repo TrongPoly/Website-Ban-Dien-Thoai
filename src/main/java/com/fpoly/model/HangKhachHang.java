@@ -7,7 +7,6 @@ import org.hibernate.annotations.Nationalized;
 @Table(name = "hang_khach_hang")
 public class HangKhachHang {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ma_hang", nullable = false)
     private Integer id;
 

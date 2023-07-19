@@ -21,6 +21,9 @@ public class GioHangChiTiet {
     @Column(name = "so_luong")
     private Integer soLuong;
 
+    @Column(name = "chon_mua")
+    private Boolean chonMua;
+
     public GioHangChiTietId getId() {
         return id;
     }
@@ -51,6 +54,14 @@ public class GioHangChiTiet {
 
     public void setSoLuong(Integer soLuong) {
         this.soLuong = soLuong;
+    }
+
+    public Boolean getChonMua() {
+        return chonMua;
+    }
+
+    public void setChonMua(Boolean chonMua) {
+        this.chonMua = chonMua;
     }
 
 }

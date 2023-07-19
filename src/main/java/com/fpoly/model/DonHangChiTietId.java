@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Embeddable
 public class DonHangChiTietId implements Serializable {
-    private static final long serialVersionUID = 3800633230937416308L;
+    private static final long serialVersionUID = 3660099565313231465L;
     @Column(name = "ma_don_hang", nullable = false)
     private Integer maDonHang;
 

@@ -8,7 +8,6 @@ import java.time.Instant;
 @Table(name = "don_hang")
 public class DonHang {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ma_don_hang", nullable = false)
     private Integer id;
 
