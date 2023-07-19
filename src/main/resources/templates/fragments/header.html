@@ -25,13 +25,15 @@
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item active"><a class="nav-link"
 								th:href="@{/home/index}">Home</a></li>
-							<li class="nav-item submenu dropdown"><a th:href="@{/cart/index}"
-								class="nav-link dropdown-toggle" data-toggle="dropdown"
-								role="button" aria-haspopup="true" aria-expanded="false">Cart</a>
+							<li class="nav-item submenu dropdown"><a
+								th:href="@{/cart/index}" class="nav-link dropdown-toggle"
+								data-toggle="dropdown" role="button" aria-haspopup="true"
+								aria-expanded="false">Cart</a>
 								<ul class="dropdown-menu">
-									<li th:each="item : ${loaiSP}" class="nav-item"><a class="nav-link"
-										th:href="@{/category?loai=__${item.id}__}" th:text="${item.tenLoai}"></a></li>
-									
+									<li th:each="item : ${loaiSP}" class="nav-item"><a
+										class="nav-link" th:href="@{/category?loai=__${item.id}__}"
+										th:text="${item.tenLoai}"></a></li>
+
 								</ul></li>
 							<li class="nav-item submenu dropdown"><a href="#"
 								class="nav-link dropdown-toggle" data-toggle="dropdown"
@@ -45,12 +47,13 @@
 										href="TrangLienKet">Nokia</a></li>
 								</ul></li>
 							<!-- IF THIS IS USER -->
-							<li th:if="${isUser}" class="nav-item submenu dropdown"><a
-								href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
-								role="button" aria-haspopup="true" th:text="${emailAccount}"
+							<li th:if="${session.user}!=null" class="nav-item submenu dropdown"><a href="#"
+								class="nav-link dropdown-toggle" data-toggle="dropdown"
+								role="button" aria-haspopup="true" th:text="${session.user.email}"
 								aria-expanded="false"></a>
 								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" th:href="@{/Profile}">Profile</a></li>
+									<li class="nav-item"><a class="nav-link"
+										th:href="@{/Profile}">Profile</a></li>
 									<li class="nav-item"><a class="nav-link"
 										th:href="@{/viewCart}">Cart</a></li>
 									<li class="nav-item"><a class="nav-link"
@@ -63,23 +66,25 @@
 
 								</ul></li>
 							<!-- ELSE THIS IS CUSTOMER -->
-							<li th:unless="${isUser}" class="nav-item submenu dropdown"><a
-								href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+							<li th:unless="${session.user}!=null" class="nav-item submenu dropdown"><a href="#"
+								class="nav-link dropdown-toggle" data-toggle="dropdown"
 								role="button" aria-haspopup="true" aria-expanded="false">Account</a>
 								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="/home/login">Login</a></li>
-									<li class="nav-item"><a class="nav-link" href="/home/register">Register</a></li>
+									<li class="nav-item"><a class="nav-link"
+										th:href="@{/login}">Login</a></li>
+									<li class="nav-item"><a class="nav-link"
+										href="/home/register">Register</a></li>
 
 								</ul></li>
 
 							<!-- END USER & CUSTOMER -->
 						</ul>
-						
+
 					</div>
 				</div>
 			</nav>
 		</div>
-		
+
 	</header>
 </body>
 </html>

@@ -45,34 +45,21 @@
 					<div class="login_form_inner">
 						<h3>Log in to enter</h3>
 						<form class="row login_form" action="#" th:action="@{/login}"
-							method="post" novalidate="novalidate">
+							method="post" th:object="${taiKhoan}" novalidate="novalidate">
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" placeholder="Email"
+								<input type="text" class="form-control" th:field="*{email}" placeholder="Email"
 									onfocus="this.placeholder = ''"
 									onblur="this.placeholder = 'Email'">
 
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="password" class="form-control"
+								<input type="password" th:field="*{matKhau}" class="form-control"
 									placeholder="Password" onfocus="this.placeholder = ''"
 									onblur="this.placeholder = 'Password'">
-
 							</div>
-							<!-- 	<div class="col-md-12 form-group">
-								<div class="creat_account">
-									<input type="checkbox" id="f-option2" name="selector">
-									<label for="f-option2">Keep me logged in</label>
-								</div>
-							</div> -->
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="primary-btn">Log
 									In</button>
-								<br>
-								<h5 class="text-success" th:text="${messageRegister}"></h5>
-								<div>
-									<h5 th:if="${success}" class="text-success" th:text="${msg}"></h5>
-									<h5 th:unless="${success}" class="text-danger" th:text="${msg}"></h5>
-								</div>
 								<a th:href="@{/forgotPassword}">Forgot Password?</a>
 							</div>
 						</form>

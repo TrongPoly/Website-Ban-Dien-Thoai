@@ -51,4 +51,17 @@ public class TaiKhoan {
         this.trangThai = trangThai;
     }
 
+	public TaiKhoan(String email, String matKhau, PhanQuyen phanQuyen, Boolean trangThai) {
+		super();
+		this.email = email;
+		this.matKhau = matKhau;
+		this.phanQuyen = phanQuyen;
+		this.trangThai = trangThai;
+	}
+
+	public TaiKhoan() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 }
