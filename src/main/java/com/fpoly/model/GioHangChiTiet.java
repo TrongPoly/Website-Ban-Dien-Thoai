@@ -64,4 +64,18 @@ public class GioHangChiTiet {
         this.chonMua = chonMua;
     }
 
+	public GioHangChiTiet(GioHangChiTietId id, GioHang maGioHang, SanPham maSanPham, Integer soLuong, Boolean chonMua) {
+		super();
+		this.id = id;
+		this.maGioHang = maGioHang;
+		this.maSanPham = maSanPham;
+		this.soLuong = soLuong;
+		this.chonMua = chonMua;
+	}
+
+	public GioHangChiTiet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
 }

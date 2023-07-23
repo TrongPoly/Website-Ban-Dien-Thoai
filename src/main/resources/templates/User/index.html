@@ -7,12 +7,12 @@
 
 </head>
 
-<body>
-	<div th:insert="~{./fragments/_banner :: userBanner}"> </div>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<div th:insert="~{./fragments/_banner :: userBanner}"></div>
 	<!-- End banner Area -->
 
 	<!-- start features Area -->
-	<div th:insert="~{./fragments/_banner :: feature}"> </div>
+	<div th:insert="~{./fragments/_banner :: feature}"></div>
 
 
 	<!-- start product Area -->
@@ -21,12 +21,13 @@
 			<div class="section-title">
 				<h1>Những sản phẩm tốt nhất hiện nay, bảo thành lên đến 24
 					tháng</h1>
+
 			</div>
 		</div>
 	</div>
 
 	<div class="row col-12">
-		<div th:each="item : ${dssp}" class="single-product col-md-3">
+		<div th:each="item, istat : ${dssp}" class="single-product col-md-3">
 			<a th:href="@{/product/details/__${item.id}__}"> <img
 				class="img-product" th:src="@{/img/product/__${item.anhSanPham}__}"
 				alt="Not">
@@ -34,18 +35,19 @@
 			<div class="product-details">
 				<h6 th:text="${item.tenSanPham}"></h6>
 				<div class="price">
-					<h6 th:text="${#numbers.formatDecimal(item.donGia,0,'COMMA',0,'POINT')} +' VNĐ'"></h6>
+					<h6
+						th:text="${#numbers.formatDecimal(item.donGia,0,'COMMA',0,'POINT')} +' VNĐ'"></h6>
 				</div>
 				<div th:if="${item.soLuongTon}!=0" class="prd-bottom">
-					<a th:href="@{/sanpham/addtocart?id=__${item.id}__}"
-						class="social-info"> <span class="ti-bag"></span>
+					<a th:onclick="|addToCart('${item.id}')|"  style="cursor: pointer;" class="social-info"> <span 
+						class="ti-bag"></span>
 						<p class="hover-text">add to bag</p>
 					</a> <a href="" class="social-info"> <span class="lnr lnr-heart"></span>
 						<p class="hover-text">Wishlist</p>
 					</a> <a href="" class="social-info"> <span class="lnr lnr-sync"></span>
 						<p class="hover-text">compare</p>
-					</a> <a th:href="@{/product/details/__${item.id}__}" class="social-info">
-						<span class="lnr lnr-move"></span>
+					</a> <a th:href="@{/product/details/__${item.id}__}"
+						class="social-info"> <span class="lnr lnr-move"></span>
 						<p class="hover-text">view more</p>
 					</a>
 				</div>
@@ -70,7 +72,7 @@
 	<!-- end product Area -->
 
 	<!-- Start exclusive deal Area -->
-		<div th:insert="~{./fragments/_banner :: exclusive}"> </div>
+	<div th:insert="~{./fragments/_banner :: exclusive}"></div>
 	<!-- End exclusive deal Area -->
 
 
@@ -92,6 +94,8 @@
 		th:src="@{https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE}"></script>
 	<script th:src="@{/js/gmaps.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
+
+	<script th:src="@{/js/controller/cart-app.js}"></script>
 </body>
 
 </html>

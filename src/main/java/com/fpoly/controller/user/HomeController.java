@@ -26,21 +26,10 @@ public class HomeController {
 	SessionService session;
 
 	@RequestMapping("/index")
-	public String index(Model model) throws Exception {
+	public String index(Model model)  {
 		List<SanPham> dssp = productService.findAll();
 		model.addAttribute("dssp", dssp);
 		return "User/index";
 	}
 
-	@RequestMapping("/login")
-	public String login() {
-		return "User/login";
-	}
-
-	@RequestMapping("/register")
-	public String register() {
-		return "User/register";
-	}
-
-	
 }

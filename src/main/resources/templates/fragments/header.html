@@ -28,7 +28,7 @@
 							<li class="nav-item submenu dropdown"><a
 								th:href="@{/cart/index}" class="nav-link dropdown-toggle"
 								data-toggle="dropdown" role="button" aria-haspopup="true"
-								aria-expanded="false">Cart</a>
+								aria-expanded="false">Brands</a>
 								<ul class="dropdown-menu">
 									<li th:each="item : ${loaiSP}" class="nav-item"><a
 										class="nav-link" th:href="@{/category?loai=__${item.id}__}"
@@ -55,7 +55,7 @@
 									<li class="nav-item"><a class="nav-link"
 										th:href="@{/Profile}">Profile</a></li>
 									<li class="nav-item"><a class="nav-link"
-										th:href="@{/viewCart}">Cart</a></li>
+										th:href="@{/cart/index}">Cart</a></li>
 									<li class="nav-item"><a class="nav-link"
 										th:href="@{/invoice/view}">Invoice</a></li>
 
@@ -73,7 +73,7 @@
 									<li class="nav-item"><a class="nav-link"
 										th:href="@{/login}">Login</a></li>
 									<li class="nav-item"><a class="nav-link"
-										href="/home/register">Register</a></li>
+										th:href="@{/register}">Register</a></li>
 
 								</ul></li>
 

@@ -28,21 +28,57 @@
 	<!--================Single Product Area =================-->
 	<div class="col-md-10 offset-1">
 		<h2 class="text-success">GIỎ HÀNG</h2>
-		<div class="form-group">
-			<label for="diaChiGiaoHang">Địa chỉ giao hàng:</label>
-			<br> <select
+		<div th:if="${#lists.size(listDC)}>0" class="">
+			<label for="diaChiGiaoHang">Địa chỉ giao hàng:</label> <br> <select
 				class="form-control" id="diaChiGiaoHang">
-				<option>Địa chỉ 1</option>
-				<option>Địa chỉ 2</option>
-				<option>Địa chỉ 3</option>
-				<option>Thêm địa chỉ mới</option>
+				<option class="" th:each="dc : ${listDC}" th:value="${dc.id}"
+					th:text="${dc.dcChiTiet}+', '+${dc.phuong}+', '+${dc.quan}+', '+${dc.tinh}"></option>
 			</select>
-			
+		</div>
+		<br> <br>
+		<!-- Button trigger modal -->
+		<button type="button" class=" btn btn-primary" data-toggle="modal"
+			data-target="#exampleModal">Thêm địa chỉ</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form action="/submit" method="post">
+							<select name="province" id="province">
+								<option value="">Select Province</option>
+							</select> <select name="district" id="district" disabled>
+								<option value="">Select District</option>
+							</select> <select name="ward" id="ward" disabled>
+								<option value="">Select Ward</option>
+							</select>
+							<textarea name="address" rows="3"></textarea>
+							<input type="submit" value="Submit">
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save
+							changes</button>
+					</div>
+				</div>
+			</div>
 		</div>
 		<br>
 		<h4 class="text-danger" th:text="${messageSLSP}"></h4>
 		<table class="table table-bordered table-default">
 			<tr>
+				<th></th>
 				<th>Tên sản phẩm</th>
 				<th>Hình ảnh</th>
 				<th>Giá</th>
@@ -50,7 +86,7 @@
 				<th>Thành tiền</th>
 				<th>Action</th>
 			</tr>
-		<!-- <tbody>
+			<!-- <tbody>
 
 				<tr th:each="item, iStat : ${cartSP}">
 					<td th:text="${item.maSanPham.tenSanPham}"></td>
@@ -74,34 +110,38 @@
 			-->
 			<tbody>
 
-				<tr >
-					<td>Sản phẩm 1</td>
-					<td><img alt=""
-						src="/img/product/ip11.jpg"
+				<tr th:each="item,iStat : ${listGH}">
+					<td><input type="checkbox" th:checked="${item.chonMua}" th:onchange="|checkedProduct(this,'${item.maGioHang.id}','${item.maSanPham.id}')|"></td>
+					<td th:text="*{item.maSanPham.tenSanPham}"></td>
+					<td><img alt="not Found"
+						th:src="@{/img/product/__*{item.maSanPham.anhSanPham}__}"
 						height="100px"></td>
-					<td >12,000,000</td>
-					<td><input type="number" value=1> <br></td>
-					<td 
-						>12,000,000
-					</td>
-					<td class="text-danger"><a
-						>Xóa</a></td>
+					<td
+						th:text="*{#numbers.formatDecimal(item.maSanPham.donGia,0,'POINT',0,'POINT')}"></td>
+					<td><input id="soLuongSP" type="number"
+						th:onchange="|updateCart(this,'${item.maGioHang.id}','${item.maSanPham.id}')|"
+						th:value="*{item.soLuong}"> <br></td>
+					<td
+						th:text="*{#numbers.formatDecimal(item.maSanPham.donGia*item.soLuong,0,'POINT',0,'POINT')}"></td>
+					<td class="text-white"><a class="btn btn-danger"
+						th:onclick="|deleteProduct('${item.maGioHang.id}','${item.maSanPham.id}')|">Xóa</a></td>
 				</tr>
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="6" th:text="'Tổng tiền: 12,000,000'"></td>
+					<td colspan="6"
+						th:text="'Tổng tiền: '+${#numbers.formatDecimal(total,0,'POINT',0,'POINT')+' VNĐ'}"></td>
 				</tr>
 			</tfoot>
 		</table>
 
-		<a  th:href="@{/invoice/index}"
+		<a th:href="@{/invoice/index}"
 			onclick="return confirm('Xác nhận đặt hàng?');"
 			class="btn btn-success" style="margin-bottom: 10px; color: white">Đặt
 			hàng</a> <br>
-		
+
 	</div>
-	
+
 
 
 	<script th:src="@{/js/vendor/jquery-2.2.4.min.js}"></script>
@@ -116,11 +156,14 @@
 	<script th:src="@{/js/nouislider.min.js}"></script>
 	<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
 	<script th:src="@{/js/owl.carousel.min.js}"></script>
+
 	<!--gmaps Js-->
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script th:src="@{/js/gmaps.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/controller/cart-app.js}"></script>
+
 	<script>
 		function capNhatSLSP(input) {
 			var tenSanPham = $(input).closest('tr').find('td:eq(0)').text();
@@ -145,6 +188,30 @@
 
 				}
 			});
+		}
+
+		function onSelectProvince(event) {
+			var province = event.target.value;
+			// Get the districts for the selected province.
+			var request = new google.maps.Geocoder();
+			request
+					.geocode(
+							{
+								address : province
+							},
+							function(results, status) {
+								if (status === google.maps.GeocoderStatus.OK) {
+									// Get the first district.
+									var district = results[0].address_components[1].long_name;
+									// Set the value of the district select to the first district.
+									document.getElementById("district").value = district;
+									// Enable the district select.
+									document.getElementById("district").disabled = false;
+								} else {
+									// Display an error message.
+									alert("There was an error getting the districts for the selected province.");
+								}
+							});
 		}
 	</script>
 </body>

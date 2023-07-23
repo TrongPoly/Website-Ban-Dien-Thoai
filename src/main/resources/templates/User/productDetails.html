@@ -6,7 +6,6 @@
 </head>
 
 <body>
-
 	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
 		<div class="container">
@@ -62,7 +61,7 @@
 							<li>Chip: <span th:text="${sp.chip}"></span></li>
 						</ul>
 						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" th:href="@{/cart/index}">Add to Cart</a> <a
+							<a class="primary-btn" th:onclick="|addToCart('${sp.id}')|" style="cursor: pointer;">Add to Cart</a> <a
 								class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
 						</div>
 					</div>
@@ -99,6 +98,8 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script th:src="@{/js/gmaps.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
+		<script th:src="@{/js/controller/cart-app.js}"></script>
+	
 
 </body>
 

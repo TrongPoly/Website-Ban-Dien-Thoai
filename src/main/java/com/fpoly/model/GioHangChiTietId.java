@@ -31,8 +31,10 @@ public class GioHangChiTietId implements Serializable {
     public void setMaSanPham(Integer maSanPham) {
         this.maSanPham = maSanPham;
     }
+    
+    
 
-    @Override
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;

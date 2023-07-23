@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,7 +39,7 @@ public class CartRestController {
 	CustomerService customer;
 
 	@PostMapping("/rest/cart")
-	public ResponseEntity<GioHangChiTiet> addToCart( @RequestParam("productId") Integer id) {
+	public ResponseEntity<GioHangChiTiet> addToCart(@RequestParam("productId") Integer id) {
 		TaiKhoan user = session.get("user");
 		if (user == null)
 			return ResponseEntity.badRequest().build();
@@ -67,6 +68,26 @@ public class CartRestController {
 		return ResponseEntity.ok().build();
 
 	}
+
+	@PutMapping("/rest/cart")
+	public ResponseEntity<Void> updateCart(@RequestParam("soLuongSP") Integer soLuong,
+			@RequestParam("productId") Integer productId, @RequestParam("cartId") Integer cartId) {
+		GioHangChiTiet ghct = cartDetails.findByMaGioHangVaMaSanPham(cartId, productId);
+		ghct.setSoLuong(soLuong);
+		cartDetails.luu(ghct);
+
+		return ResponseEntity.ok().build();
+	}
+	@PutMapping("/rest/cart/checked")
+	public ResponseEntity<Void> CheckProduct(@RequestParam("productCheck") Boolean check,
+			@RequestParam("productId") Integer productId, @RequestParam("cartId") Integer cartId) {
+		GioHangChiTiet ghct = cartDetails.findByMaGioHangVaMaSanPham(cartId, productId);
+		ghct.setChonMua(check);
+		cartDetails.luu(ghct);
+		
+		return ResponseEntity.ok().build();
+	}
+	
 
 	private void themVaoGH(int maGH, int maSP, GioHang gh, SanPham sp) {
 		GioHangChiTietId ghctId = new GioHangChiTietId();

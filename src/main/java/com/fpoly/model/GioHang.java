@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 public class GioHang {
     @Id
     @Column(name = "ma_gio_hang", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -28,5 +29,25 @@ public class GioHang {
     public void setNguoiSoHuu(KhachHang nguoiSoHuu) {
         this.nguoiSoHuu = nguoiSoHuu;
     }
+
+	
+
+	
+
+	public GioHang(KhachHang nguoiSoHuu) {
+		super();
+		this.nguoiSoHuu = nguoiSoHuu;
+	}
+
+	public GioHang(Integer id, KhachHang nguoiSoHuu) {
+		super();
+		this.id = id;
+		this.nguoiSoHuu = nguoiSoHuu;
+	}
+
+	public GioHang() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 }
