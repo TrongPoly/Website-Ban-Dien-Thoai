@@ -16,14 +16,20 @@
               </div>
 
               <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-secondary" type="button">Go!</button>
+                <form action="#" th:action="@{/admin/product/search}">   
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">              
+                <div class="input-group" >                 
+                  <input th:name="name" type="text" class="form-control" id="search_input" placeholder="Search for...">
+                    <span class="input-group-btn" >
+                      <button class="btn btn-secondary" type="submit">Go!</button>
                     </span>
+                 
+                    
+                  
                   </div>
+                   
                 </div>
+                </form>
               </div>
             </div>
 
@@ -57,6 +63,10 @@
                           <th>Hãng</th>
                           <th>Đơn Giá</th>
                           <th>Số Lượng Tồn</th>
+                          <th>Ram</th>
+                          <th>Rom</th>
+                          <th>Pin</th>
+                          <th>Chip</th>
                           <th>Trạng Thái</th>
                           <th>Action</th>
                           
@@ -65,148 +75,28 @@
 
 
                       <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td>Iphone 14</td>
-                          <td>Iphone14.jpg</td>
-                          <td>Apple</td>
-                          <td>900000</td>
-                          <td>11</td>
-                          <td>Còn Hàng</td>
-                          <td>
-                            <a class="btn btn-warning">Sửa</a> <a><span
-								class="btn btn-danger">Xoá</span></a></td>
-                          </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Iphone 14</td>
-                            <td>Iphone14.jpg</td>
-                            <td>Apple</td>
-                            <td>900000</td>
-                            <td>11</td>
-                            <td>Còn Hàng</td>
-                            <td>
-                              <a class="btn btn-warning">Sửa</a> <a><span
-                                  class="btn btn-danger">Xoá</span></a></td>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>3</td>
-                            <td>Iphone 14</td>
-                            <td>Iphone14.jpg</td>
-                            <td>Apple</td>
-                            <td>900000</td>
-                            <td>11</td>
-                            <td>Còn Hàng</td>
-                            <td>
-                              <a class="btn btn-warning">Sửa</a> <a><span
-                                  class="btn btn-danger">Xoá</span></a></td>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>4</td>
-                            <td>Iphone 14</td>
-                            <td>Iphone14.jpg</td>
-                            <td>Apple</td>
-                            <td>900000</td>
-                            <td>11</td>
-                            <td>Còn Hàng</td>
-                            <td>
-                              <a class="btn btn-warning">Sửa</a> <a><span
-                                  class="btn btn-danger">Xoá</span></a></td>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>5</td>
-                            <td>Iphone 14</td>
-                            <td>Iphone14.jpg</td>
-                            <td>Apple</td>
-                            <td>900000</td>
-                            <td>11</td>
-                            <td>Còn Hàng</td>
-                            <td>
-                              <a class="btn btn-warning">Sửa</a> <a><span
-                                  class="btn btn-danger">Xoá</span></a></td>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>6</td>
-                            <td>Iphone 14</td>
-                            <td>Iphone14.jpg</td>
-                            <td>Apple</td>
-                            <td>900000</td>
-                            <td>11</td>
-                            <td>Còn Hàng</td>
-                            <td>
-                              <a class="btn btn-warning">Sửa</a> <a><span
-                                  class="btn btn-danger">Xoá</span></a></td>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>7</td>
-                            <td>Iphone 14</td>
-                            <td>Iphone14.jpg</td>
-                            <td>Apple</td>
-                            <td>900000</td>
-                            <td>11</td>
-                            <td>Còn Hàng</td>
-                            <td>
-                              <a class="btn btn-warning">Sửa</a> <a><span
-                                  class="btn btn-danger">Xoá</span></a></td>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>8</td>
-                            <td>Iphone 14</td>
-                            <td>Iphone14.jpg</td>
-                            <td>Apple</td>
-                            <td>900000</td>
-                            <td>11</td>
-                            <td>Còn Hàng</td>
-                            <td>
-                              <a class="btn btn-warning">Sửa</a> <a><span
-                                  class="btn btn-danger">Xoá</span></a></td>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>8</td>
-                            <td>Iphone 14</td>
-                            <td>Iphone14.jpg</td>
-                            <td>Apple</td>
-                            <td>900000</td>
-                            <td>11</td>
-                            <td>Còn Hàng</td>
-                            <td>
-                              <a class="btn btn-warning">Sửa</a> <a><span
-                                  class="btn btn-danger">Xoá</span></a></td>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>8</td>
-                            <td>Iphone 14</td>
-                            <td>Iphone14.jpg</td>
-                            <td>Apple</td>
-                            <td>900000</td>
-                            <td>11</td>
-                            <td>Còn Hàng</td>
-                            <td>
-                              <a class="btn btn-warning">Sửa</a> <a><span
-                                  class="btn btn-danger">Xoá</span></a></td>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>8</td>
-                            <td>Iphone 14</td>
-                            <td>Iphone14.jpg</td>
-                            <td>Apple</td>
-                            <td>900000</td>
-                            <td>11</td>
-                            <td>Còn Hàng</td>
-                            <td>
-                              <a class="btn btn-warning">Sửa</a> <a><span
-                                  class="btn btn-danger">Xoá</span></a></td>
-                            </td>
+                        <tr th:each= "sp : ${sps}">
+                          <td th:text="${sp.id}"></td>
+                          <td th:text="${sp.tenSanPham}"></td>
+                         <td><img alt="" th:src="@{/img/product/__${sp.anhSanPham}__}"
+							width="100px" height="100px" /></td>
+                          <td th:text="${sp.nhaSanXuat.tenNsx}"></td>
+                          <td th:text="${sp.donGia}"></td>
+                          <td th:text="${sp.soLuongTon}">11</td>
+                          <td th:text="${sp.ram}"></td>
+                          <td th:text="${sp.rom}"></td>
+                          <td th:text="${sp.pin}"></td>
+                          <td th:text="${sp.chip}"></td>
+                          <td th:text="${sp.trangThai}? 'Còn Hàng' : 'Hết Hàng' "></td>
+                        <td style="padding-left: 50px;"><a th:href="@{/admin/product/edit/__${sp.id}__}"
+							class="btn btn-warning">Sửa</a> <a
+							th:href="@{/admin/product/delete/__${sp.id}__}"><span
+								class="btn btn-danger"
+								onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');">Xoá</span></a>
+								</td>
+								
+
+                       
                           </tr>
 
                       
@@ -217,19 +107,31 @@
                   </div>
               </div>
             </div>
+            
                 </div>
+                
               </div>
 
 
-             
+              <nav aria-label="Page navigation example">
+			<ul class="pagination" style="padding-left: 846px; ">
+				<li class="page-item"><a class="page-link"
+					th:href="@{/admin/product/page?p=__${currIndex-1}__}" href="#">Previous</a></li>
+				<tr th:each="i: ${#numbers.sequence(0, numberOfPages - 1)}">
+					<li class="page-item"><a
+						th:style="${'background-color:' + (i==currIndex?'lightgrey':'white')}"
+						th:href="@{/admin/product/page?p=__${i}__}" class="page-link"
+						href="#" th:text="${i+1}"></a></li>
+				</tr>
+				<li class="page-item"><a class="page-link"
+					th:href="@{/admin/product/page?p=__${currIndex+1}__}" href="#">Next</a></li>
+			</ul>
+		</nav>
             </div>
           </div>
+         
         </div>
-        <!-- /page content -->
-
-        <!-- footer content -->
-       
-        <!-- /footer content -->
+       	
      
 
   </body>
