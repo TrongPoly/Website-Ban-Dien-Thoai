@@ -16,13 +16,7 @@
 						</div>
 
 						<div class="title_right">
-							<div class="col-md-5 col-sm-5  form-group pull-right top_search">
-								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Search for...">
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button">Go!</button>
-									</span>
-								</div>
+							
 							</div>
 						</div>
 					</div>
@@ -31,7 +25,7 @@
 						<div class="col-md-12 col-sm-12 ">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Form Sản Phẩm <small></small></h2>
+									<h2>Lưu trữ thông tin sản phẩm<small></small></h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 										</li>
@@ -42,54 +36,101 @@
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
-									<br />
-									<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+									<br /> 
+									<form  th:action="@{/admin/product/save}" action="#" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" 
+									 enctype="multipart/form-data" th:object="${sanpham}">
 
-										<div class="item form-group">
+										<div class="item form-group" style="display: none;" >
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="id-product">Mã Sản Phẩm <span>*</span>
 											</label>
-											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id=""  class="form-control ">
+											<div class="col-md-6 col-sm-6 " >
+												<input style="display: none;"  readonly="true" th:field="*{id}" type="text" id=""  class="form-control ">
 											</div>
 										</div>
 										<div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="full-name">Tên Sản Phẩm<span>*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="" name="full-name"  class="form-control">
+												<input th:field="*{tenSanPham}" type="text" id="" name="full-name"  class="form-control">
 											</div>
+											<i style="color: red; font-family: sans-serif;" th:errors="*{tenSanPham}"></i> 
 										</div>
 										<div class="item form-group custom-file">
 											<label for="" class="col-form-label col-md-3 col-sm-3 label-align">Ảnh Sản Phẩm *</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input id="file" class="file" type="file" name="file">
+												<input  id="file" class="file" type="file" name="file"  accept="image/png, image/jpeg">
 											</div>
 										</div>
                                         <div class="item form-group ">
 											<label class="col-form-label col-md-3 col-sm-3 label-align">Hãng Sản Phẩm *</label>
 											<div class="col-md-6 col-sm-6 ">
-												<select class="select2_single form-control" tabindex="-1">
-													<option></option>
-													<option value="AK">Apple</option>
-													<option value="HI">SamSung</option>
-													<option value="HI">Xiaomi</option>
-												</select>
+												<select class="select2_single form-control" tabindex="-1"  th:field="*{nhaSanXuat.id}">
+											    <option th:each="option : ${options}" 
+											            th:value="${option.key}"
+											            th:text="${option.key}">
+											    </option>
+											</select>
 											</div>
 										</div>
                                         <div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="price">Đơn Giá<span >*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="number" id="last-name" name="price"  class="form-control">
+												<input th:field="*{donGia}"  type="number" id="last-name" name="price"  class="form-control">
 											</div>
+											<i style="color: red; font-family: sans-serif;" th:errors="*{donGia}"></i> 
 										</div>
                                         <div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="">Số Lượng<span >*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="number" id="last-name" name="soLuong" class="form-control">
+												<input  th:field="*{soLuongTon}" type="number" id="last-name" name="soLuong" class="form-control">
 											</div>
+											<i style="color: red; font-family: sans-serif;" th:errors="*{soLuongTon}"></i> 
 										</div>
+										   <div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="">Ram<span >*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input   th:field="*{ram}" type="number" id="last-name" name="soLuong" class="form-control">
+											</div>
+											<i style="color: red; font-family: sans-serif;" th:errors="*{ram}"></i> 
+										</div>
+										   <div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="">Rom<span >*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input th:field="*{rom}"  type="number" id="" name="soLuong" class="form-control">
+											</div>
+											<i style="color: red; font-family: sans-serif;" th:errors="*{rom}"></i> 
+										</div>
+										   <div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="">Pin<span >*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input  th:field="*{pin}"  type="number" id="" name="soLuong" class="form-control">
+											</div>
+											<i style="color: red; font-family: sans-serif;" th:errors="*{pin}"></i> 
+										</div>
+											<div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="full-name">Chip<span>*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input th:field="*{chip}" type="text" id="" name=""  class="form-control">
+											</div>
+											<i style="color: red; font-family: sans-serif;" th:errors="*{chip}"></i> 
+										</div>
+											<div class="col-md-12 form-group p_star">
+								<div class="creat_account"  style="display: none;">
+									<input th:field="*{trangThai}" type="radio"  value="true" name="option1" id="radio_con_hang" > còn hàng
+									<label ></label>
+                                   
+                                    <input  th:field=*{trangThai} type="radio" checked="false"  value="false" name="option1"  id="radio_het_hang" > hết hàng
+									<label ></label>
+								</div>
+								 
+							</div>
+										
 										<div class="ln_solid"></div>
 										<div class="item form-group">
 											<div class="col-md-6 col-sm-6 offset-md-3">
