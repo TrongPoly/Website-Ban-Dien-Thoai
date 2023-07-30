@@ -4,18 +4,24 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "don_hang_chi_tiet")
 public class DonHangChiTiet {
     @EmbeddedId
+    @JsonIgnore
     private DonHangChiTietId id;
 
     @MapsId("maDonHang")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ma_don_hang", nullable = false)
+    @JsonIgnore
     private DonHang maDonHang;
 
     @MapsId("maSanPham")
+    @JsonIgnoreProperties({"anhSanPham","nhaSanXuat","soLuongTon","ram","rom","pin","chip"})
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ma_san_pham", nullable = false)
     private SanPham maSanPham;

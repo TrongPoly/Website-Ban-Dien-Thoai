@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 
 import java.time.Instant;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "don_hang")
 public class DonHang {
@@ -23,6 +26,7 @@ public class DonHang {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "nguoi_mua")
+    @JsonIgnoreProperties({ "soDienThoai", "diemTichLuy","hangKhachHang" })
     private KhachHang nguoiMua;
 
     @ManyToOne(fetch = FetchType.LAZY)

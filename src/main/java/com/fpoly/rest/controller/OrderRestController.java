@@ -26,7 +26,6 @@ import com.fpoly.service.CustomerService;
 import com.fpoly.service.OrderDetailsService;
 import com.fpoly.service.OrderService;
 import com.fpoly.service.ProductService;
-import com.fpoly.service.SessionService;
 
 @RestController
 public class OrderRestController {

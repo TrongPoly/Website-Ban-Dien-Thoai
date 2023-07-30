@@ -3,6 +3,8 @@ package com.fpoly.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "khach_hang")
 public class KhachHang {
@@ -19,6 +21,7 @@ public class KhachHang {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "email")
+    @JsonIgnoreProperties({ "matKhau","phanQuyen" })
     private TaiKhoan email;
 
     @Column(name = "diem_tich_luy")

@@ -51,22 +51,38 @@
 				</tr>
 			</tfoot>
 		</table>
-		<!-- 
-		<a th:if="${hoaDon.trangThai.id}==2"
-			class="btn text-white btn-success"
-			th:href="@{/requestConfirm?maHoaDon=__${hoaDon.id}__&email=__${hoaDon.nguoiMua.email.email}__}">Xác
-			nhận đã nhận hàng</a> <span class="text-success" th:text="${msgEmail}"></span>
-		<a th:if="${hoaDon.trangThai.id}==1" class="btn text-white btn-info"
-			th:href="@{/huyDon?id=__${hoaDon.id}__}">Hủy đơn</a> <span
-			class="text-success" th:text="${msgEmail}"></span>
-		<form th:if="${ghiLyDo}" th:action="@{/doHuyDon}" class="form-group">
-			<input type="hidden" name="maHoaDon" th:value="${hoaDon.id}">
-			<h4 class="text-info">Lý do</h4>
-			<textarea name="body" class="form-control" rows="7" cols="70"></textarea>
-			<button class="btn btn-info">Xác nhận</button>
-			<div class="text-info" th:text="${msg}"></div>
-		</form>
-		-->
+		<!-- Modal -->
+		<div th:if="${trangThai}!=4">
+			<button th:if="${trangThai}==1" type="button"
+				class=" btn btn-primary" data-toggle="modal"
+				data-target="#exampleModal">Hủy đơn</button>
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Yêu cầu hủy
+								đơn</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form th:action="@{/address}" method="post">
+								<div class="form-group">
+									<label><b>Lý do:</b></label>
+									<textarea rows="10" cols="30" class="form-control"></textarea>
+								</div>
+								<button type="submit" class="btn btn-primary">Gửi</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a th:unless="${trangThai}==1" class="btn btn-success text-white">Đã
+				nhận hàng</a>
+		</div>
 	</div>
 	<script th:src="@{/js/vendor/jquery-2.2.4.min.js}"></script>
 	<script

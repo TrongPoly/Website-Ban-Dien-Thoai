@@ -1,7 +1,6 @@
 package com.fpoly.controller.Admin;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -9,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class InvoiceController {
 	
 	@RequestMapping("/invoice")
-	public String invoice(Model model) {
+	public String invoice() {
 		return "Admin/invoiceManagement";
 	}
+	
 }

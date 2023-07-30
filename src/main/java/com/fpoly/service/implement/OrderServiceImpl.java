@@ -28,4 +28,15 @@ public class OrderServiceImpl implements OrderService {
 		donHangRepository.save(donHang);
 	}
 
+	@Override
+	public DonHang findByMaDonHang(Integer id) {
+		// TODO Auto-generated method stub
+		return donHangRepository.findById(id).get();
+	}
+
+	@Override
+	public List<DonHang> findAll() {
+		return donHangRepository.findAll();
+	}
+
 }

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fpoly.model.DonHang;
 import com.fpoly.model.DonHangChiTiet;
@@ -33,6 +32,8 @@ public class OrderController {
 	public String details(Model model, @PathVariable("id") Integer id) {
 		List<DonHangChiTiet> listDHCT = orderDetails.findByMaDonHang(id);
 		model.addAttribute("listDHCT", listDHCT);
+		DonHang donHang = orderService.findByMaDonHang(id);
+		model.addAttribute("trangThai",donHang.getTrangThai());
 		
 		long total = listDHCT.stream().mapToLong(
 				dhct -> dhct.getSoLuong() * Long.parseLong(dhct.getDonGia().stripTrailingZeros().toPlainString()))

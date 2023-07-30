@@ -10,4 +10,8 @@ public interface OrderService {
 
 	void luu(DonHang donHang);
 
+	DonHang findByMaDonHang(Integer id);
+
+	List<DonHang> findAll();
+
 }

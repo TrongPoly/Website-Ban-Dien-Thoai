@@ -18,8 +18,8 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public KhachHang findByUser() {
-		return khachHang.findAll().stream().filter(kh -> kh.getEmail().getEmail().equals(session.get("user").getEmail()))
-				.findFirst().get();
+		return khachHang.findAll().stream()
+				.filter(kh -> kh.getEmail().getEmail().equals(session.get("user").getEmail())).findFirst().get();
 	}
 
 }

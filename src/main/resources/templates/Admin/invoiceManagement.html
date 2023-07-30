@@ -1,113 +1,162 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/Admin/layout:: viewAdmin(~{::body})}">
-  <head> 
-  </head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/Admin/layout:: viewAdmin(~{::body})}">
+<head>
 
-  <body >
-   
-        <!-- /top navigation -->
+</head>
 
-        <!-- page content -->
-        <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Quản Lý Đơn Hàng <small>nơi lưu trữ thông tin đơn hàng</small></h3>
-              </div>
+<body ng-app="orderMngt" ng-controller="orderMngtCtrl">
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-secondary" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+	<!-- /top navigation -->
 
-            <div class="clearfix"></div>
+	<!-- page content -->
+	<div class="right_col" role="main">
+		<div class="">
+			<div class="page-title">
+				<div class="title_left">
+					<h3>
+						Quản Lý Đơn Hàng <small>nơi lưu trữ thông tin đơn hàng</small>
+					</h3>
+				</div>
 
-            <div class="row">
-              <div class="col-md-12 col-sm-12 ">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Bảng Đơn Hàng <small></small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-             
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                      <div class="row">
-                          <div class="col-sm-12">
-                            <div class="card-box table-responsive">
-                   
-                    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-                      <thead>
-                        <tr>
-                          <th>Tên Sản Phẩm</th>
-                          <th>Số Lượng</th>
-                          <th>Đơn Giá</th>
-                          <th>Thành Tiền</th>
-                         
-                          
-                        </tr>
-                      </thead>
+				<div class="title_right">
+					<div
+						class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+						<div class="input-group">
+							<input type="text" class="form-control"
+								placeholder="Search for..."> <span
+								class="input-group-btn">
+								<button class="btn btn-secondary" type="button">Go!</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="clearfix"></div>
+
+			<div class="row">
+				<div class="col-md-12 col-sm-12 ">
+					<div class="x_panel">
+						<div class="x_title">
+							<h2>
+								Danh sách Đơn Hàng <small></small>
+							</h2>
+							<ul class="nav navbar-right panel_toolbox">
+								<li><a class="collapse-link"><i
+										class="fa fa-chevron-up"></i></a></li>
+
+								<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+							</ul>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="card-box table-responsive">
+										<select>
+											
+												<option ng-repeat="item in items">
+												<span>{{item.nguoiMua.tenKhachHang}}</span>
+												</option>
+											
+										</select>
+										<table id="datatable"
+											class="table table-striped table-bordered"
+											style="width: 100%">
+											<thead>
+												<tr>
+													<th>Mã đơn hàng</th>
+													<th>Người mua</th>
+													<th>Ngày đặt hàng</th>
+													<th>Địa chỉ nhận hàng</th>
+													<th>Ngày thanh toán</th>
+													<th>Trạng thái</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng:repeat="dh in items">
+													<td>{{dh.id}}</td>
+													<td>{{dh.nguoiMua.email.email}}</td>
+													<td>{{dh.ngayLap | date: "dd/MM/yyyy, HH:mm"}}</td>
+													<td>{{dh.diaChi.dcChiTiet}},{{dh.diaChi.phuong}},{{dh.diaChi.quan}},{{dh.diaChi.tinh}}</td>
+													<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
+													<td>
+														<div ng-if="dh.trangThai == 1">Đang xử lý</div>
+														<div ng-if="dh.trangThai == 2">Đang vận chuyển</div>
+														<div ng-if="dh.trangThai == 3">Giao hàng thành công</div>
+														<div ng-if="dh.trangThai == 4">Đơn hàng đã hủy</div>
+													</td>
+													<td><a class="btn btn-danger btn-block"
+														ng-if="dh.trangThai == 1" ng-click="huyDon(dh.id)">Xác
+															nhận hủy đơn</a> <br> <a class="btn btn-info btn-block"
+														ng-if="dh.trangThai == 1" ng-click="vanChuyen(dh.id)">Xác
+															nhận đang vận chuyển</a> <a data-toggle="modal"
+														data-target="#exampleModal"
+														class="btn btn-warning btn-block"
+														ng-click="invoiceDetail(dh.id)">Chi tiết</a> <br> <a
+														class="btn btn-success btn-block"
+														ng-if="dh.trangThai == 2" ng-click="hoanTat(dh.id)">Xác
+															nhận giao hàng thành công</a></td>
+												</tr>
+											</tbody>
+										</table>
+										<!-- Modal -->
+										<div class="modal fade" id="exampleModal" tabindex="-1"
+											role="dialog" aria-labelledby="exampleModalLabel"
+											aria-hidden="true">
+											<div class="modal-dialog" role="document">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">Thêm
+															địa chỉ mới</h5>
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="modal-body">
+														<table class="table table-bordered table-default">
+															<tr>
+																<th>Tên sản phẩm</th>
+																<th>Số lượng</th>
+																<th>Đơn giá</th>
+																<th>Thành tiền</th>
+															</tr>
+															<tbody>
+																<tr ng:repeat="item in ghct">
+																	<td>{{item.maSanPham.tenSanPham}}</td>
+																	<td>{{item.soLuong}}</td>
+																	<td>{{item.donGia |number : 0}}</td>
+																	<td>{{item.soLuong*item.donGia|number :0}}</td>
+																</tr>
+															</tbody>
+															<tfoot>
+																<tr>
+																	<td class="text-primary" colspan="6"></td>
+																</tr>
+															</tfoot>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
 
-                      <tbody>
-                        <tr>
-                          <td>Iphone 14</td>
-                          <td>11</td>
-                          <td>900000</td>
-                          <td>9900000</td>
-    
-                        </tr>
-                        <tr>
-                            <td>Iphone 14</td>
-                            <td>11</td>
-                            <td>900000</td>
-                            <td>9900000</td>
-      
-                          </tr>
-                          <tr>
-                            <td>Iphone 14</td>
-                            <td>11</td>
-                            <td>900000</td>
-                            <td>9900000</td>
-      
-                          </tr>
-                      
-                       
 
-                      
-                       
-                      </tbody>
-                    </table>
-                  </div>
-                  </div>
-              </div>
-            </div>
-                </div>
-              </div>
+			</div>
+		</div>
+	</div>
 
 
-             
-            </div>
-          </div>
-        </div>
-        <!-- /page content -->
-
-        <!-- footer content -->
-       
-        <!-- /footer content -->
-   
-
-  </body>
+	<!-- Angular -->
+	<script th:src="@{/js/management/order.js}"></script>
+</body>
 </html>

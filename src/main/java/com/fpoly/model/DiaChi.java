@@ -3,6 +3,8 @@ package com.fpoly.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "dia_chi")
 public class DiaChi {
@@ -13,6 +15,7 @@ public class DiaChi {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ma_khach_hang")
+    @JsonIgnore
     private KhachHang maKhachHang;
 
     @Nationalized
