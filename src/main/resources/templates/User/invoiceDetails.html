@@ -34,32 +34,20 @@
 				<th>Thành tiền</th>
 			</tr>
 			<tbody>
-	<!-- 
-				<tr th:each="item : ${hdct}">
+				<tr th:each="item : ${listDHCT}">
 					<td th:text="${item.maSanPham.tenSanPham}"></td>
 					<td th:text="${item.soLuong}"></td>
-					<td th:text="${#numbers.formatInteger(item.donGia,0)}"></td>
 					<td
-						th:text="${#numbers.formatInteger(item.donGia*item.soLuong, 0)}">
+						th:text="*{#numbers.formatDecimal(item.donGia,0,'POINT',0,'POINT')}"></td>
+					<td
+						th:text="*{#numbers.formatDecimal(item.donGia*item.soLuong, 0,'POINT',0,'POINT')}">
 				</tr>
-				-->
-				<tr>
-					<td >Iphone 11</td>
-					<td >1</td>
-					<td >12,000,000</td>
-					<td >12,000,000</td>
-				</tr>
-				<tr>
-					<td >Iphone 12</td>
-					<td >1</td>
-					<td >14,000,000</td>
-					<td >14,000,000</td>
-				</tr>
+
 			</tbody>
 			<tfoot>
 				<tr>
 					<td class="text-primary" colspan="6"
-						th:text="'Tổng tiền: 26,000,000'"></td>
+						th:text="'Tổng tiền: '+${#numbers.formatDecimal(total,0,'POINT',0,'POINT')}+' VNĐ'"></td>
 				</tr>
 			</tfoot>
 		</table>

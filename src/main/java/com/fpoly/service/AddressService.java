@@ -8,4 +8,8 @@ public interface AddressService {
 
 	List<DiaChi> FindByUser();
 
+	DiaChi findById(Integer dchi);
+
+	void luu(DiaChi diachi);
+
 }

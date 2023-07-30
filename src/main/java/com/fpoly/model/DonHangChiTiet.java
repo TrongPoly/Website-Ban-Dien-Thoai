@@ -66,4 +66,20 @@ public class DonHangChiTiet {
         this.donGia = donGia;
     }
 
+	public DonHangChiTiet(DonHangChiTietId id, DonHang maDonHang, SanPham maSanPham, Integer soLuong,
+			BigDecimal donGia) {
+		super();
+		this.id = id;
+		this.maDonHang = maDonHang;
+		this.maSanPham = maSanPham;
+		this.soLuong = soLuong;
+		this.donGia = donGia;
+	}
+
+
+	public DonHangChiTiet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 }

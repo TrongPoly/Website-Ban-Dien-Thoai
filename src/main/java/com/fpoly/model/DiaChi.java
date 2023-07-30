@@ -80,4 +80,17 @@ public class DiaChi {
         this.dcChiTiet = dcChiTiet;
     }
 
+	public DiaChi(String tinh, String quan, String phuong, String dcChiTiet) {
+		super();
+		this.tinh = tinh;
+		this.quan = quan;
+		this.phuong = phuong;
+		this.dcChiTiet = dcChiTiet;
+	}
+
+	public DiaChi() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
 }

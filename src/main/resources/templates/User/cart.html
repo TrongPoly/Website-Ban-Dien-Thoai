@@ -46,30 +46,36 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Thêm địa chỉ
+							mới</h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body">
-						<form action="/submit" method="post">
-							<select name="province" id="province">
-								<option value="">Select Province</option>
-							</select> <select name="district" id="district" disabled>
-								<option value="">Select District</option>
-							</select> <select name="ward" id="ward" disabled>
-								<option value="">Select Ward</option>
-							</select>
-							<textarea name="address" rows="3"></textarea>
-							<input type="submit" value="Submit">
+						<form th:action="@{/address}" th:object="${address}"
+							method="post">
+							<div class="form-group">
+								<label for="province">Tỉnh/Thành phố</label> <input
+									class="form-control" id="tinh" th:field="*{tinh}">
+							</div>
+							<div class="form-group">
+								<label for="district">Quận/Huyện</label> <input
+									class="form-control" id="quan" th:field="*{quan}">
+							</div>
+							<div class="form-group">
+								<label for="ward">Phường/Xã</label> <input class="form-control"
+									th:field="*{phuong}" id="phuong">
+							</div>
+							<div class="form-group">
+								<label for="address">Địa chỉ cụ thể</label>
+								<textarea class="form-control" id="dcCuThe" th:field="*{dcChiTiet}"></textarea>
+							</div>
+							<button  type="submit" class="btn btn-primary">Thêm</button>
+
+
 						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save
-							changes</button>
 					</div>
 				</div>
 			</div>
@@ -86,39 +92,18 @@
 				<th>Thành tiền</th>
 				<th>Action</th>
 			</tr>
-			<!-- <tbody>
-
-				<tr th:each="item, iStat : ${cartSP}">
-					<td th:text="${item.maSanPham.tenSanPham}"></td>
-					<td><img alt=""
-						th:src="@{/img/product/__${item.maSanPham.anhSanPham}__}"
-						height="100px"></td>
-					<td th:text="${item.maSanPham.donGia}"></td>
-					<td><input type="number" onchange="capNhatSLSP(this)"
-						th:value="${item.soLuong}"> <br> <a
-						th:if="${item.soLuong}==${item.maSanPham.soLuongTon}">*Số
-							lượng tối đa có thể đặt</a></td>
-					<td class="amount"
-						th:text="${#numbers.formatInteger(item.maSanPham.donGia*item.soLuong,0)}">
-					</td>
-					<td class="text-danger"><a
-						th:href="@{/cart/item/delete?maGioHang=__${item.maGioHang.id}__&maSanPham=__${item.maSanPham.id}__}"
-						onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?');"
-						th:text="Xóa"></a></td>
-				</tr>
-			</tbody>
-			-->
 			<tbody>
 
-				<tr th:each="item,iStat : ${listGH}">
-					<td><input type="checkbox" th:checked="${item.chonMua}" th:onchange="|checkedProduct(this,'${item.maGioHang.id}','${item.maSanPham.id}')|"></td>
+				 <tr th:each="item,iStat : ${listGH}">
+					<td><input type="checkbox" th:checked="${item.chonMua}"
+						th:onchange="|checkedProduct(this,'${item.maGioHang.id}','${item.maSanPham.id}')|"></td>
 					<td th:text="*{item.maSanPham.tenSanPham}"></td>
 					<td><img alt="not Found"
 						th:src="@{/img/product/__*{item.maSanPham.anhSanPham}__}"
 						height="100px"></td>
 					<td
 						th:text="*{#numbers.formatDecimal(item.maSanPham.donGia,0,'POINT',0,'POINT')}"></td>
-					<td><input id="soLuongSP" type="number"
+					<td><input th:class="${item.soLuong}>${item.maSanPham.soLuongTon}? 'alert-danger' : ''"  id="soLuongSP" type="number"
 						th:onchange="|updateCart(this,'${item.maGioHang.id}','${item.maSanPham.id}')|"
 						th:value="*{item.soLuong}"> <br></td>
 					<td
@@ -135,11 +120,8 @@
 			</tfoot>
 		</table>
 
-		<a th:href="@{/invoice/index}"
-			onclick="return confirm('Xác nhận đặt hàng?');"
-			class="btn btn-success" style="margin-bottom: 10px; color: white">Đặt
-			hàng</a> <br>
-
+		<a th:if="${total}>0" th:onclick="order()" class="btn btn-success"
+			style="margin-bottom: 10px; color: white">Đặt hàng</a> <br>
 	</div>
 
 
@@ -163,57 +145,10 @@
 	<script th:src="@{/js/gmaps.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 	<script th:src="@{/js/controller/cart-app.js}"></script>
+	<script th:src="@{/js/controller/order.js}"></script>
+	<script th:src="@{/js/controller/address.js}"></script>
 
-	<script>
-		function capNhatSLSP(input) {
-			var tenSanPham = $(input).closest('tr').find('td:eq(0)').text();
-			var donGia = $(input).closest('tr').find('td:eq(2)').text();
-			var soLuong = $(input).val();
-			var thanhTien = donGia * soLuong;
-			$(input).closest('tr').find('.amount').text(thanhTien);
 
-			$.ajax({
-				url : "/cart/item/update",
-				type : "POST",
-				data : {
-					tenSanPham : tenSanPham,
-					soLuong : soLuong
-				},
-				success : function(response) {
-					location.reload();
-				},
-				error : function(xhr) {
-					console.log(xhr.responseText);
-					location.reload();
-
-				}
-			});
-		}
-
-		function onSelectProvince(event) {
-			var province = event.target.value;
-			// Get the districts for the selected province.
-			var request = new google.maps.Geocoder();
-			request
-					.geocode(
-							{
-								address : province
-							},
-							function(results, status) {
-								if (status === google.maps.GeocoderStatus.OK) {
-									// Get the first district.
-									var district = results[0].address_components[1].long_name;
-									// Set the value of the district select to the first district.
-									document.getElementById("district").value = district;
-									// Enable the district select.
-									document.getElementById("district").disabled = false;
-								} else {
-									// Display an error message.
-									alert("There was an error getting the districts for the selected province.");
-								}
-							});
-		}
-	</script>
 </body>
 
 </html>

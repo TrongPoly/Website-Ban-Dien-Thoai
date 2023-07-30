@@ -16,7 +16,20 @@ public class GioHangChiTietId implements Serializable {
     @Column(name = "ma_san_pham", nullable = false)
     private Integer maSanPham;
 
-    public Integer getMaGioHang() {
+   
+
+	public GioHangChiTietId() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public GioHangChiTietId(Integer maGioHang, Integer maSanPham) {
+		super();
+		this.maGioHang = maGioHang;
+		this.maSanPham = maSanPham;
+	}
+
+	public Integer getMaGioHang() {
         return maGioHang;
     }
 

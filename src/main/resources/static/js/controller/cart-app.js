@@ -1,28 +1,41 @@
 /*
+let host = "http://localhost:8080/rest/cart"
 var app = angular.module("myApp", []);
 app.controller("myCtrl", function($scope, $http) {
-	
-	$scope.cart={
-		items:[],
-		add(id){
-			var item = this.items.find(item => item.id == id);
-			if(item){
-				item.soLuong++;
-				this.saveToLocalStorage();
-			}else{
-				$htttp.get('/rest/product/${id}').then(resp =>{
-					resp.data.soLuong = 1;
-					this.items.push(resp.data);
-					this.saveToLocalStorage();
+
+
+	$scope.delete = function(maGioHang, maSanPham) {
+
+		var url = `${host}/delete/${maGioHang}/${maSanPham}`;
+		if (confirm("Bạn có muốn xóa")) {
+			$http
+				.delete(url)
+				.then((resp) => {
+					alert("Xóa thành công")
+					location.reload();
 				})
-			}
-		},
-		saveToLlocalStorage(){
-			var json = JSON.stringify(angular.copy(this.items));
-			localStorage.setItem("cart",json);
+				.catch((error) => {
+					if (error.status === 404) {
+						alert("Không tồn tại")
+					}
+				});
 		}
-		
 	}
+	$scope.add = function(item){
+		alert(item);
+		var url = `${host}/add/${item}`;
+		$http
+			.post(url,data)
+			.then((resp) => {
+				alert("Thêm thành công")
+			})
+			.catch((error) => {
+				alert(error.status)
+			});
+			
+	}
+
+
 });
 */
 function addToCart(id) {
@@ -46,21 +59,23 @@ function addToCart(id) {
 }
 
 function deleteProduct(maGH, maSP) {
-	$.ajax({
-		url: "/rest/cart",
-		type: "DELETE",
-		data: {
-			"productId": maSP,
-			"cartId": maGH
-		},
-		success: function(data) {
-			location.href = "http://localhost:8080/cart/index"
-			alert("Đã xóa")
-		},
-		error: function(xhr, status, error) {
-		}
+	if (confirm("Bạn có muốn xóa sản phẩm khỏi giỏ hàng?")) {
+		$.ajax({
+			url: "/rest/cart",
+			type: "DELETE",
+			data: {
+				"productId": maSP,
+				"cartId": maGH
+			},
+			success: function(data) {
+				location.href = "http://localhost:8080/cart/index"
 
-	});
+			},
+			error: function(xhr, status, error) {
+			}
+
+		});
+	}
 }
 
 function checkedProduct(input, maGH, maSP) {
@@ -107,9 +122,14 @@ function updateCart(input, maGH, maSP) {
 				location.href = "http://localhost:8080/cart/index"
 
 			},
-			error: function(xhr, status, error) {
-				alert(status)
+			error: function(error) {
+				if (error.status === 400) {
+					location.reload();
+				} else {
+					alert("Có lỗi xảy ra. Vui lòng thử lại sau.");
+				}
 			}
 		}
 	);
 }
+

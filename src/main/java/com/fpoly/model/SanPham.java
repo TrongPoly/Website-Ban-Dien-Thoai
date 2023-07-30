@@ -133,4 +133,17 @@ public class SanPham {
         this.chip = chip;
     }
 
+	
+
+	public SanPham(Integer id) {
+		super();
+		this.id = id;
+	}
+
+	public SanPham() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
+
 }

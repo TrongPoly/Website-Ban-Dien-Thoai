@@ -8,6 +8,7 @@ import java.time.Instant;
 @Table(name = "don_hang")
 public class DonHang {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ma_don_hang", nullable = false)
     private Integer id;
 
@@ -75,5 +76,18 @@ public class DonHang {
     public void setDiaChi(DiaChi diaChi) {
         this.diaChi = diaChi;
     }
+
+	public DonHang(Instant ngayLap, Integer trangThai, KhachHang nguoiMua, DiaChi diaChi) {
+		super();
+		this.ngayLap = ngayLap;
+		this.trangThai = trangThai;
+		this.nguoiMua = nguoiMua;
+		this.diaChi = diaChi;
+	}
+
+	public DonHang() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 }

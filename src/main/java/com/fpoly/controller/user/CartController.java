@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fpoly.model.DiaChi;
@@ -34,15 +35,16 @@ public class CartController {
 	CustomerService customer;
 
 	@RequestMapping("/index")
-	public String index(Model model) {
+	public String index(Model model,@ModelAttribute("address") DiaChi dc) {
+		dc = new DiaChi(null, null, null, null);
 		List<DiaChi> listDC = addressService.FindByUser();
 		model.addAttribute("listDC", listDC);
 		GioHang gioHang = cartService.findByUser();
 
-		List<GioHangChiTiet> listGD = cartDetailsService.findByGioHang(gioHang);
+		List<GioHangChiTiet> listGD = cartDetailsService.findByGioHang(gioHang.getId());
 
 		model.addAttribute("listGH", listGD);
-		long total = listGD.stream().mapToLong(ghct -> ghct.getSoLuong()
+		long total = listGD.stream().filter(ghct -> ghct.getChonMua() == true).mapToLong(ghct -> ghct.getSoLuong()
 				* Long.parseLong(ghct.getMaSanPham().getDonGia().stripTrailingZeros().toPlainString())).sum();
 		model.addAttribute("total", total);
 		return "User/cart";

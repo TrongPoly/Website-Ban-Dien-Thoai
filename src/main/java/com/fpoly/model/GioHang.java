@@ -1,5 +1,7 @@
 package com.fpoly.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -9,12 +11,16 @@ public class GioHang {
     @Column(name = "ma_gio_hang", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    
+    
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "nguoi_so_huu")
     private KhachHang nguoiSoHuu;
 
-    public Integer getId() {
+    
+  
+
+	public Integer getId() {
         return id;
     }
 

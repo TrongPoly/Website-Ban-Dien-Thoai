@@ -22,4 +22,14 @@ public class AddressServiceImpl implements AddressService{
 		return diaChi.findAll().stream().filter(dc -> dc.getMaKhachHang().getEmail().getEmail().equals(session.get("user").getEmail())).toList();
 	}
 
+	@Override
+	public DiaChi findById(Integer dchi) {
+		return diaChi.findById(dchi).get();
+	}
+
+	@Override
+	public void luu(DiaChi diachi) {
+		diaChi.save(diachi);
+	}
+
 }
