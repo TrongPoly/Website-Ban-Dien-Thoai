@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fpoly.model.DiaChi;
 import com.fpoly.model.DonHang;
+import com.fpoly.model.DonHangActivity;
 import com.fpoly.model.DonHangChiTiet;
 import com.fpoly.model.DonHangChiTietId;
 import com.fpoly.model.GioHang;
@@ -23,6 +24,7 @@ import com.fpoly.service.AddressService;
 import com.fpoly.service.CartDetailsService;
 import com.fpoly.service.CartService;
 import com.fpoly.service.CustomerService;
+import com.fpoly.service.DonHangActivityService;
 import com.fpoly.service.OrderDetailsService;
 import com.fpoly.service.OrderService;
 import com.fpoly.service.ProductService;
@@ -43,6 +45,8 @@ public class OrderRestController {
 	CartService cart;
 	@Autowired
 	ProductService product;
+	@Autowired
+	DonHangActivityService donHangActivityService;
 
 	@PostMapping("/rest/order")
 	public ResponseEntity<Void> order(@RequestParam("diaChiId") Integer dchi) {
@@ -61,6 +65,7 @@ public class OrderRestController {
 		for (int i = 0; i < listGHCT.size(); i++) {
 			SanPham sp = product.findById(listGHCT.get(i).getMaSanPham().getId());
 			if (listGHCT.stream().anyMatch(ghct -> ghct.getSoLuong() > ghct.getMaSanPham().getSoLuongTon())) {
+				order.xoa(donHang);
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 			}
 			
@@ -71,6 +76,8 @@ public class OrderRestController {
 			DonHangChiTiet dhct = new DonHangChiTiet(dhctId, donHang, sp, listGHCT.get(i).getSoLuong(),
 					listGHCT.get(i).getMaSanPham().getDonGia());
 			orderDetails.luu(dhct);
+			DonHangActivity activity = new DonHangActivity(donHang, 1, ngayDatHang,1);
+			donHangActivityService.luu(activity);
 			sp.setSoLuongTon(sp.getSoLuongTon() - listGHCT.get(i).getSoLuong());
 			cartDetails.xoaSanPham(listGHCT.get(i));
 		}

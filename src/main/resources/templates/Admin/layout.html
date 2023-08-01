@@ -43,7 +43,7 @@
 </head>
 
 
-<body class="nav-md">
+<body  ng-app="orderMngt" ng-controller="orderMngtCtrl" class="nav-md">
 	<div class="container body">
 		<div class="main_container">
 			<!-- Start Header Area -->
@@ -101,6 +101,9 @@
 
 	<!-- Custom Theme Scripts -->
 	<script src="/build/js/custom.min.js"></script>
+	
+	<!-- Angular -->
+	<script th:src="@{/js/management/order.js}"></script>
 
 
 </body>

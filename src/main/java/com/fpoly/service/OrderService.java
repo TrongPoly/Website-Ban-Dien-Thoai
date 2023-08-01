@@ -14,4 +14,6 @@ public interface OrderService {
 
 	List<DonHang> findAll();
 
+	void xoa(DonHang donHang);
+
 }

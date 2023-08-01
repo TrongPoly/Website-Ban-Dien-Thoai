@@ -105,7 +105,10 @@
 						th:text="*{#numbers.formatDecimal(item.maSanPham.donGia,0,'POINT',0,'POINT')}"></td>
 					<td><input th:class="${item.soLuong}>${item.maSanPham.soLuongTon}? 'alert-danger' : ''"  id="soLuongSP" type="number"
 						th:onchange="|updateCart(this,'${item.maGioHang.id}','${item.maSanPham.id}')|"
-						th:value="*{item.soLuong}"> <br></td>
+						th:value="*{item.soLuong}"> <br>
+						<span th:text="'Số lượng còn lại: '+${item.maSanPham.soLuongTon}"></span>
+						<br></td>
+						
 					<td
 						th:text="*{#numbers.formatDecimal(item.maSanPham.donGia*item.soLuong,0,'POINT',0,'POINT')}"></td>
 					<td class="text-white"><a class="btn btn-danger"

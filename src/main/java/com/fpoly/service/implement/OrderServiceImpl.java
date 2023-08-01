@@ -39,4 +39,9 @@ public class OrderServiceImpl implements OrderService {
 		return donHangRepository.findAll();
 	}
 
+	@Override
+	public void xoa(DonHang donHang) {
+		donHangRepository.delete(donHang);
+	}
+
 }

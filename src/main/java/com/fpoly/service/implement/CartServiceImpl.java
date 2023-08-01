@@ -22,7 +22,7 @@ public class CartServiceImpl implements CartService {
 	public GioHang findByUser() {
 		GioHang gioHang = cart.findAll().stream()
 				.filter(gh -> gh.getNguoiSoHuu().getEmail().getEmail().equals(session.get("user").getEmail()))
-				.findFirst().orElse(null);
+				.findFirst().get();
 		
 		return gioHang;
 	}

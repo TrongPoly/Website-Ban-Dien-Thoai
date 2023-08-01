@@ -68,12 +68,7 @@ public class CartRestController {
 	public ResponseEntity<Void> updateCart(@RequestParam("soLuongSP") Integer soLuong,
 			@RequestParam("productId") Integer productId, @RequestParam("cartId") Integer cartId) {
 		GioHangChiTiet ghct = cartDetails.findByMaGioHangVaMaSanPham(cartId, productId);
-		if (ghct.getMaSanPham().getSoLuongTon() < soLuong) {
-			soLuong = ghct.getMaSanPham().getSoLuongTon();
-			ghct.setSoLuong(soLuong);
-			cartDetails.luu(ghct);
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-		} else if (soLuong <= 0) {
+		 if (soLuong <= 0) {
 			soLuong = 1;
 		}
 		ghct.setSoLuong(soLuong);

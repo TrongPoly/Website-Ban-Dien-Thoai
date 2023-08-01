@@ -10,12 +10,15 @@ app.controller("orderMngtCtrl", function($scope, $http) {
 		$http
 			.get(url)
 			.then((resp) => {
+				
 				$scope.items = resp.data;
 			})
 			.catch((error) => {
 				alert("Lỗi");
 			});
 	};
+	
+	
 
 	$scope.invoiceDetail = function(id) {
 		var url = `${host}/details/${id}`;
@@ -31,9 +34,10 @@ app.controller("orderMngtCtrl", function($scope, $http) {
 			.catch((error) => {
 				alert("Lỗi");
 			});
-	}
+	};
 	$scope.huyDon = function(id){
 		var url = `${host}/cancelOrder/${id}`;
+		
 		$http
 			.put(url)
 			.then((resp) => {
@@ -43,7 +47,20 @@ app.controller("orderMngtCtrl", function($scope, $http) {
 			.catch((error) => {
 				alert("Lỗi");
 			});
-	}
+	};
+	$scope.khongHuyDon = function(id){
+		var url = `${host}/notCancelOrder/${id}`;
+		
+		$http
+			.put(url)
+			.then((resp) => {
+				alert("success!")
+				location.reload();
+			})
+			.catch((error) => {
+				alert("Lỗi");
+			});
+	};
 	$scope.vanChuyen = function(id){
 		var url = `${host}/delivery/${id}`;
 		$http
@@ -55,7 +72,7 @@ app.controller("orderMngtCtrl", function($scope, $http) {
 			.catch((error) => {
 				alert("Lỗi");
 			});
-	}
+	};
 	$scope.hoanTat = function(id){
 		var url = `${host}/successfulDelivery/${id}`;
 		$http
@@ -68,6 +85,30 @@ app.controller("orderMngtCtrl", function($scope, $http) {
 				alert("Lỗi");
 			});
 	}
+	$scope.loadMessage = function(){
+		var url = `${host}/loadMessage`;
+		$scope.msg = [];
+		$http
+			.get(url)
+			.then((resp) => {
+			$scope.msg = resp.data
+			})
+			.catch((error) => {
+				alert("Lỗi");
+			});
+	}
+	$scope.seeMessage = function(id,orderId){
+		var url = `${host}/seeMessage/${id}`;
+		$http
+			.put(url)
+			.then((resp) => {
+				$scope.invoiceDetail(orderId);
+			})
+			.catch((error) => {
+				alert("Lỗi");
+			});
+	}
 	
 	$scope.load_all();
+	$scope.loadMessage();
 });
