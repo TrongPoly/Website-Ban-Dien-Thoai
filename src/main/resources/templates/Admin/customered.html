@@ -53,70 +53,62 @@
 								</div>
 								<div class="x_content">
 									<br />
-									<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+									<form  action="#" th:action="@{/admin/customer/save}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
+										th:object="${khachhang}">
 
-										<div class="item form-group">
+										<div class="item form-group" style="display: none;">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="id-product">Mã Khách Hàng <span>*</span>
 											</label>
-											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id=""  class="form-control ">
+											<div class="col-md-6 col-sm-6 " style="display: none;">
+												<input th:field="*{id}" type="text" id=""  class="form-control ">
 											</div>
 										</div>
 										<div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="full-name">Tên Khách Hàng<span>*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="" name="full-name"  class="form-control">
+												<input  th:field="*{tenKhachHang}" type="text" id="" name="full-name"  class="form-control">
 											</div>
+											<i style="color: red; font-family: sans-serif;" th:errors="*{tenKhachHang}"></i>
 										</div>
 								  
                                         <div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="price">Số Điện Thoại<span >*</span>
+											<label   class="col-form-label col-md-3 col-sm-3 label-align" for="price">Số Điện Thoại<span >*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="number" id="" name="price"  class="form-control">
+												<input th:field="*{soDienThoai}" type="number" id="" name="price"  class="form-control">
 											</div>
+											<i style="color: red; font-family: sans-serif;" th:errors="*{soDienThoai}"></i>
 										</div>
                                         <div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="">Email<span >*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="" name="" class="form-control">
+												<input  th:field="*{email.email}" type="text" id="" name="" class="form-control">
+												
 											</div>
+											<i style="color: red; font-family: sans-serif;" th:errors="*{email.email}"></i>
+											
 										</div>
-                                        <div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="">Địa Chỉ<span >*</span>
-											</label>
-											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="" name="" class="form-control">
-											</div>
-										</div>
-                                        <div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="price">CCCD<span >*</span>
-											</label>
-											<div class="col-md-6 col-sm-6 ">
-												<input type="number" id="" name="price"  class="form-control">
-											</div>
-										</div>
+                               
                                         <div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="price">Điểm Tích Lũy<span >*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="number" id="" name="price"  class="form-control">
+												<input  th:field="*{diemTichLuy}" type="number" id="" name="price"  class="form-control">
 											</div>
+											<i style="color: red; font-family: sans-serif;" th:errors="*{diemTichLuy}"></i> 
 										</div>
                                         <div class="item form-group ">
-											<label class="col-form-label col-md-3 col-sm-3 label-align">Hãng Sản Phẩm *</label>
+											<label class="col-form-label col-md-3 col-sm-3 label-align">Hạng *</label>
 											<div class="col-md-6 col-sm-6 ">
-												<select class="select2_single form-control" tabindex="-1">
-													<option></option>
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-													<option value="4">4</option>
-													<option value="4">4</option>
-													<option value="5">5</option>
-												</select>
+												<select class="select2_single form-control" tabindex="-1"  th:field="*{hangKhachHang.id}">
+											 
+											    <option th:each="option : ${options}" 
+											            th:value="${option.key}"
+											            th:text="${option.key}">
+											    </option>
+											</select>
 											</div>
 										</div>
 										<div class="ln_solid"></div>

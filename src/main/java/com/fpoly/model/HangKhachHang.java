@@ -1,6 +1,8 @@
 package com.fpoly.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+
 import org.hibernate.annotations.Nationalized;
 
 @Entity
@@ -8,6 +10,7 @@ import org.hibernate.annotations.Nationalized;
 public class HangKhachHang {
     @Id
     @Column(name = "ma_hang", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Nationalized

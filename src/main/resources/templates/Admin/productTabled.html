@@ -81,7 +81,7 @@
                          <td><img alt="" th:src="@{/img/product/__${sp.anhSanPham}__}"
 							width="100px" height="100px" /></td>
                           <td th:text="${sp.nhaSanXuat.tenNsx}"></td>
-                          <td th:text="${sp.donGia}"></td>
+                          <td th:text="${#numbers.formatDecimal(sp.donGia,0,'COMMA',0,'POINT')}"></td>
                           <td th:text="${sp.soLuongTon}">11</td>
                           <td th:text="${sp.ram}"></td>
                           <td th:text="${sp.rom}"></td>
@@ -114,7 +114,7 @@
 
 
               <nav aria-label="Page navigation example">
-			<ul class="pagination" style="padding-left: 846px; ">
+			<ul class="pagination" style="padding-left: 910px; ">
 				<li class="page-item"><a class="page-link"
 					th:href="@{/admin/product/page?p=__${currIndex-1}__}" href="#">Previous</a></li>
 				<tr th:each="i: ${#numbers.sequence(0, numberOfPages - 1)}">

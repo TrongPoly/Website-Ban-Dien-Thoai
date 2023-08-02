@@ -37,12 +37,12 @@ public class SanPham implements Serializable{
     private NhaSanXuat nhaSanXuat;
     
     
-    @Positive(message = "Giá không được nhỏ hơn 0")
+    @PositiveOrZero(message = "Giá không được nhỏ hơn 0")
     @NotNull(message = "Không được để trống giá")
     @Column(name = "don_gia", precision = 19, scale = 4)
     private BigDecimal donGia;
     
-    @Positive(message = "Số lượng không được nhỏ hơn 0")
+    @PositiveOrZero(message = "Số lượng không được nhỏ hơn 0")
     @NotNull(message = "Không được để trống số lượng")
     @Column(name = "so_luong_ton")
     private Integer soLuongTon;
@@ -50,17 +50,17 @@ public class SanPham implements Serializable{
     @Column(name = "trang_thai")
     private Boolean trangThai;
 
-    @Positive(message = "Ram không được nhỏ hơn 0")
+    @PositiveOrZero(message = "Ram không được nhỏ hơn 0")
     @NotNull(message = "Vui lòng nhập Ram")
     @Column(name = "ram")
     private Integer ram;
 
-    @Positive(message = "Rom không được nhỏ hơn 0")
+    @PositiveOrZero(message = "Rom không được nhỏ hơn 0")
     @NotNull(message = "Vui lòng nhập Rom")
     @Column(name = "rom")
     private Integer rom;
 
-    @Positive(message = "Pin không được nhỏ hơn 0")
+    @PositiveOrZero(message = "Pin không được nhỏ hơn 0")
     @NotNull(message = "Vui lòng nhập Pin")
     @Column(name = "pin")
     private Integer pin;

@@ -12,7 +12,7 @@
    
   </head>
 
-  <body >
+  <body ng-app="AdminHangApp" ng-controller="AdminHangCtrl">
    
         <!-- /top navigation -->
 
@@ -37,7 +37,7 @@
             </div>
 
             <div class="clearfix"></div>
-
+	
             <div class="row" >
               <div class="col-md-12 col-sm-12 " >
                 <div class="x_panel" >
@@ -71,48 +71,21 @@
 
 
                       <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td>Khách Hàng Ưu Tú</td>
-                          <td>3000</td>
-                          <td>Hạng này dành cho khách hàng có số điểm tối thiểu 3000</td>
+                        <tr ng-repeat=" hkh in items">
+                          <td>{{hkh.id}}</td>
+                          <td>{{hkh.tenHang}}</td>
+                          <td>{{hkh.diemToiThieu}}</td>
+                          <td>{{hkh.moTa}}</td>
                         
                           <td>
-                            <a class="btn btn-warning">Sửa</a> <a><span
-								class="btn btn-danger">Xoá</span></a>
+                            <a ng-click="edit(hkh.id)" class="btn btn-warning">Sửa</a>
+                             <a><span ng-click="delete(hkh.id)" class="btn btn-danger">Xoá</span></a>
                                 
                             </td>
                               
                           
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Khách Hàng Thân Thiết</td>
-                            <td>2500</td>
-                            <td>Hạng này dành cho khách hàng có số điểm tối thiểu 2500</td>
-                          
-                            <td>
-                              <a class="btn btn-warning">Sửa</a> <a><span
-                                  class="btn btn-danger">Xoá</span></a>
-                                  
-                              </td>
-                                
-                            
-                          </tr>
-                          <tr>
-                            <td>3</td>
-                            <td>Khách Hàng Thân Quen</td>
-                            <td>1500</td>
-                            <td>Hạng này dành cho khách hàng có số điểm tối thiểu 1500</td>
-                          
-                            <td>
-                              <a class="btn btn-warning">Sửa</a> <a><span
-                                  class="btn btn-danger">Xoá</span></a>
-                                  
-                              </td>
-                                
-                            
-                          </tr>
+         
                        
                        
 
@@ -138,6 +111,6 @@
       
         <!-- /footer content -->
     
-
+<script th:src="@{/js/management/customerRank.js}"></script>
   </body>
 </html>
