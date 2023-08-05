@@ -31,6 +31,7 @@ import com.fpoly.model.SanPham;
 import com.fpoly.repository.SanPhamRepository;
 import com.fpoly.service.OptionServiceNhaSanXuat;
 import com.fpoly.service.UploadFileService;
+import com.fpoly.service.implement.ProductServiceImpl;
 
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
@@ -44,6 +45,7 @@ public class SanPhamController {
 	SanPhamRepository daosp;
 	@Autowired
 	public OptionServiceNhaSanXuat optionService;
+
 	
 	@RequestMapping("/product")
 	public String form(Model model) {
@@ -112,7 +114,7 @@ public class SanPhamController {
 		return "redirect:/admin/productTable";
 	}
 	
-	@RequestMapping( value = "/product/delete/{id}")
+	@RequestMapping( value = "/product/delete/{id}",method = {RequestMethod.GET, RequestMethod.DELETE})
 	public String deleteId(@PathVariable("id") Integer id) {
 		daosp.deleteById(id);
 		return "redirect:/admin/productTable";

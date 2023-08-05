@@ -28,4 +28,5 @@ public class OptionServiceNhaSanXuat {
 		List<NhaSanXuat> nhasanxuats = NhaSanXuatdao.findbykeywords(key);
 		return nhasanxuats.isEmpty() ? null : nhasanxuats.get(0);
 	}
+	
 }

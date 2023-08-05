@@ -29,8 +29,8 @@ public class ProductServiceImpl implements ProductService {
 	public List<SanPham> findAllByNSX(String tenNsx) {
 		return spRp.findAll().stream().filter(sv -> sv.getNhaSanXuat().getTenNsx().equals(tenNsx))
 				.collect(Collectors.toList());
-		
-
 	}
+	
+
 
 }

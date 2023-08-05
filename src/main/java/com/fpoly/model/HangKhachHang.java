@@ -1,13 +1,21 @@
 package com.fpoly.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+
 import org.hibernate.annotations.Nationalized;
+
+@NamedQueries({
+	@NamedQuery(name="findByTenHang", query = "select hkh from HangKhachHang hkh "
+			+ "where hkh.tenHang like ?1")})
+
 
 @Entity
 @Table(name = "hang_khach_hang")
 public class HangKhachHang {
     @Id
     @Column(name = "ma_hang", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Nationalized
