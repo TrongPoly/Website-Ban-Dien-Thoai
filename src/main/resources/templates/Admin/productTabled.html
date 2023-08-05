@@ -1,138 +1,136 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/Admin/layout:: viewAdmin(~{::body})}">
-  <head>
-   
-  </head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/Admin/layout:: viewAdmin(~{::body})}">
+<head>
 
-  <body>
-   
+</head>
 
-        <!-- page content -->
-        <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Sản Phẩm <small>nơi lưu trữ thông tin sản phẩm</small></h3>
-              </div>
-
-              <div class="title_right">
-                <form action="#" th:action="@{/admin/product/search}">   
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">              
-                <div class="input-group" >                 
-                  <input th:name="name" type="text" class="form-control" id="search_input" placeholder="Search for...">
-                    <span class="input-group-btn" >
-                      <button class="btn btn-secondary" type="submit">Go!</button>
-                    </span>
-                 
-                    
-                  
-                  </div>
-                   
-                </div>
-                </form>
-              </div>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <div class="row">
-              <div class="col-md-12 col-sm-12 ">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Bảng Sản Phẩm <small>Products</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-             
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                      <div class="row">
-                          <div class="col-sm-12">
-                            <div class="card-box table-responsive">
-                   
-                    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-                      <thead>
-                        <tr>
-                          <th>Mã SP</th>
-                          <th>Tên SP</th>
-                          <th>Hình Ảnh</th>
-                          <th>Hãng</th>
-                          <th>Đơn Giá</th>
-                          <th>Số Lượng Tồn</th>
-                          <th>Ram</th>
-                          <th>Rom</th>
-                          <th>Pin</th>
-                          <th>Chip</th>
-                          <th>Trạng Thái</th>
-                          <th>Action</th>
-                          
-                        </tr>
-                      </thead>
+<body>
 
 
-                      <tbody>
-                        <tr th:each= "sp : ${sps}">
-                          <td th:text="${sp.id}"></td>
-                          <td th:text="${sp.tenSanPham}"></td>
-                         <td><img alt="" th:src="@{/img/product/__${sp.anhSanPham}__}"
-							width="100px" height="100px" /></td>
-                          <td th:text="${sp.nhaSanXuat.tenNsx}"></td>
-                          <td th:text="${#numbers.formatDecimal(sp.donGia,0,'COMMA',0,'POINT')}"></td>
-                          <td th:text="${sp.soLuongTon}">11</td>
-                          <td th:text="${sp.ram}"></td>
-                          <td th:text="${sp.rom}"></td>
-                          <td th:text="${sp.pin}"></td>
-                          <td th:text="${sp.chip}"></td>
-                          <td th:text="${sp.trangThai}? 'Còn Hàng' : 'Hết Hàng' "></td>
-                        <td style="padding-left: 50px;"><a th:href="@{/admin/product/edit/__${sp.id}__}"
-							class="btn btn-warning">Sửa</a> <a
-							th:href="@{/admin/product/delete/__${sp.id}__}"><span
-								class="btn btn-danger"
-								onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');">Xoá</span></a>
-								</td>
-								
+	<!-- page content -->
+	<div class="right_col" role="main">
+		<div class="">
+			<div class="page-title">
+				<div class="title_left">
+					<h3>
+						Sản Phẩm <small>nơi lưu trữ thông tin sản phẩm</small>
+					</h3>
+				</div>
 
-                       
-                          </tr>
-
-                      
-                       
-                      </tbody>
-                    </table>
-                  </div>
-                  </div>
-              </div>
-            </div>
-            
-                </div>
-                
-              </div>
+				<div class="title_right">
+					<form action="#" th:action="@{/admin/product/search}">
+						<div
+							class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+							<div class="input-group">
+								<input th:name="name" type="text" class="form-control"
+									id="search_input" placeholder="Search for..."> <span
+									class="input-group-btn">
+									<button class="btn btn-secondary" type="submit">Go!</button>
+								</span>
 
 
-              <nav aria-label="Page navigation example">
-			<ul class="pagination" style="padding-left: 910px; ">
-				<li class="page-item"><a class="page-link"
-					th:href="@{/admin/product/page?p=__${currIndex-1}__}" href="#">Previous</a></li>
-				<tr th:each="i: ${#numbers.sequence(0, numberOfPages - 1)}">
-					<li class="page-item"><a
-						th:style="${'background-color:' + (i==currIndex?'lightgrey':'white')}"
-						th:href="@{/admin/product/page?p=__${i}__}" class="page-link"
-						href="#" th:text="${i+1}"></a></li>
-				</tr>
-				<li class="page-item"><a class="page-link"
-					th:href="@{/admin/product/page?p=__${currIndex+1}__}" href="#">Next</a></li>
-			</ul>
-		</nav>
-            </div>
-          </div>
-         
-        </div>
-       	
-     
 
-  </body>
+							</div>
+
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="clearfix"></div>
+
+			<div class="row">
+				<div class="col-md-12 col-sm-12 ">
+					<div class="x_panel">
+						<div class="x_title">
+							<h2>
+								Bảng Sản Phẩm <small>Products</small>
+							</h2>
+							<ul class="nav navbar-right panel_toolbox">
+								<li><a class="collapse-link"><i
+										class="fa fa-chevron-up"></i></a></li>
+
+								<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+							</ul>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="card-box table-responsive">
+
+										<table id="datatable"
+											class="table table-striped table-bordered"
+											style="width: 100%">
+											<thead>
+												<tr>
+													<th>Mã SP</th>
+													<th>Tên SP</th>
+													<th>Hình Ảnh</th>
+													<th>Hãng</th>
+													<th>Đơn Giá</th>
+													<th>Số Lượng Tồn</th>
+													<th>Ram</th>
+													<th>Rom</th>
+													<th>Pin</th>
+													<th>Chip</th>
+													<th>Trạng Thái</th>
+													<th>Action</th>
+
+												</tr>
+											</thead>
+
+
+											<tbody>
+												<tr th:each="sp : ${sps}">
+													<td th:text="${sp.id}"></td>
+													<td th:text="${sp.tenSanPham}"></td>
+													<td><img alt=""
+														th:src="@{/img/product/__${sp.anhSanPham}__}"
+														width="100px" height="100px" /></td>
+													<td th:text="${sp.nhaSanXuat.tenNsx}"></td>
+													<td
+														th:text="${#numbers.formatDecimal(sp.donGia,0,'COMMA',0,'POINT')}"></td>
+													<td th:text="${sp.soLuongTon}">11</td>
+													<td th:text="${sp.ram}"></td>
+													<td th:text="${sp.rom}"></td>
+													<td th:text="${sp.pin}"></td>
+													<td th:text="${sp.chip}"></td>
+													<td th:text="${sp.trangThai}? 'Còn Hàng' : 'Hết Hàng' "></td>
+													<td style="padding-left: 50px;"><a
+														th:href="@{/admin/product/edit/__${sp.id}__}"
+														class="btn btn-warning">Sửa</a> <a
+														th:href="@{/admin/product/delete/__${sp.id}__}"><span
+															class="btn btn-danger"
+															onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');">Xoá</span></a>
+													</td>
+
+
+
+												</tr>
+
+
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+
+
+			</div>
+		</div>
+
+	</div>
+
+
+
+</body>
 </html>

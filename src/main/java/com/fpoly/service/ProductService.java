@@ -11,5 +11,7 @@ public interface ProductService {
 	SanPham findById(Integer id);
 
 	List<SanPham> findAllByNSX(String tenNsx);
+	
+
 
 }

@@ -1,10 +1,9 @@
 let host = "http://localhost:8080/admin/rest";
-const app = angular.module("AdminSpApp", []);
-app.controller("AdminSpCtrl", function($scope, $http) {
+const app = angular.module("AdminKhApp", []);
+app.controller("AdminKhCtrl", function($scope, $http) {
 	$scope.form = {};
 	$scope.items = [];
-	$scope.nhasanxuats = [];
-	
+	$scope.hkhs = [];
 	
 	
 	   $scope.reset = function(){
@@ -12,10 +11,10 @@ app.controller("AdminSpCtrl", function($scope, $http) {
         $scope.key = null;
     }
 	
-	$scope.load_all_nsx = function() {
-		var url = `${host}/nhasanxuat`;
+	$scope.load_all_hkh = function() {
+		var url = `${host}/hangkhachhang`;
 		$http.get(url).then(resp => {
-			$scope.nhasanxuats = resp.data;
+			$scope.hkhs = resp.data;
 			console.log("Succes", resp);
 		}).catch((error) => {
 			console.log("Error", error);
@@ -23,7 +22,7 @@ app.controller("AdminSpCtrl", function($scope, $http) {
 	}
 	
 	$scope.load_all = function() {
-		var url = `${host}/sanpham`;
+		var url = `${host}/khachhang`;
 		$http.get(url).then(resp => {
 			$scope.items = resp.data;
 			console.log("Succes", resp);
@@ -32,7 +31,7 @@ app.controller("AdminSpCtrl", function($scope, $http) {
 		});
 	}
 	$scope.edit = function(id){
-		var url = `${host}/sanpham/${id}`;
+		var url = `${host}/khachhang/${id}`;
 		$http.get(url).then(resp => {
 			$scope.form = resp.data;
 			
@@ -43,7 +42,7 @@ app.controller("AdminSpCtrl", function($scope, $http) {
 	}
 	   $scope.create = function(){
         var item = angular.copy($scope.form);
-        var url = `${host}/sanpham`;
+        var url = `${host}/khachhang`;
         $http.post(url, item).then(resp => {	
 			
             $scope.items.push(item);
@@ -63,7 +62,7 @@ app.controller("AdminSpCtrl", function($scope, $http) {
 	
 	$scope.update = function(){
 		var item = angular.copy($scope.form);
-		var url = `${host}/sanpham/${$scope.form.id}`;
+		var url = `${host}/khachhang/${$scope.form.id}`;
 		$http
 				.put(url, item).then(resp => {
 					var index = $scope.items.findIndex(item =>
@@ -76,23 +75,12 @@ app.controller("AdminSpCtrl", function($scope, $http) {
 					alert("cập nhật thất bại!")
 					console.log("Error", error)
 				});
-	/*			
-	 $scope.search = function() {
-      var name = $scope.name;
-      $http.get(`'${host}/sanpham/search/' + $scope.pageNumber + '/' + $scope.pageSize + '/' + name`)
-        .success(function(data) {
-          $scope.items = data.sanpham;
-        });
-    };			
-			*/	
-				
-				
 					
 				
 	}
 	
 	$scope.delete = function(id){
-		var url = `${host}/sanpham/${id}`;
+		var url = `${host}/khachhang/${id}`;
 		$http.delete(url).then(resp => {
 			var index = $scope.items.findIndex(item => item.id == id);
 		
@@ -105,8 +93,7 @@ app.controller("AdminSpCtrl", function($scope, $http) {
 			console.log("Error", error)
 		});
 	}
-	
-	$scope.load_all_nsx();
+	$scope.load_all_hkh();
 	$scope.load_all();
 	$scope.reset();
 })

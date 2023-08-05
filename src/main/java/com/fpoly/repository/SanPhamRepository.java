@@ -13,4 +13,7 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Integer>{
 	
 	@Query(name = "findByTenSanPham")
 	List<SanPham> findByTenSanPham(String tenSanPham, Pageable page);
+	
+	@Query(name= "findByNhaSanXuat")
+	List<SanPham> findByNhaSanXuat(String tenNhaSanXuat,Pageable page);
 }

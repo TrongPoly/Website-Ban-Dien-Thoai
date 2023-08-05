@@ -31,6 +31,7 @@ import com.fpoly.model.SanPham;
 import com.fpoly.repository.SanPhamRepository;
 import com.fpoly.service.OptionServiceNhaSanXuat;
 import com.fpoly.service.UploadFileService;
+import com.fpoly.service.implement.ProductServiceImpl;
 
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
@@ -44,6 +45,7 @@ public class SanPhamController {
 	SanPhamRepository daosp;
 	@Autowired
 	public OptionServiceNhaSanXuat optionService;
+
 	
 	@RequestMapping("/product")
 	public String form(Model model) {
