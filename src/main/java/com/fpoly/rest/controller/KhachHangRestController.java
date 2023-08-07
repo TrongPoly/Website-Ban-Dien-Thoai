@@ -24,7 +24,7 @@ import com.fpoly.service.SessionService;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/admin/rest")
+@RequestMapping("/rest")
 public class KhachHangRestController {
 
 	@Autowired

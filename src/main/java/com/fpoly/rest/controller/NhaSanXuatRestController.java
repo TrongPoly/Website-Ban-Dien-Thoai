@@ -14,7 +14,7 @@ import com.fpoly.repository.NhaSanXuatRepository;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/admin/rest")
+@RequestMapping("/rest")
 public class NhaSanXuatRestController {
 	
 	@Autowired

@@ -1,4 +1,4 @@
-let host = "http://localhost:8080/admin/rest";
+let host = "http://localhost:8080/rest";
 const app = angular.module("AdminKhApp", []);
 app.controller("AdminKhCtrl", function($scope, $http) {
 	$scope.form = {};
@@ -93,6 +93,39 @@ app.controller("AdminKhCtrl", function($scope, $http) {
 			console.log("Error", error)
 		});
 	}
+	
+	$scope.pager = {
+		page: 0,
+		size: 5,
+		get items(){
+			var start = this.page * this.size;
+			return $scope.items.slice(start,start + this.size);
+		},
+		
+		get count(){
+			return Math.ceil(1.0 * $scope.items.length / this.size);
+		},
+		first(){
+			this.page = 0;
+		},
+		prev(){
+			this.page--;
+			if(this.page< 0){
+				this.last();
+			}
+		},
+		next(){
+			this.page++;
+			if(this.page >= this.count){
+				this.first();
+			}
+		},
+		last(){
+			this.page = this.count - 1;
+		}
+	
+	}
+	
 	$scope.load_all_hkh();
 	$scope.load_all();
 	$scope.reset();
