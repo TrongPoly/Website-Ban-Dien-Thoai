@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -54,10 +55,6 @@ public class SanPhamRestController {
 	@PostMapping("/sanpham")
 	public SanPham post(@Validated @RequestBody SanPham sp,Errors errors, @PathParam("folder") MultipartFile folder) {
 		
-		 if(errors.hasErrors()) {
-			
-			 return sp;
-		 }
 		
 		if (sp.getSoLuongTon() == 0) {
 			sp.setTrangThai(false); // set trạng thái là hết hàng nếu số lượng tồn = 0
