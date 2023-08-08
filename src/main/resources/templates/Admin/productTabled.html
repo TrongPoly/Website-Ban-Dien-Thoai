@@ -87,7 +87,8 @@
 													<td th:text="${sp.id}"></td>
 													<td th:text="${sp.tenSanPham}"></td>
 													<td><img alt=""
-														th:src="@{/img/product/__${sp.anhSanPham}__}"
+														th:src="@{
+														'/img/product/' +  ${sp.anhSanPham}}"
 														width="100px" height="100px" /></td>
 													<td th:text="${sp.nhaSanXuat.tenNsx}"></td>
 													<td

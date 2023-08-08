@@ -37,6 +37,16 @@
 					</div>
 					<div class="x_content">
 						<br />
+						<!-- <div class="row pull-left">
+						<div class="col-sm-4 text-center">
+						<label for="image">
+						<img alt="" ng-src="{{'img/product/' + form.anhSanPham}}" style="max-width: 1000px; height: 200px;">
+						</label>
+						</div>
+						</div> -->
+
+
+
 						<form id="demo-form2" data-parsley-validate
 							class="form-horizontal form-label-left" method="post"
 							enctype="multipart/form-data" th:object="${sanpham}">
@@ -65,9 +75,10 @@
 									class="col-form-label col-md-3 col-sm-3 label-align">Ảnh
 									Sản Phẩm *</label>
 								<div class="col-md-6 col-sm-6 ">
-									<input ng-model="form.anhSanPham" ng-file="form.anhSanPham"
-										ng-value="form.anhSanPham" id="file" class="file" type="file"
-										name="file" accept="image/png, image/jpeg">
+									<input id="file" class="file" type="file" name="file" 
+										accept="image/png, image/jpeg"
+										onchange="angular.element(this).scope().imageChanged(this.files)">
+
 								</div>
 							</div>
 							<div class="item form-group ">
@@ -145,9 +156,9 @@
 									style="display: none;" for="full-name">Trạng Thái<span>*</span>
 								</label>
 								<div class="col-md-6 col-sm-6" style="display: none">
-									<input ng-model="form.trangThai" type="radio" value="true"
+									<input ng-model="form.trangThai" type="radio" ng-value="true"
 										name="option1" id="radio_con_hang"> Còn bán <label></label>
-									<input ng-model="form.trangThai" type="radio" value="false"
+									<input ng-model="form.trangThai" type="radio" ng-value="false"
 										name="option1" id="radio_het_hang"> Ngừng kinh doanh <label></label>
 								</div>
 
@@ -223,6 +234,7 @@
 												<th>Mã SP</th>
 												<th>Tên SP</th>
 												<th>Hình Ảnh</th>
+												<th>Hình Ảnh</th>
 												<th>Hãng</th>
 												<th>Đơn Giá</th>
 												<th>Số Lượng Tồn</th>
@@ -239,13 +251,14 @@
 
 										<tbody>
 
-											<tr ng-repeat="item in items">
+											<tr ng-repeat="item in pager.items">
 												<td>{{item.id}}</td>
 												<td>{{item.tenSanPham}}</td>
-												<td><img src="/img/product/{{item.anhSanPham}}"
+												<td><img ng-src="{{'/img/product/' + item.anhSanPham}}"
 													width="100px" height="100px" /></td>
+												<td>{{item.anhSanPham}}</td>
 												<td>{{item.nhaSanXuat.tenNsx}}</td>
-												<td> {{item.donGia}}</td>
+												<td>{{item.donGia | number: 0}}</td>
 												<td>{{item.soLuongTon}}</td>
 												<td>{{item.ram}}</td>
 												<td>{{item.rom}}</td>
@@ -265,7 +278,27 @@
 
 										</tbody>
 									</table>
+									<div class="panel-footer text-center">
+										<button ng-click="pager.first()" class="btn btn-danger">
+											<b class="glyphicon glyphicon-hand-up"></b>
+										</button>
 
+										<button ng-click="pager.prev()" class="btn btn-danger">
+											<b class="glyphicon glyphicon-hand-left"></b>
+										</button>
+
+										<button class="btn btn-success">{{pager.page + 1}} of
+											{{pager.count}}</button>
+
+										<button ng-click="pager.next()" class="btn btn-danger">
+											<b class="glyphicon glyphicon-hand-right"></b>
+										</button>
+
+										<button ng-click="pager.last()" class="btn btn-danger">
+											<b class="glyphicon glyphicon-hand-down"></b>
+										</button>
+
+									</div>
 								</div>
 
 							</div>

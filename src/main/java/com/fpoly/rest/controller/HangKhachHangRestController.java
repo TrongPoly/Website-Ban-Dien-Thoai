@@ -20,35 +20,35 @@ import com.fpoly.repository.HangKhachHangRepository;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/rest")
 public class HangKhachHangRestController {
 
 	@Autowired
 	HangKhachHangRepository daohkh;
 	
-	@GetMapping("/rest/hangkhachhang")
+	@GetMapping("/hangkhachhang")
 	public List<HangKhachHang> getAll(Model model){
 		return daohkh.findAll();
 	}
 	
 
-	@GetMapping("/rest/hangkhachhang/{id}")
+	@GetMapping("/hangkhachhang/{id}")
 	public HangKhachHang getOne(@PathVariable("id") Integer id) {
 		return daohkh.findById(id).get();
 	}
 	
-	@PostMapping("/rest/hangkhachhang")
+	@PostMapping("/hangkhachhang")
 	public HangKhachHang post(@RequestBody HangKhachHang hkh){
 		daohkh.save(hkh);
 		return hkh;
 	}
 
-	@PutMapping("/rest/hangkhachhang/{id}")
+	@PutMapping("/hangkhachhang/{id}")
 	public HangKhachHang put(@RequestBody HangKhachHang hkh){
 		daohkh.save(hkh);
 		return hkh;
 	}
-	@DeleteMapping("/rest/hangkhachhang/{id}")
+	@DeleteMapping("/hangkhachhang/{id}")
 	public void delete(@PathVariable("id") Integer id) {
 		daohkh.deleteById(id);
 	}

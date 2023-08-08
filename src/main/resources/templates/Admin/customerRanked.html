@@ -52,7 +52,7 @@
 								</div>
 								<div class="x_content">
 									<br />
-									<form name="frName" ng-submit="validate()" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+									<form ng-submit="validate()" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
 										<div class="item form-group">
 											<label style="display: none;" class="col-form-label col-md-3 col-sm-3 label-align" for="id-product">Mã Hạng <span>*</span>
@@ -152,7 +152,7 @@
 
 
                       <tbody>
-                        <tr ng-repeat=" hkh in items">
+                        <tr ng-repeat=" hkh in pager.items">
                           <td>{{hkh.id}}</td>
                           <td>{{hkh.tenHang}}</td>
                           <td>{{hkh.diemToiThieu}}</td>
@@ -174,6 +174,24 @@
                        
                       </tbody>
                     </table>
+                    <div class="panel-footer text-center">
+										<button ng-click="pager.first()" class="btn btn-danger">
+											<b class="glyphicon glyphicon-hand-up"></b>
+										</button>
+
+									<button ng-click="pager.prev()" class="btn btn-danger">
+											<b class="glyphicon glyphicon-hand-left"></b>
+										</button>
+										
+										<button class="btn btn-success">{{pager.page + 1}} of {{pager.count}}</button>
+									
+									<button ng-click="pager.next()" class="btn btn-danger">
+											<b class="glyphicon glyphicon-hand-right"></b>
+										</button>
+										
+									<button ng-click="pager.last()" class="btn btn-danger">
+											<b class="glyphicon glyphicon-hand-down"></b>
+										</button>
                   </div>
                   </div>
               </div>

@@ -175,7 +175,7 @@
 
 
 											<tbody>
-												<tr ng-repeat="item in items">
+												<tr ng-repeat="item in pager.items">
 													<td>{{item.id}}</td>
 													<td class ="{{item.email.phanQuyen? 'text-danger' : 'text-info'}}">{{item.tenKhachHang}}</td>
 													<td>{{item.soDienThoai}}</td>
@@ -211,6 +211,26 @@
 														th:text="${kh.tenKhachHang}" -->
 											</tbody>
 										</table>
+										<div class="panel-footer text-center">
+										<button ng-click="pager.first()" class="btn btn-danger">
+											<b class="glyphicon glyphicon-hand-up"></b>
+										</button>
+
+									<button ng-click="pager.prev()" class="btn btn-danger">
+											<b class="glyphicon glyphicon-hand-left"></b>
+										</button>
+										
+										<button class="btn btn-success">{{pager.page + 1}} of {{pager.count}}</button>
+									
+									<button ng-click="pager.next()" class="btn btn-danger">
+											<b class="glyphicon glyphicon-hand-right"></b>
+										</button>
+										
+									<button ng-click="pager.last()" class="btn btn-danger">
+											<b class="glyphicon glyphicon-hand-down"></b>
+										</button>
+
+									</div>
 									</div>
 								</div>
 							</div>
