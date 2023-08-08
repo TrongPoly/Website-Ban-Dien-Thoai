@@ -17,35 +17,40 @@ import com.fpoly.service.SessionService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
+@RequestMapping("/auth")
 public class AccountController {
 	@Autowired
 	SessionService session;
 	@Autowired
 	CartService cart;
-	@Autowired 
+	@Autowired
 	CustomerService customer;
-	
-	@GetMapping("/login")
-	public String formLogin(Model model) {
-		TaiKhoan tk = new TaiKhoan("", "", null, null);
-		model.addAttribute("taiKhoan",tk);
+
+	@GetMapping("/login/form")
+	public String formLogin() {
 		return "User/login";
 	}
-	@PostMapping("/login")
-	public String doLogin(Model model,@ModelAttribute("taiKhoan") TaiKhoan tk) {
-		session.set("user", tk);
-		GioHang ghExist = cart.findByUser();
-		if (ghExist == null) {
-			GioHang gh = new GioHang();
-			gh.setNguoiSoHuu(customer.findByUser());
-			cart.luu(gh);
-		}
+
+	@GetMapping("/login/success")
+	public String doLogin(Model model) {
+
 		return "redirect:/home/index";
 	}
-	@RequestMapping("/logout")
+
+	@RequestMapping("/logoff/success")
 	public String doLogout() {
 		session.remove("user");
+		return "redirect:/auth/login/form";
+	}
+
+	@RequestMapping("/login/error")
+	public String loginError() {
+		return "redirect:/auth/login/form";
+	}
+
+	@RequestMapping("/access/denied")
+	public String denied() {
 		return "redirect:/home/index";
 	}
-	
+
 }

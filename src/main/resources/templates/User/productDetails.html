@@ -5,7 +5,7 @@
 
 </head>
 
-<body>
+<body ng-app="cartApp" ng-controller="indexCtrl">
 	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
 		<div class="container">
@@ -54,6 +54,7 @@
 							Số lượng còn lại: <span th:text="${sp.soLuongTon}">
 						</h3>
 						<ul class="list">
+							<li style="display: none" ><span ng-model="id" >[[${sp.id}]]</span></li>
 							<li>Thương hiệu: <span th:text="${sp.nhaSanXuat.tenNsx}"></span></li>
 							<li>Ram: <span th:text="${sp.ram}+' GB'"></span></li>
 							<li>Rom: <span th:text="${sp.rom}+' GB'"></span></li>
@@ -61,7 +62,7 @@
 							<li>Chip: <span th:text="${sp.chip}"></span></li>
 						</ul>
 						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" th:onclick="|addToCart('${sp.id}')|" style="cursor: pointer;">Add to Cart</a> <a
+							<a class="primary-btn" style="cursor: pointer;">Add to Cart</a> <a
 								class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
 						</div>
 					</div>

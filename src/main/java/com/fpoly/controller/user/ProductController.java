@@ -19,10 +19,10 @@ public class ProductController {
 	ProductService productService;
 	
 	@GetMapping("/details/{id}")
-	public String productDetails(Model model, @PathVariable("id") Integer id) {
+	public String productDetails(@PathVariable("id") Integer id, Model model) {
 	  	SanPham sp = productService.findById(id);
 		model.addAttribute("sp",sp);
-		
+		System.out.println(sp.getAnhSanPham());
 		List<SanPham> dssp = productService.findAllByNSX(sp.getNhaSanXuat().getTenNsx());
 		model.addAttribute("dssp",dssp);
 		return "User/productDetails";

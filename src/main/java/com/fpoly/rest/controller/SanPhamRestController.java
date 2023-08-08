@@ -26,7 +26,7 @@ import com.fpoly.repository.SanPhamRepository;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/admin/rest")
+@RequestMapping("/rest")
 public class SanPhamRestController {
 	
 

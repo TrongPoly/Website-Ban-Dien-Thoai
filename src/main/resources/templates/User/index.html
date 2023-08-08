@@ -7,7 +7,7 @@
 
 </head>
 
-<body ng-app="myApp" ng-controller="myCtrl">
+<body ng-app="cartApp" ng-controller="indexCtrl">
 	<div th:insert="~{./fragments/_banner :: userBanner}"></div>
 	<!-- End banner Area -->
 
@@ -27,7 +27,37 @@
 	</div>
 
 	<div class="row col-12">
-		<div th:each="item, istat : ${dssp}" class="single-product col-md-3">
+		<div ng:repeat="item in productList" class="single-product col-md-3">
+			<img
+				class="img-product" src="/img/product/{{item.anhSanPham}}"
+				alt="Not">
+			<div class="product-details">
+				<h6>{{item.tenSanPham}}</h6>
+				<div class="price">
+					<h6>{{item.donGia}}</h6>
+				</div>
+				<div ng-if="item.soLuongTon > 0" class="prd-bottom">
+					<a  ng-click="addToCart(item.id)" style="cursor: pointer;"
+						class="social-info"> <span class="ti-bag"></span>
+						<p class="hover-text">add to bag</p>
+					</a>
+				
+					 <a href="" class="social-info"> <span class="lnr lnr-heart"></span>
+						<p class="hover-text">Wishlist</p>
+					</a> <a href="" class="social-info"> <span class="lnr lnr-sync"></span>
+						<p class="hover-text">compare</p>
+					</a> <a href="/product/details/{{item.id}}" class="social-info">
+						<span class="lnr lnr-move"></span>
+						<p class="hover-text">view more</p>
+					</a>
+				</div>
+				<div ng-if="item.soLuongTon < 1">
+					<br>
+					<h3 class="text-danger">Hết hàng</h3>
+				</div>
+			</div>
+		</div>
+	<!-- 	<div th:each="item, istat : ${dssp}" class="single-product col-md-3">
 			<a th:href="@{/product/details/__${item.id}__}"> <img
 				class="img-product" th:src="@{/img/product/__${item.anhSanPham}__}"
 				alt="Not">
@@ -58,18 +88,7 @@
 					<h3 class="text-danger">Hết hàng</h3>
 				</div>
 			</div>
-		</div>
-		<!-- 
-		<nav class="col-2 offset-5" aria-label="Page navigation example">
-			<ul class="pagination">
-				<tr th:each="n : ${#numbers.sequence(0, sp.totalPages-1)}">
-					<li class="page-item"><a class="page-link" href="#"
-						th:style="${'background-color:' 
-							+ (n==currIndex?'lightgrey':'white')}"
-						th:href="@{/index?page=__${n}__}" th:text=${n+1}></a></li>
-				</tr>
-			</ul>
-		</nav> -->
+		</div> -->
 	</div>
 	<!-- end product Area -->
 

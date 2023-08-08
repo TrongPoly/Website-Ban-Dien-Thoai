@@ -22,4 +22,9 @@ public class CustomerServiceImpl implements CustomerService {
 				.filter(kh -> kh.getEmail().getEmail().equals(session.get("user").getEmail())).findFirst().get();
 	}
 
+	@Override
+	public KhachHang findByMaKhach(Integer maKhach) {
+		return khachHang.findById(maKhach).get();
+	}
+
 }

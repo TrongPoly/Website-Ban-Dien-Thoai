@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "dia_chi")
@@ -15,7 +16,7 @@ public class DiaChi {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ma_khach_hang")
-    @JsonIgnore
+    @JsonIgnoreProperties({"tenKhachHang","soDienThoai","email"})
     private KhachHang maKhachHang;
 
     @Nationalized

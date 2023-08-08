@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fpoly.model.DonHangChiTiet;
 import com.fpoly.model.GioHang;
 import com.fpoly.model.GioHangChiTiet;
 import com.fpoly.model.GioHangChiTietId;
@@ -42,6 +43,11 @@ public class CartDetailsServiceImpl implements CartDetailsService{
 	@Override
 	public void xoaSanPham(GioHangChiTiet gioHangChiTiet) {
 		ghct.delete(gioHangChiTiet);
+	}
+
+	@Override
+	public List<GioHangChiTiet> timTatCa() {
+		return ghct.findAll();
 	}
 	
 

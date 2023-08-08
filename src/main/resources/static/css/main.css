@@ -910,21 +910,21 @@ h1, h2, h3, h4, h5, h6 {
 
 .default-select {
   height: 40px; }
-  .default-select .nice-select {
+  .default-select  {
     border: none;
     border-radius: 0px;
     height: 40px;
     background: #f9f9ff;
     padding-left: 20px;
     padding-right: 40px; }
-    .default-select .nice-select .list {
+    .default-select  .list {
       margin-top: 0;
       border: none;
       border-radius: 0px;
       box-shadow: none;
       width: 100%;
       padding: 10px 0 10px 0px; }
-      .default-select .nice-select .list .option {
+      .default-select  .list .option {
         font-weight: 300;
         -webkit-transition: all 0.3s ease 0s;
         -moz-transition: all 0.3s ease 0s;
@@ -934,22 +934,22 @@ h1, h2, h3, h4, h5, h6 {
         min-height: 28px;
         font-size: 12px;
         padding-left: 20px; }
-        .default-select .nice-select .list .option.selected {
+        .default-select  .list .option.selected {
           color: #ffba00;
           background: transparent; }
-        .default-select .nice-select .list .option:hover {
+        .default-select  .list .option:hover {
           color: #ffba00;
           background: transparent; }
   .default-select .current {
     margin-right: 50px;
     font-weight: 300; }
-  .default-select .nice-select::after {
+  .default-select ::after {
     right: 20px; }
 
 .form-select {
   height: 40px;
   width: 100%; }
-  .form-select .nice-select {
+  .form-select  {
     border: none;
     border-radius: 0px;
     height: 40px;
@@ -957,14 +957,14 @@ h1, h2, h3, h4, h5, h6 {
     padding-left: 45px;
     padding-right: 40px;
     width: 100%; }
-    .form-select .nice-select .list {
+    .form-select  .list {
       margin-top: 0;
       border: none;
       border-radius: 0px;
       box-shadow: none;
       width: 100%;
       padding: 10px 0 10px 0px; }
-      .form-select .nice-select .list .option {
+      .form-select  .list .option {
         font-weight: 300;
         -webkit-transition: all 0.3s ease 0s;
         -moz-transition: all 0.3s ease 0s;
@@ -974,16 +974,16 @@ h1, h2, h3, h4, h5, h6 {
         min-height: 28px;
         font-size: 12px;
         padding-left: 45px; }
-        .form-select .nice-select .list .option.selected {
+        .form-select  .list .option.selected {
           color: #ffba00;
           background: transparent; }
-        .form-select .nice-select .list .option:hover {
+        .form-select  .list .option:hover {
           color: #ffba00;
           background: transparent; }
   .form-select .current {
     margin-right: 50px;
     font-weight: 300; }
-  .form-select .nice-select::after {
+  .form-select ::after {
     right: 20px; }
 
 .is-sticky .header_area .main_menu .main_box {
@@ -2025,9 +2025,9 @@ label {
 .billing-form .sorting {
   margin-top: 20px;
   margin-right: 0; }
-  .billing-form .sorting .nice-select {
+  .billing-form .sorting  {
     width: 100%; }
-    .billing-form .sorting .nice-select .list {
+    .billing-form .sorting  .list {
       width: 100%; }
 
 .order-wrapper {
@@ -2154,7 +2154,7 @@ label {
   .shipping-area .sorting {
     margin-right: 0;
     width: 300px; }
-    .shipping-area .sorting .nice-select {
+    .shipping-area .sorting  {
       width: 100%; }
     .shipping-area .sorting .list {
       width: 100%; }
@@ -3144,13 +3144,13 @@ label {
 .sorting {
   margin-top: 10px;
   margin-right: 10px; }
-  .sorting .nice-select {
+  .sorting  {
     border-radius: 0px;
     border: 1px solid #eee;
     padding-right: 50px; }
-    .sorting .nice-select:after {
+    .sorting :after {
       right: 18px; }
-    .sorting .nice-select .list {
+    .sorting  .list {
       border-radius: 0px; }
 
 .pagination {

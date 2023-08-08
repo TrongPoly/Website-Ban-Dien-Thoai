@@ -1,6 +1,7 @@
 package com.fpoly.rest.controller;
 
 import java.time.Instant;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,12 @@ import com.fpoly.model.DonHang;
 import com.fpoly.model.DonHangActivity;
 import com.fpoly.model.DonHangChiTiet;
 import com.fpoly.model.KhachHang;
+import com.fpoly.model.SanPham;
 import com.fpoly.service.CustomerService;
 import com.fpoly.service.DonHangActivityService;
 import com.fpoly.service.OrderDetailsService;
 import com.fpoly.service.OrderService;
+import com.fpoly.service.ProductService;
 
 @RestController
 @CrossOrigin("*")
@@ -32,6 +35,8 @@ public class OderMgmtController {
 	CustomerService customerService;
 	@Autowired
 	DonHangActivityService donHangActivityService;
+	@Autowired
+	ProductService productService;
 
 	@GetMapping("/index")
 	public List<DonHang> getAll() {
@@ -47,6 +52,12 @@ public class OderMgmtController {
 	public void cancelOrder(@PathVariable("id") Integer id) {
 		DonHang donHang = orderService.findByMaDonHang(id);
 		donHang.setTrangThai(4);
+		List<DonHangChiTiet> dhct = orderDetailsService.findByMaDonHang(id);
+		for(int i = 0 ; i<dhct.size(); i++) {
+			SanPham sp = productService.findById(dhct.get(i).getMaSanPham().getId());
+			sp.setSoLuongTon(sp.getSoLuongTon()+dhct.get(i).getSoLuong());
+			productService.luu(sp);
+		}
 		Instant ngayCapNhat = Instant.now();
 		DonHangActivity activity = new DonHangActivity(donHang, 4, ngayCapNhat, 2);
 		donHangActivityService.luu(activity);

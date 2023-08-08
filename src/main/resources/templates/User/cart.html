@@ -5,7 +5,7 @@
 
 </head>
 
-<body>
+<body ng-app="cartApp" ng-controller="cartCtrl">
 
 	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
@@ -28,7 +28,7 @@
 	<!--================Single Product Area =================-->
 	<div class="col-md-10 offset-1">
 		<h2 class="text-success">GIỎ HÀNG</h2>
-		<div th:if="${#lists.size(listDC)}>0" class="">
+		<!--	<div th:if="${#lists.size(listDC)}>0" class="">
 			<label for="diaChiGiaoHang">Địa chỉ giao hàng:</label> <br> <select
 				class="form-control" id="diaChiGiaoHang">
 				<option class="" th:each="dc : ${listDC}" th:value="${dc.id}"
@@ -36,11 +36,9 @@
 			</select>
 		</div>
 		<br> <br>
-		<!-- Button trigger modal -->
 		<button type="button" class=" btn btn-primary" data-toggle="modal"
 			data-target="#exampleModal">Thêm địa chỉ</button>
-
-		<!-- Modal -->
+Modal
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -54,8 +52,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form th:action="@{/address}" th:object="${address}"
-							method="post">
+						<form th:action="@{/address}" th:object="${address}" method="post">
 							<div class="form-group">
 								<label for="province">Tỉnh/Thành phố</label> <input
 									class="form-control" id="tinh" th:field="*{tinh}">
@@ -70,9 +67,57 @@
 							</div>
 							<div class="form-group">
 								<label for="address">Địa chỉ cụ thể</label>
-								<textarea class="form-control" id="dcCuThe" th:field="*{dcChiTiet}"></textarea>
+								<textarea class="form-control" id="dcCuThe"
+									th:field="*{dcChiTiet}"></textarea>
 							</div>
-							<button  type="submit" class="btn btn-primary">Thêm</button>
+							<button type="submit" class="btn btn-primary">Thêm</button>
+
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div> 
+		-->
+
+		<label>Địa chỉ giao hàng:</label> <br> <select ng-model="adr"  class="form-control">
+			<option ng:repeat="adr in address" ng:value="{{adr.id}}">{{adr.dcChiTiet}}, {{adr.phuong}}, {{adr.quan}}, {{adr.tinh}}</option>
+		</select> <br> <br>
+		<button type="button" class=" btn btn-primary" data-toggle="modal"
+			data-target="#exampleModal">Thêm địa chỉ</button>
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Thêm địa chỉ
+							mới</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form action="" th:object="${form}" method="post">
+							<div class="form-group">
+								<label for="province">Tỉnh/Thành phố</label> <input
+									class="form-control" id="tinh" ng-model="form.tinh">
+							</div>
+							<div class="form-group">
+								<label for="district">Quận/Huyện</label> <input
+									class="form-control" id="quan" ng-model="form.quan">
+							</div>
+							<div class="form-group">
+								<label for="ward">Phường/Xã</label> <input class="form-control"
+									 ng-model="form.phuong">
+							</div>
+							<div class="form-group">
+								<label for="address">Địa chỉ cụ thể</label>
+								<textarea class="form-control" id="dcCuThe"
+									ng-model="form.dcChiTiet"></textarea>
+							</div>
+							<button class="btn btn-primary" ng-click="create_address()">Thêm</button>
 
 
 						</form>
@@ -92,7 +137,7 @@
 				<th>Thành tiền</th>
 				<th>Action</th>
 			</tr>
-			<tbody>
+			<!-- 	<tbody>
 
 				 <tr th:each="item,iStat : ${listGH}">
 					<td><input type="checkbox" th:checked="${item.chonMua}"
@@ -120,11 +165,37 @@
 					<td colspan="6"
 						th:text="'Tổng tiền: '+${#numbers.formatDecimal(total,0,'POINT',0,'POINT')+' VNĐ'}"></td>
 				</tr>
+			</tfoot> -->
+			<tbody>
+
+				<tr ng:repeat="item in ghct">
+					<td><input type="checkbox"
+						ng-change="update(item.id.maGioHang,item.id.maSanPham,item)"
+						ng-model="item.chonMua"></td>
+					<td>{{item.maSanPham.tenSanPham}}</td>
+					<td><img alt="not Found"
+						src="/img/product/{{item.maSanPham.anhSanPham}}" height="100px"></td>
+					<td>{{item.maSanPham.donGia}}</td>
+					<td><input type="number"
+						ng-change="update(item.id.maGioHang,item.id.maSanPham,item)"
+						ng-model-options="{ debounce: 1500 }" ng-model="item.soLuong"
+						value="{{item.soLuong}}"> <br> <span>Số lượng
+							còn lại {{item.maSanPham.soLuongTon}}</span> <br></td>
+
+					<td>{{item.maSanPham.donGia * item.soLuong}}</td>
+					<td class="text-white"><a class="btn btn-danger"
+						ng-click="xoa(item.id.maGioHang,item.id.maSanPham)">Xóa</a></td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="6">Tổng tiền: {{total()}}</td>
+				</tr>
 			</tfoot>
 		</table>
 
-		<a th:if="${total}>0" th:onclick="order()" class="btn btn-success"
-			style="margin-bottom: 10px; color: white">Đặt hàng</a> <br>
+		<a ng-if="(ghct | filter:{chonMua:true}).length>0" class="btn btn-success" ng-click="order()" style="margin-bottom: 10px; color: white">Đặt
+			hàng</a> <br>
 	</div>
 
 
@@ -136,7 +207,6 @@
 		crossorigin="anonymous"></script>
 	<script th:src="@{/js/vendor/bootstrap.min.js}"></script>
 	<script th:src="@{/js/jquery.ajaxchimp.min.js}"></script>
-	<script th:src="@{/js/jquery.nice-select.min.js}"></script>
 	<script th:src="@{/js/jquery.sticky.js}"></script>
 	<script th:src="@{/js/nouislider.min.js}"></script>
 	<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
@@ -148,9 +218,9 @@
 	<script th:src="@{/js/gmaps.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 	<script th:src="@{/js/controller/cart-app.js}"></script>
-	<script th:src="@{/js/controller/order.js}"></script>
+	<!-- <script th:src="@{/js/controller/order.js}"></script>
 	<script th:src="@{/js/controller/address.js}"></script>
-
+-->
 
 </body>
 

@@ -30,6 +30,11 @@ public class ProductServiceImpl implements ProductService {
 		return spRp.findAll().stream().filter(sv -> sv.getNhaSanXuat().getTenNsx().equals(tenNsx))
 				.collect(Collectors.toList());
 	}
+
+	@Override
+	public void luu(SanPham sp) {
+		spRp.save(sp);
+	}
 	
 
 

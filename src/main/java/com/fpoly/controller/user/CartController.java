@@ -36,17 +36,17 @@ public class CartController {
 
 	@RequestMapping("/index")
 	public String index(Model model,@ModelAttribute("address") DiaChi dc) {
-		dc = new DiaChi(null, null, null, null);
-		List<DiaChi> listDC = addressService.FindByUser();
-		model.addAttribute("listDC", listDC);
-		GioHang gioHang = cartService.findByUser();
-
-		List<GioHangChiTiet> listGD = cartDetailsService.findByGioHang(gioHang.getId());
-
-		model.addAttribute("listGH", listGD);
-		long total = listGD.stream().filter(ghct -> ghct.getChonMua() == true).mapToLong(ghct -> ghct.getSoLuong()
-				* Long.parseLong(ghct.getMaSanPham().getDonGia().stripTrailingZeros().toPlainString())).sum();
-		model.addAttribute("total", total);
+//		dc = new DiaChi(null, null, null, null);
+//		List<DiaChi> listDC = addressService.FindByUser();
+//		model.addAttribute("listDC", listDC);
+//		GioHang gioHang = cartService.findByNguoiMua();
+//
+//		List<GioHangChiTiet> listGD = cartDetailsService.findByGioHang(gioHang.getId());
+//
+//		model.addAttribute("listGH", listGD);
+//		long total = listGD.stream().filter(ghct -> ghct.getChonMua() == true).mapToLong(ghct -> ghct.getSoLuong()
+//				* Long.parseLong(ghct.getMaSanPham().getDonGia().stripTrailingZeros().toPlainString())).sum();
+//		model.addAttribute("total", total);
 		return "User/cart";
 	}
 }

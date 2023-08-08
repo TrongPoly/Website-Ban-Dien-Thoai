@@ -6,4 +6,6 @@ public interface CustomerService {
 
 	KhachHang findByUser();
 
+	KhachHang findByMaKhach(Integer maKhach);
+
 }

@@ -9,6 +9,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 
 import org.hibernate.annotations.Nationalized;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @NamedQueries({
@@ -38,7 +39,8 @@ public class KhachHang {
     @JsonIgnoreProperties({ "matKhau","phanQuyen" })
     @NotNull(message = "không được để trống")
     private  TaiKhoan email;
-    
+
+    @JsonIgnore
     @Column(name = "diem_tich_luy")
     @NotNull(message = "không được để trống")
     @PositiveOrZero(message = "điểm không thể là số âm")
@@ -46,6 +48,7 @@ public class KhachHang {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hang_khach_hang")
+    @JsonIgnore
     private HangKhachHang hangKhachHang;
 
     public Integer getId() {

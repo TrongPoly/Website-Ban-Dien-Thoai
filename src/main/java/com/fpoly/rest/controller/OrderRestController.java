@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,6 +31,7 @@ import com.fpoly.service.OrderService;
 import com.fpoly.service.ProductService;
 
 @RestController
+@RequestMapping("/rest")
 public class OrderRestController {
 	@Autowired
 	CustomerService customer;
@@ -48,7 +50,7 @@ public class OrderRestController {
 	@Autowired
 	DonHangActivityService donHangActivityService;
 
-	@PostMapping("/rest/order")
+	@PostMapping("/order")
 	public ResponseEntity<Void> order(@RequestParam("diaChiId") Integer dchi) {
 		KhachHang khachHang = customer.findByUser();
 		DiaChi diaChi = address.findById(dchi);
@@ -58,7 +60,7 @@ public class OrderRestController {
 		Instant ngayDatHang = Instant.now();
 		DonHang donHang = new DonHang(ngayDatHang, 1, khachHang, diaChi);
 		order.luu(donHang);
-		GioHang gh = cart.findByUser();
+		GioHang gh = cart.findByNguoiMua();
 		List<GioHangChiTiet> listGHCT = cartDetails.findByGioHang(gh.getId()).stream()
 				.filter(ghct -> ghct.getChonMua() == true).toList();
 
