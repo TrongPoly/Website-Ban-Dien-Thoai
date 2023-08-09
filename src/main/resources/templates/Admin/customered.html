@@ -105,7 +105,7 @@
 										for="price">Điểm Tích Lũy<span>*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 ">
-										<input ng-model="form.diemTichLuy" type="number" id="" name="price" class="form-control">
+										<input ng-model="form.diemTichLuy" ng-type="number" id="" name="price" class="form-control">
 									</div>
 
 								</div>
@@ -185,13 +185,15 @@
 													<td>{{item.email.trangThai? 'Còn Hoạt Động' : 'Đã Chặn'}}</td>
 													<td>
 													<a ng-click="edit(item.id)" class="btn btn-warning">Sửa</a>
-													<a class="btn btn-warning">chặn</a>
+													<a ng:if="item.email.trangThai == true" class="btn btn-warning">Chặn</a>
+													<a ng-click="bochan(item.id)" ng:if="item.email.trangThai == false" class="btn btn-warning">Bỏ Chặn</a>
 												
 													</td>
 
 
 
 												</tr>
+
 
 
 

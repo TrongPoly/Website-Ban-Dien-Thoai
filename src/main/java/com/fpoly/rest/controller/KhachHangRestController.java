@@ -29,6 +29,9 @@ public class KhachHangRestController {
 
 	@Autowired
 	KhachHangRepository daokh;
+	
+	@Autowired
+	TaiKhoanRepository taiKhoanRepository;
 
 	@Autowired
 	SessionService sessionService;
@@ -65,7 +68,6 @@ public class KhachHangRestController {
 		if(!daokh.existsById(id)) {
 			return ResponseEntity.notFound().build();
 		}
-		
 		daokh.save(kh);
 		return ResponseEntity.ok(kh);
 	}
