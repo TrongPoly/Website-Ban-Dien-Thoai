@@ -51,12 +51,12 @@
 							class="form-horizontal form-label-left" method="post"
 							enctype="multipart/form-data" th:object="${sanpham}">
 
-							<div class="item form-group" style="display: none;">
+							<div class="item form-group" style="display: none;" >
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 									for="id-product">Mã Sản Phẩm <span>*</span>
 								</label>
-								<div class="col-md-6 col-sm-6 ">
-									<input ng-model="form.id" style="display: none;"
+								<div class="col-md-6 col-sm-6 " style="display: none;" >
+									<input ng-model="form.id" 
 										readonly="true" type="text" id="" class="form-control ">
 								</div>
 							</div>
@@ -153,9 +153,9 @@
 							</div>
 							<div class="item form-group">
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
-									style="display: none;" for="full-name">Trạng Thái<span>*</span>
+									 for="full-name">Trạng Thái<span>*</span>
 								</label>
-								<div class="col-md-6 col-sm-6" style="display: none">
+								<div class="col-md-6 col-sm-6" >
 									<input ng-model="form.trangThai" type="radio" ng-value="true"
 										name="option1" id="radio_con_hang"> Còn bán <label></label>
 									<input ng-model="form.trangThai" type="radio" ng-value="false"

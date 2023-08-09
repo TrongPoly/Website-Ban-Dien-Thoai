@@ -3,6 +3,7 @@ package com.fpoly.rest.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,29 +28,47 @@ public class HangKhachHangRestController {
 	HangKhachHangRepository daohkh;
 	
 	@GetMapping("/hangkhachhang")
-	public List<HangKhachHang> getAll(Model model){
-		return daohkh.findAll();
+	public ResponseEntity<List<HangKhachHang>> getAll(Model model){
+		return ResponseEntity.ok(daohkh.findAll());
 	}
 	
 
 	@GetMapping("/hangkhachhang/{id}")
-	public HangKhachHang getOne(@PathVariable("id") Integer id) {
-		return daohkh.findById(id).get();
+	public ResponseEntity<HangKhachHang> getOne(@PathVariable("id") Integer id) {
+		
+		if(!daohkh.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		return ResponseEntity.ok(daohkh.findById(id).get());
 	}
 	
 	@PostMapping("/hangkhachhang")
 	public HangKhachHang post(@RequestBody HangKhachHang hkh){
+
 		daohkh.save(hkh);
 		return hkh;
 	}
 
 	@PutMapping("/hangkhachhang/{id}")
-	public HangKhachHang put(@RequestBody HangKhachHang hkh){
+	public ResponseEntity<HangKhachHang> put(@PathVariable("id") Integer id,@RequestBody HangKhachHang hkh){
+		
+		if(!daohkh.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		
 		daohkh.save(hkh);
-		return hkh;
+		return ResponseEntity.ok(hkh);
 	}
 	@DeleteMapping("/hangkhachhang/{id}")
-	public void delete(@PathVariable("id") Integer id) {
+	public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
+		
+		if(!daohkh.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		
 		daohkh.deleteById(id);
+		return ResponseEntity.ok().build();
 	}
 }

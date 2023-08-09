@@ -30,107 +30,79 @@ import com.fpoly.service.UploadService;
 
 import jakarta.websocket.server.PathParam;
 
-
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/rest")
 public class SanPhamRestController {
-	
+
 	@Autowired
 	UploadService uploadService;
-	
+
 	@Autowired
 	SanPhamRepository daosp;
-	
+
 	@GetMapping("/sanpham")
-	public List<SanPham> getAll (Model model){
-		return daosp.findAll();
+	public ResponseEntity<List<SanPham>> getAll(Model model) {
+		return ResponseEntity.ok(daosp.findAll());
 	}
-	
+
 	@GetMapping("/sanpham/{id}")
-	public SanPham getOnt(@PathVariable("id") Integer id) {
-		return daosp.findById(id).get();
+	public ResponseEntity<SanPham> getOne(@PathVariable("id") Integer id) {
+		if (!daosp.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+
+		return ResponseEntity.ok(daosp.findById(id).get());
 	}
-	
+
 	@PostMapping("/sanpham")
-	public SanPham post(@Validated @RequestBody SanPham sp,Errors errors, @PathParam("folder") MultipartFile folder) {
-		
-		
+	public SanPham post(@RequestBody SanPham sp, @PathParam("folder") MultipartFile folder) {
+
 		if (sp.getSoLuongTon() == 0) {
-			sp.setTrangThai(false); // set trạng thái là hết hàng nếu số lượng tồn = 0
+			sp.setTrangThai(false); 
 		} else {
 			sp.setTrangThai(true);
+		}
+
+		daosp.save(sp);
+		return sp;
+	}
+
+	@PutMapping("/sanpham/{id}")
+	public ResponseEntity<SanPham> put(@PathVariable("id") Integer id, @RequestBody SanPham sp) {
+
+		if (!daosp.existsById(id)) {
+			return ResponseEntity.notFound().build();
 		}
 
 		/*
-		 * String filename = folder.getOriginalFilename().toString(); String path =
-		 * "E:\\Java6\\workspace\\Website-Ban-Dien-Thoai\\src\\main\\resources\\static\\img\\product\\"
-		 * + filename; File savedFile = new File(path); try {
-		 * folder.transferTo(savedFile); } catch (IllegalStateException e) {
-		 * daosp.save(sp); e.printStackTrace(); } catch (IOException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); }
-		 * 
-		 * // Thiết lập đường dẫn cho sản phẩm sp.setAnhSanPham(filename);
+		 * if (sp.getSoLuongTon() == 0) { sp.setTrangThai(false); // set trạng thái là
+		 * hết hàng nếu số lượng tồn = 0 } else { sp.setTrangThai(true); }
 		 */
 
+		/*
+		 * daosp.findById(id).get(); sp.setTenSanPham(sp.getTenSanPham());
+		 * sp.setAnhSanPham(sp.getAnhSanPham()); sp.setNhaSanXuat(sp.getNhaSanXuat());
+		 * sp.setDonGia(sp.getDonGia()); sp.setSoLuongTon(sp.getSoLuongTon());
+		 * sp.setRam(sp.getRam()); sp.setRom(sp.getRom()); sp.setPin(sp.getPin());
+		 * sp.setChip(sp.getChip());
+		 */
 
 		daosp.save(sp);
-		return sp;
-	}
-		
-	
-	@PutMapping("/sanpham/{id}")
-	public SanPham put(@PathVariable("id") Integer id, @RequestBody SanPham sp) {
-		if (sp.getSoLuongTon() == 0) {
-			sp.setTrangThai(false); // set trạng thái là hết hàng nếu số lượng tồn = 0
-		} else {
-			sp.setTrangThai(true);
-		}
-		
-		daosp.findById(id).get();
-		sp.setTenSanPham(sp.getTenSanPham());
-		sp.setAnhSanPham(sp.getAnhSanPham());
-		sp.setNhaSanXuat(sp.getNhaSanXuat());
-		sp.setDonGia(sp.getDonGia());
-		sp.setSoLuongTon(sp.getSoLuongTon());
-		sp.setRam(sp.getRam());
-		sp.setRom(sp.getRom());
-		sp.setPin(sp.getPin());
-		sp.setChip(sp.getChip());
+		return ResponseEntity.ok(sp);
 
-		daosp.save(sp);
-		return sp;
-		
 	}
+
 	@DeleteMapping("/sanpham/{id}")
-	public void DeleteId(@PathVariable("id") Integer id) {
+	public ResponseEntity<Void> DeleteId(@PathVariable("id") Integer id) {
+
+		if (!daosp.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+
 		daosp.deleteById(id);
+		return ResponseEntity.ok().build();
+
 	}
-	
-	/*
-	 * @GetMapping("/sanpham/page/{pageNumber}/{pageSize}") public List<SanPham>
-	 * getAllProductsByPage(@PathVariable("pageNumber") Integer
-	 * pageNumber, @PathVariable("pageSize") Integer pageSize) { Pageable pageable =
-	 * PageRequest.of(pageNumber, pageSize); return
-	 * daosp.findAll(pageable).getContent(); }
-	 * 
-	 * @SuppressWarnings("unchecked")
-	 * 
-	 * @GetMapping("/sanpham/brand/{brand}/{pageNumber}/{pageSize}") public
-	 * List<SanPham> getAllProductsByBrandAndPage(@PathVariable("brand") String
-	 * brand, @PathVariable("pageNumber") Integer
-	 * pageNumber, @PathVariable("pageSize") Integer pageSize) { Pageable pageable =
-	 * PageRequest.of(pageNumber, pageSize); return ((Slice<SanPham>)
-	 * daosp.findByNhaSanXuat(brand, pageable)).getContent(); }
-	 * 
-	 * @SuppressWarnings("unchecked")
-	 * 
-	 * @GetMapping("/sanpham/search/{pageNumber}/{pageSize}/{name}") public
-	 * List<SanPham> searchProductsByPage(@PathVariable("pageNumber") Integer
-	 * pageNumber, @PathVariable("pageSize") Integer pageSize, @PathVariable("name")
-	 * String name) { Pageable pageable = PageRequest.of(pageNumber, pageSize);
-	 * return ((Slice<SanPham>) daosp.findByTenSanPham("%" + name + "%",
-	 * pageable)).getContent(); }
-	 */
 
 }
