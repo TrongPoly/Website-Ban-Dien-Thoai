@@ -3,6 +3,7 @@ const app = angular.module("orderMngt", []);
 app.controller("orderMngtCtrl", function($scope, $http) {
 	$scope.form = {};
 	$scope.items = [];
+	$scope.activity = [];
 
 	$scope.load_all = function() {
 		var url = `${host}/index`; // Sử dụng dấu nháy kép để bao quanh biểu thức ${host}
@@ -29,12 +30,25 @@ app.controller("orderMngtCtrl", function($scope, $http) {
 			.then((resp) => {
 				
 				$scope.ghct = resp.data;
-
+				$scope.orderActivity(id);
 			})
 			.catch((error) => {
 				alert("Lỗi");
 			});
 	};
+	$scope.orderActivity = function(orderId) {
+		var url = `${host}/activity/${orderId}`;
+		$http
+			.get(url)
+			.then((resp) => {
+				$scope.activity = resp.data;
+			})
+			.catch((error) => {
+				alert(error.status)
+				alert("Lỗi");
+			});
+	}
+	
 	$scope.huyDon = function(id){
 		var url = `${host}/cancelOrder/${id}`;
 		

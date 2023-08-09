@@ -58,6 +58,19 @@ app.controller("orderCtrl", function($scope, $http) {
 				alert("Lỗi");
 			});
 	}
+	$scope.hoanTat = function(id){
+		var url = `${host}/requestOrderSuccess/${id}`;
+		
+		$http
+			.put(url)
+			.then((resp) => {
+				alert("success!")
+				location.reload();
+			})
+			.catch((error) => {
+				alert("Lỗi");
+			});
+	}
 	
 	$scope.load_all();
 });

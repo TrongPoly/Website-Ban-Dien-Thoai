@@ -23,7 +23,7 @@ public class ProductController {
 	  	SanPham sp = productService.findById(id);
 		model.addAttribute("sp",sp);
 		System.out.println(sp.getAnhSanPham());
-		List<SanPham> dssp = productService.findAllByNSX(sp.getNhaSanXuat().getTenNsx());
+		List<SanPham> dssp = productService.findAllByNSX(sp.getNhaSanXuat().getTenNsx()).stream().filter(listsp -> !listsp.getId().equals(sp.getId())).toList();
 		model.addAttribute("dssp",dssp);
 		return "User/productDetails";
 	}

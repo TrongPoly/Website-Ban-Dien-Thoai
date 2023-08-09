@@ -8,4 +8,6 @@ public interface CustomerService {
 
 	KhachHang findByMaKhach(Integer maKhach);
 
+	void luu(KhachHang khachHang);
+
 }

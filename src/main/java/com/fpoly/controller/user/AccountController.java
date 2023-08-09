@@ -14,6 +14,7 @@ import com.fpoly.service.CartService;
 import com.fpoly.service.CustomerService;
 import com.fpoly.service.SessionService;
 
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -25,26 +26,41 @@ public class AccountController {
 	CartService cart;
 	@Autowired
 	CustomerService customer;
+	@Autowired
+	ServletContext context;
 
 	@GetMapping("/login/form")
 	public String formLogin() {
 		return "User/login";
 	}
 
+	@GetMapping("/register/form")
+	public String formRegis() {
+		return "User/register";
+	}
+
 	@GetMapping("/login/success")
 	public String doLogin(Model model) {
-
 		return "redirect:/home/index";
 	}
 
 	@RequestMapping("/logoff/success")
-	public String doLogout() {
+	public String doLogout(Model model) {
 		session.remove("user");
+		context.setAttribute("msg", "Đã đăng xuất!");
 		return "redirect:/auth/login/form";
 	}
 
 	@RequestMapping("/login/error")
 	public String loginError() {
+		context.setAttribute("msg", "Sai tài khoản hoặc mật khẩu!");
+
+		return "redirect:/auth/login/form";
+	}
+
+	@RequestMapping("/login/blocked")
+	public String isBlocked() {
+		context.setAttribute("msg", "Tài khoản đã bị khóa!");
 		return "redirect:/auth/login/form";
 	}
 

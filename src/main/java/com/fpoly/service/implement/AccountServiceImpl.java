@@ -14,7 +14,11 @@ public class AccountServiceImpl implements AccountService{
 	TaiKhoanRepository taiKhoanRepository;
 	@Override
 	public TaiKhoan findByEmail(String username) {
-		return taiKhoanRepository.findById(username).get();
+		return taiKhoanRepository.findById(username).orElse(null);
+	}
+	@Override
+	public void luu(TaiKhoan taiKhoan) {
+			taiKhoanRepository.save(taiKhoan);
 	}
 
 }

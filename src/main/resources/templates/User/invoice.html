@@ -21,45 +21,6 @@
 			</div>
 		</div>
 	</section>
-	<!-- End Banner Area -->
-
-	<!--================Single Product Area =================-->
-	<!--
-	<div class="col-md-10 offset-1">
-		<h2 class="text-success">ĐƠN HÀNG CỦA BẠN</h2>
-		<table class="table table-bordered table-default">
-			<tr>
-				<th>Mã đơn hàng</th>
-				<th>Ngày đặt hàng</th>
-				<th>Địa chỉ nhận hàng</th>
-				<th>Ngày thanh toán</th>
-				<th>Trạng thái</th>
-				<th>Action</th>
-			</tr>
-			 <tbody>
-				<tr th:each="item:${listDH}">
-					<td th:text="${item.id}"></td>
-					<td th:text="${#dates.format(item.ngayLap,'EE, dd-MM-yyyy,HH:mm')}"></td>
-					<td
-						th:text="${item.diaChi.dcChiTiet}+', '+${item.diaChi.phuong}+', '+${item.diaChi.quan}+', '+${item.diaChi.tinh}"></td>
-					<td
-						th:text="${#dates.format(item.ngayThanhToan,'EE, dd-MM-yyyy,HH:mm')}"></td>
-					<td th:switch="${item.trangThai}">
-					<b class="text-info" th:case="1">Đang xử lý</b>
-					<b class="text-warning" th:case="2">Đang giao</b>
-					<b class="text-success" th:case="3">Đã nhận hàng</b>
-					<b class="text-danger" th:case="4">Đã hủy</b>
-					</td>
-
-					<td class="text-danger"><a class="btn btn-success"
-						th:href="@{/order/details/__${item.id}__}">Xem</a></td>
-				</tr>
-			</tbody>
-			
-		</table>
-	</div>
-	-->
-
 	<div class="row">
 		<div class="col-md-10 col-sm-10 offset-1">
 			<div>

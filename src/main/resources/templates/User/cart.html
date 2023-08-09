@@ -28,59 +28,7 @@
 	<!--================Single Product Area =================-->
 	<div class="col-md-10 offset-1">
 		<h2 class="text-success">GIỎ HÀNG</h2>
-		<!--	<div th:if="${#lists.size(listDC)}>0" class="">
-			<label for="diaChiGiaoHang">Địa chỉ giao hàng:</label> <br> <select
-				class="form-control" id="diaChiGiaoHang">
-				<option class="" th:each="dc : ${listDC}" th:value="${dc.id}"
-					th:text="${dc.dcChiTiet}+', '+${dc.phuong}+', '+${dc.quan}+', '+${dc.tinh}"></option>
-			</select>
-		</div>
-		<br> <br>
-		<button type="button" class=" btn btn-primary" data-toggle="modal"
-			data-target="#exampleModal">Thêm địa chỉ</button>
-Modal
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Thêm địa chỉ
-							mới</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<form th:action="@{/address}" th:object="${address}" method="post">
-							<div class="form-group">
-								<label for="province">Tỉnh/Thành phố</label> <input
-									class="form-control" id="tinh" th:field="*{tinh}">
-							</div>
-							<div class="form-group">
-								<label for="district">Quận/Huyện</label> <input
-									class="form-control" id="quan" th:field="*{quan}">
-							</div>
-							<div class="form-group">
-								<label for="ward">Phường/Xã</label> <input class="form-control"
-									th:field="*{phuong}" id="phuong">
-							</div>
-							<div class="form-group">
-								<label for="address">Địa chỉ cụ thể</label>
-								<textarea class="form-control" id="dcCuThe"
-									th:field="*{dcChiTiet}"></textarea>
-							</div>
-							<button type="submit" class="btn btn-primary">Thêm</button>
-
-
-						</form>
-					</div>
-				</div>
-			</div>
-		</div> 
-		-->
-
-		<label>Địa chỉ giao hàng:</label> <br> <select ng-model="adr"  class="form-control">
+	<label>Địa chỉ giao hàng:</label> <br> <select ng-model="adr"  class="form-control">
 			<option ng:repeat="adr in address" ng:value="{{adr.id}}">{{adr.dcChiTiet}}, {{adr.phuong}}, {{adr.quan}}, {{adr.tinh}}</option>
 		</select> <br> <br>
 		<button type="button" class=" btn btn-primary" data-toggle="modal"
@@ -137,35 +85,7 @@ Modal
 				<th>Thành tiền</th>
 				<th>Action</th>
 			</tr>
-			<!-- 	<tbody>
-
-				 <tr th:each="item,iStat : ${listGH}">
-					<td><input type="checkbox" th:checked="${item.chonMua}"
-						th:onchange="|checkedProduct(this,'${item.maGioHang.id}','${item.maSanPham.id}')|"></td>
-					<td th:text="*{item.maSanPham.tenSanPham}"></td>
-					<td><img alt="not Found"
-						th:src="@{/img/product/__*{item.maSanPham.anhSanPham}__}"
-						height="100px"></td>
-					<td
-						th:text="*{#numbers.formatDecimal(item.maSanPham.donGia,0,'POINT',0,'POINT')}"></td>
-					<td><input th:class="${item.soLuong}>${item.maSanPham.soLuongTon}? 'alert-danger' : ''"  id="soLuongSP" type="number"
-						th:onchange="|updateCart(this,'${item.maGioHang.id}','${item.maSanPham.id}')|"
-						th:value="*{item.soLuong}"> <br>
-						<span th:text="'Số lượng còn lại: '+${item.maSanPham.soLuongTon}"></span>
-						<br></td>
-						
-					<td
-						th:text="*{#numbers.formatDecimal(item.maSanPham.donGia*item.soLuong,0,'POINT',0,'POINT')}"></td>
-					<td class="text-white"><a class="btn btn-danger"
-						th:onclick="|deleteProduct('${item.maGioHang.id}','${item.maSanPham.id}')|">Xóa</a></td>
-				</tr>
-			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan="6"
-						th:text="'Tổng tiền: '+${#numbers.formatDecimal(total,0,'POINT',0,'POINT')+' VNĐ'}"></td>
-				</tr>
-			</tfoot> -->
+			
 			<tbody>
 
 				<tr ng:repeat="item in ghct">
@@ -175,21 +95,21 @@ Modal
 					<td>{{item.maSanPham.tenSanPham}}</td>
 					<td><img alt="not Found"
 						src="/img/product/{{item.maSanPham.anhSanPham}}" height="100px"></td>
-					<td>{{item.maSanPham.donGia}}</td>
-					<td><input type="number"
+					<td>{{item.maSanPham.donGia | number : 0}} VNĐ</td>
+					<td><input type="number" class="{{item.maSanPham.soLuongTon<item.soLuong ? 'badge-danger' : ''}}"
 						ng-change="update(item.id.maGioHang,item.id.maSanPham,item)"
 						ng-model-options="{ debounce: 1500 }" ng-model="item.soLuong"
 						value="{{item.soLuong}}"> <br> <span>Số lượng
 							còn lại {{item.maSanPham.soLuongTon}}</span> <br></td>
 
-					<td>{{item.maSanPham.donGia * item.soLuong}}</td>
+					<td>{{item.maSanPham.donGia * item.soLuong | number : 0}} VNĐ</td>
 					<td class="text-white"><a class="btn btn-danger"
 						ng-click="xoa(item.id.maGioHang,item.id.maSanPham)">Xóa</a></td>
 				</tr>
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="6">Tổng tiền: {{total()}}</td>
+					<td colspan="6">Tổng tiền: <h4> {{total() | number : 0}} VNĐ</h4></td>
 				</tr>
 			</tfoot>
 		</table>

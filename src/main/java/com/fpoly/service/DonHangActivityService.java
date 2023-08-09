@@ -14,7 +14,6 @@ public interface DonHangActivityService {
 
 	List<DonHangActivity> findByOrderId(Integer id);
 
-	List<DonHangActivity> findAll();
 
 	List<DonHangActivity> findByChecked();
 

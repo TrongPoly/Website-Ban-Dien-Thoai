@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 import com.fpoly.model.TaiKhoan;
 import com.fpoly.service.AccountService;
@@ -42,9 +43,14 @@ public class AuthConfig {
 				String password = userInfo.getMatKhau();
 				String roles = userInfo.getPhanQuyen().getId().toString();
 				sessionService.set("user", userInfo);
-				return User.withUsername(username).password(pe.encode(password)).roles(roles).build();
+				boolean active = userInfo.getTrangThai();
+				return User.withUsername(username).password(pe.encode(password)).roles(roles).accountExpired(!active).build();
 			}
 		};
+	}
+	@Bean
+	public AuthenticationFailureHandler customAuthenticationFailureHandler() {
+	    return new CustomAuthenticationFailureHandler();
 	}
 
 	@Bean
@@ -53,8 +59,8 @@ public class AuthConfig {
 				.authorizeHttpRequests().requestMatchers("/cart/**","/invoice/**","/address/**").authenticated().and()
 				.authorizeHttpRequests().anyRequest().permitAll().and().exceptionHandling()
 				.accessDeniedPage("/auth/access/denied").and().formLogin().loginPage("/auth/login/form")
-				.loginProcessingUrl("/login").defaultSuccessUrl("/auth/login/success", true).failureUrl("/auth/login/error")
-				.and().logout().logoutUrl("/logoff").logoutSuccessUrl("/auth/logoff/success").and().build();
+				.loginProcessingUrl("/login").defaultSuccessUrl("/auth/login/success", true).failureHandler(customAuthenticationFailureHandler()).and().logout().logoutUrl("/logoff").logoutSuccessUrl("/auth/logoff/success").and().build();
 	}
+	
 
 }

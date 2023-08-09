@@ -99,7 +99,7 @@ app.controller("cartCtrl", function($scope, $http) {
 			})
 			.catch((error) => {
 				if (error.status === 404) {
-					alert("Số lượng san phẩm còn lại không đủ")
+					alert("Số lượng sản phẩm còn lại không đủ")
 				}
 				if (error.status === 400) {
 					alert("Vui lòng chọn địa chỉ")
@@ -177,7 +177,8 @@ app.controller("indexCtrl", function($scope, $http) {
 	};
 
 	$scope.addToCart = function(productId) {
-		var url = `${host}/cart/add/${productId}`;
+		var sl = angular.copy($scope.soluong);
+		var url = `${host}/cart/add/${productId}?soLuong=${sl}`;
 		$http
 			.post(url)
 			.then((resp) => {
@@ -187,7 +188,7 @@ app.controller("indexCtrl", function($scope, $http) {
 				alert("Vui Lòng đăng nhập");
 			});
 	}
-	
+
 	$scope.load_all();
 
 });

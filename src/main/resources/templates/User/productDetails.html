@@ -54,15 +54,15 @@
 							Số lượng còn lại: <span th:text="${sp.soLuongTon}">
 						</h3>
 						<ul class="list">
-							<li style="display: none" ><span ng-model="id" >[[${sp.id}]]</span></li>
 							<li>Thương hiệu: <span th:text="${sp.nhaSanXuat.tenNsx}"></span></li>
 							<li>Ram: <span th:text="${sp.ram}+' GB'"></span></li>
 							<li>Rom: <span th:text="${sp.rom}+' GB'"></span></li>
 							<li>Pin: <span th:text="${sp.pin}+' mAh'"></span></li>
 							<li>Chip: <span th:text="${sp.chip}"></span></li>
 						</ul>
+						<input type="number" min="1" ng-init="soluong=1" ng-model="soluong" >
 						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" style="cursor: pointer;">Add to Cart</a> <a
+							<a class="primary-btn" th:attr="ng-click='addToCart(\''+${sp.id}+'\');'" style="cursor: pointer;">Add to Cart</a> <a
 								class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
 						</div>
 					</div>
@@ -75,7 +75,11 @@
 			<div class="row">
 				<h1 class="col-12 text-danger">Sản phẩm cùng thương hiệu</h1>
 				<div th:each="sp : ${dssp}" class="col-3">
-				<img alt="" th:src="@{/img/product/__${sp.anhSanPham}__}" style="width: 250px">
+				<a th:href="@{/product/details/__${sp.id}__}">
+				<img  alt="" th:src="@{/img/product/__${sp.anhSanPham}__}" style="max-height:200px">
+				<h4 th:text="${sp.tenSanPham}"></h4>
+				<h4 th:text="${#numbers.formatDecimal(sp.donGia,0,'COMMA',0,'POINT')}+' VNĐ'"></h4>	
+				</a>			
 				</div>
 			</div>
 		</div>

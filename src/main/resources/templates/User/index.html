@@ -34,7 +34,7 @@
 			<div class="product-details">
 				<h6>{{item.tenSanPham}}</h6>
 				<div class="price">
-					<h6>{{item.donGia}}</h6>
+					<h6>{{item.donGia | number:0}} VNĐ</h6>
 				</div>
 				<div ng-if="item.soLuongTon > 0" class="prd-bottom">
 					<a  ng-click="addToCart(item.id)" style="cursor: pointer;"

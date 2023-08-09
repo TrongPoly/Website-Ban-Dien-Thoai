@@ -6,4 +6,6 @@ public interface AccountService {
 
 	TaiKhoan findByEmail(String username);
 
+	void luu(TaiKhoan taiKhoan);
+
 }

@@ -1,6 +1,7 @@
 package com.fpoly.rest.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,17 +49,17 @@ public class CartRestController {
 	}
 
 	@PostMapping("/add/{productId}")
-	public void addToCart(@PathVariable("productId") Integer productId) {
+	public void addToCart(@PathVariable("productId") Integer productId, @RequestParam("soLuong") Optional<Integer> soLuong) {
 		SanPham sanPham = product.findById(productId);
 		GioHang gioHang = cart.findByNguoiMua();
 
 		GioHangChiTietId ghctId = new GioHangChiTietId(gioHang.getId(), productId);
 		GioHangChiTiet ghct = cartDetailsService.findByMaGioHangVaMaSanPham(gioHang.getId(), productId);
 		if (ghct != null) {
-			ghct.setSoLuong(ghct.getSoLuong() + 1);
+			ghct.setSoLuong(ghct.getSoLuong() + soLuong.orElse(1));
 			cartDetailsService.luu(ghct);
 		} else {
-			ghct = new GioHangChiTiet(ghctId, gioHang, sanPham, 1, true);
+			ghct = new GioHangChiTiet(ghctId, gioHang, sanPham, soLuong.orElse(1), true);
 			cartDetailsService.luu(ghct);
 		}
 	}

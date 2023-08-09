@@ -3,6 +3,7 @@ package com.fpoly.service.implement;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.fpoly.model.DonHang;
@@ -36,7 +37,8 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public List<DonHang> findAll() {
-		return donHangRepository.findAll();
+	    Sort sort = Sort.by(Sort.Direction.DESC, "ngayLap"); 
+	    return donHangRepository.findAll(sort);
 	}
 
 	@Override

@@ -27,4 +27,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return khachHang.findById(maKhach).get();
 	}
 
+	@Override
+	public void luu(KhachHang kh) {
+		khachHang.save(kh);
+	}
+
 }

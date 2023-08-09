@@ -54,4 +54,12 @@ public class OderDetailsRestController {
 		donHangActivityService.luu(donHangActivity);
 		
 	}
+	@PutMapping("/requestOrderSuccess/{orderId}")
+	public void successOrderByUser(@PathVariable("orderId") Integer id) {
+		DonHang donHang = orderService.findByMaDonHang(id);
+		Instant ngayCapNhat = Instant.now();
+		DonHangActivity donHangActivity = new DonHangActivity(donHang, 7, ngayCapNhat, 1);
+		donHangActivityService.luu(donHangActivity);
+		
+	}
 }

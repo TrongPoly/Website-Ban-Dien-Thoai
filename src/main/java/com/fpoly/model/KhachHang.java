@@ -27,23 +27,18 @@ public class KhachHang {
 
     @Nationalized
     @Column(name = "ten_khach_hang", length = 50)
-    @NotBlank(message = "không được để trống")
     private String tenKhachHang;
 
     @Column(name = "so_dien_thoai", length = 15)
-    @NotBlank(message = "không được để trống")
     private String soDienThoai;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "email")
     @JsonIgnoreProperties({ "matKhau","phanQuyen" })
-    @NotNull(message = "không được để trống")
     private  TaiKhoan email;
 
     @JsonIgnore
     @Column(name = "diem_tich_luy")
-    @NotNull(message = "không được để trống")
-    @PositiveOrZero(message = "điểm không thể là số âm")
     private Integer diemTichLuy;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -55,7 +50,20 @@ public class KhachHang {
         return id;
     }
 
-    public void setId(Integer id) {
+    
+    public KhachHang() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public KhachHang(@NotNull(message = "không được để trống") TaiKhoan email) {
+		super();
+		this.email = email;
+	}
+
+
+	public void setId(Integer id) {
         this.id = id;
     }
 

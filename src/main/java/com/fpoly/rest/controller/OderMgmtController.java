@@ -47,6 +47,11 @@ public class OderMgmtController {
 	public List<DonHangChiTiet> detailsOrder(@PathVariable("id") Integer id) {
 		return orderDetailsService.findByMaDonHang(id);
 	}
+	@GetMapping("/activity/{orderId}")
+	public List<DonHangActivity> getActivity(@PathVariable("orderId") Integer id){
+		return donHangActivityService.findByOrderId(id);
+	}
+
 
 	@PutMapping("/cancelOrder/{id}")
 	public void cancelOrder(@PathVariable("id") Integer id) {

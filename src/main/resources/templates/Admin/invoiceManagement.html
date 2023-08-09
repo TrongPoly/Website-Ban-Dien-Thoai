@@ -93,8 +93,7 @@
 																ng-click="vanChuyen(dh.id)">Xác nhận đang vận chuyển</a>
 																<a data-toggle="modal" data-target="#seeMessage"
 																class="btn btn-warning btn-block"
-																ng-click="invoiceDetail(dh.id)">Chi
-																	tiết</a></td>
+																ng-click="invoiceDetail(dh.id)">Chi tiết</a></td>
 														</tr>
 													</tbody>
 												</table>
@@ -121,8 +120,7 @@
 															<td>{{dh.ngayLap | date: "dd/MM/yyyy, HH:mm"}}</td>
 															<td>{{dh.diaChi.dcChiTiet}},{{dh.diaChi.phuong}},{{dh.diaChi.quan}},{{dh.diaChi.tinh}}</td>
 															<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
-															<td><a data-toggle="modal"
-																data-target="#seeMessage"
+															<td><a data-toggle="modal" data-target="#seeMessage"
 																class="btn btn-warning btn-block"
 																ng-click="invoiceDetail(dh.id)">Chi tiết</a> <br> <a
 																class="btn btn-success btn-block"
@@ -154,8 +152,7 @@
 															<td>{{dh.ngayLap | date: "dd/MM/yyyy, HH:mm"}}</td>
 															<td>{{dh.diaChi.dcChiTiet}},{{dh.diaChi.phuong}},{{dh.diaChi.quan}},{{dh.diaChi.tinh}}</td>
 															<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
-															<td><a data-toggle="modal"
-																data-target="#seeMessage"
+															<td><a data-toggle="modal" data-target="#seeMessage"
 																class="btn btn-warning btn-block"
 																ng-click="invoiceDetail(dh.id)">Chi tiết</a>
 														</tr>
@@ -184,23 +181,20 @@
 															<td>{{dh.ngayLap | date: "dd/MM/yyyy, HH:mm"}}</td>
 															<td>{{dh.diaChi.dcChiTiet}},{{dh.diaChi.phuong}},{{dh.diaChi.quan}},{{dh.diaChi.tinh}}</td>
 															<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
-															<td><a data-toggle="modal"
-																data-target="#seeMessage"
+															<td><a data-toggle="modal" data-target="#seeMessage"
 																class="btn btn-warning btn-block"
-																ng-click="invoiceDetail(dh.id)">Chi tiết</a>  <a
+																ng-click="invoiceDetail(dh.id)">Chi tiết</a> <a
 																class="btn btn-success btn-block"
-																ng-click="huyDon(dh.id)">Đồng ý</a>
-																 <a
+																ng-click="huyDon(dh.id)">Đồng ý</a> <a
 																class="btn btn-success btn-block"
-																ng-click="khongHuyDon(dh.id)">Từ chối</a>
-																</td>
+																ng-click="khongHuyDon(dh.id)">Từ chối</a></td>
 														</tr>
 													</tbody>
 												</table>
 											</div>
-										
-										<!-- Đã hủy -->
-										<div role="tabpanel" id="daHuy" class="tab-pane ">
+
+											<!-- Đã hủy -->
+											<div role="tabpanel" id="daHuy" class="tab-pane ">
 												<table role="tabpanel"
 													class="table table-striped table-bordered"
 													style="width: 100%">
@@ -221,11 +215,9 @@
 															<td>{{dh.ngayLap | date: "dd/MM/yyyy, HH:mm"}}</td>
 															<td>{{dh.diaChi.dcChiTiet}},{{dh.diaChi.phuong}},{{dh.diaChi.quan}},{{dh.diaChi.tinh}}</td>
 															<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
-															<td>
-																<a data-toggle="modal" data-target="#seeMessage"
+															<td><a data-toggle="modal" data-target="#seeMessage"
 																class="btn btn-warning btn-block"
-																ng-click="invoiceDetail(dh.id)">Chi
-																	tiết</a></td>
+																ng-click="invoiceDetail(dh.id)">Chi tiết</a></td>
 														</tr>
 													</tbody>
 												</table>
@@ -246,6 +238,24 @@
 														</button>
 													</div>
 													<div class="modal-body">
+														<table class="table-striped col-12">
+															<tr ng:repeat="atv in activity">
+																<td>{{atv.ngayCapNhat | date: "dd/MM/yyyy, HH:mm"}}</td>
+																<td><span ng-if="atv.trangThai==1"><i
+																		class='bx bx-notepad'></i> Chờ xử lý</span> <span
+																	ng-if="atv.trangThai==2"><i class='bx bxs-truck'></i>
+																		Đang vận chuyển</span> <span ng-if="atv.trangThai==3"><i
+																		class='bx bxs-check-circle'></i> Giao hàng thành công</span>
+																	<span ng-if="atv.trangThai==4"> <i
+																		class='bx bxs-calendar-x'></i>Đã hủy đơn
+																</span> <span ng-if="atv.trangThai==5"> <i
+																		class='bx bxs-calendar-x'></i>Yêu cầu hủy đơn
+																</span> <span ng-if="atv.trangThai==6"> <i
+																		class='bx bxs-calendar-x'></i>Từ chối yêu cầu
+																</span></td>
+															</tr>
+
+														</table>
 														<table class="table table-bordered table-default">
 															<tr>
 																<th>Tên sản phẩm</th>
@@ -278,7 +288,8 @@
 											<div class="modal-dialog" role="document">
 												<div class="modal-content">
 													<div class="modal-header">
-														<h5 class="modal-title" id="exampleModalLabel">Tất cả thông báo</h5>
+														<h5 class="modal-title" id="exampleModalLabel">Tất cả
+															thông báo</h5>
 														<button type="button" class="close" data-dismiss="modal"
 															aria-label="Close">
 															<span aria-hidden="true">&times;</span>
@@ -294,12 +305,11 @@
 															<tbody>
 																<tr ng:repeat="item in msg">
 																	<td>{{item.maDonHang.id}}</td>
-																	<td>
-																	<span ng-if="item.trangThai==1">Đặt hàng</span>
-																	<span ng-if="item.trangThai==5">Yêu cầu hủy đơn</span>
-																	<span ng-if="item.trangThai==4">Đã nhận hàng</span>
-																	</td>
-																	<td>{{item.ngayCapNhat}}</td>
+																	<td><span ng-if="item.trangThai==1">Đặt
+																			hàng</span> <span ng-if="item.trangThai==5">Yêu cầu
+																			hủy đơn</span> <span ng-if="item.trangThai==7">Đã
+																			nhận hàng</span></td>
+																	<td>{{item.ngayCapNhat|date: "dd/MM/yyyy, HH:mm"}}</td>
 																</tr>
 															</tbody>
 															<tfoot>
