@@ -37,26 +37,37 @@ public class KhachHangRestController {
 	TaiKhoanRepository tkdao;
 
 	@GetMapping("/khachhang")
-	public List<KhachHang> getAll(Model model) {
-		return daokh.findAll();
+	public ResponseEntity<List<KhachHang>> getAll(Model model) {
+		return ResponseEntity.ok(daokh.findAll());
 
 	}
 
 	@GetMapping("/khachhang/{id}")
-	public KhachHang getOne(@PathVariable("id") Integer id) {
-		return daokh.findById(id).get();
+	public ResponseEntity<KhachHang> getOne(@PathVariable("id") Integer id) {
+		
+		if(!daokh.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		
+		return ResponseEntity.ok(daokh.findById(id).get());
 	}
 
 	@PostMapping("/khachhang")
-	public KhachHang post(@RequestBody KhachHang id) {
-		daokh.save(id);
-		return id;
+	public KhachHang post(@RequestBody KhachHang kh) {
+		daokh.save(kh);		
+		return kh;
 	}
 
 	@PutMapping("/khachhang/{id}")
-	public KhachHang put(@PathVariable("id") Integer id, @RequestBody KhachHang kh) {
+	public  ResponseEntity<KhachHang> put(@PathVariable("id") Integer id, @RequestBody KhachHang kh) {
+		
+		if(!daokh.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		
 		daokh.save(kh);
-		return kh;
+		return ResponseEntity.ok(kh);
 	}
 	
 //	@PostMapping("/chanuser")
@@ -82,8 +93,14 @@ public class KhachHangRestController {
 	
 
 	@DeleteMapping("/khachhang/{id}")
-	public void delete(@PathVariable("id") Integer id) {
+	public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
+		
+		if(!daokh.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		
 		daokh.deleteById(id);
+		return ResponseEntity.ok().build();
 	}
 
 }
