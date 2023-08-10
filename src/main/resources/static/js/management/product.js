@@ -155,7 +155,6 @@ app.controller("AdminSpCtrl", function($scope, $http) {
 		}
 
 	};
-
 	$scope.load_all_nsx();
 	$scope.load_all();
 	$scope.reset();

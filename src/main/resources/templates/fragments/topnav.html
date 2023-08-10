@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 </head>
-<body>
+<body ng-app="orderMngt" ng-controller="orderMngtCtrl">
 	<!-- top navigation -->
 	<div class="top_nav" th:fragment="adminTopNav">
 		<div class="nav_menu">
@@ -30,15 +30,15 @@
 					<li role="presentation" class="nav-item dropdown open"><a
 						href="" class="dropdown-toggle info-number" id="navbarDropdown1"
 						data-toggle="dropdown" aria-expanded="false"> <i
-							class="fa fa-envelope-o"></i> <span class="badge bg-green">{{(msg | filter :{checked:1}).length}}</span>
+							class="fa fa-envelope-o"></i> <span class="badge bg-green">{{(msg
+								| filter :{checked:1}).length}}</span>
 					</a>
 						<ul class="dropdown-menu list-unstyled msg_list" role="menu"
 							aria-labelledby="navbarDropdown1">
-							<li ng-repeat="item in msg"
-								ng-if="item.checked==1"
-								class="nav-item"><a data-toggle="modal" data-target="#seeMessage"
+							<li ng-repeat="item in msg" ng-if="item.checked==1"
+								class="nav-item"><a data-toggle="modal"
+								data-target="#seeMessage"
 								ng-click="seeMessage(item.id,item.maDonHang.id)"
-								
 								class="dropdown-item"> <span> <span
 										class="bage bg-green" ng-if="item.trangThai==1"><b>Có
 												đơn hàng mới</b></span> <span class="bage bg-orange"
@@ -46,18 +46,58 @@
 										class="bage bg-blue-sky" ng-if="item.trangThai==7"><b>Xác
 												nhận nhận hàng</b></span>
 								</span> <span class="message">Mã đơn hàng: {{item.maDonHang.id}}
-								</span> <span class="message">Thời gian: {{item.ngayCapNhat | date: "dd/MM/yyyy, HH:mm"}} </span>
+								</span> <span class="message">Thời gian: {{item.ngayCapNhat |
+										date: "dd/MM/yyyy, HH:mm"}} </span>
 							</a></li>
 							<li class="nav-item">
 								<div class="text-center">
-									<a data-toggle="modal" data-target="#allMessage" ng-click="loadMessage()" class="dropdown-item"> <strong>Xem tất cả</strong> <i
-										class="fa fa-angle-right"></i>
+									<a data-toggle="modal" data-target="#allMessage"
+										ng-click="loadMessage()" class="dropdown-item"> <strong>Xem
+											tất cả</strong> <i class="fa fa-angle-right"></i>
 									</a>
 								</div>
 							</li>
 						</ul></li>
 				</ul>
 			</nav>
+		</div>
+		<div class="modal fade" id="allMessage" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Tất cả thông
+							báo</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<table class="table table-bordered table-default">
+							<tr>
+								<th>Mã đơn hàng</th>
+								<th>Nội dung</th>
+								<th>Thời gian</th>
+							</tr>
+							<tbody>
+								<tr ng:repeat="item in msg">
+									<td>{{item.maDonHang.id}}</td>
+									<td><span ng-if="item.trangThai==1">Đặt hàng</span> <span
+										ng-if="item.trangThai==5">Yêu cầu hủy đơn</span> <span
+										ng-if="item.trangThai==7">Đã nhận hàng</span></td>
+									<td>{{item.ngayCapNhat|date: "dd/MM/yyyy, HH:mm"}}</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td class="text-primary" colspan="6"></td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- /top navigation -->

@@ -178,6 +178,9 @@ app.controller("indexCtrl", function($scope, $http) {
 
 	$scope.addToCart = function(productId) {
 		var sl = angular.copy($scope.soluong);
+		if(sl==null){
+			sl=1;
+		}
 		var url = `${host}/cart/add/${productId}?soLuong=${sl}`;
 		$http
 			.post(url)

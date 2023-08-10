@@ -4,6 +4,7 @@ app.controller("orderMngtCtrl", function($scope, $http) {
 	$scope.form = {};
 	$scope.items = [];
 	$scope.activity = [];
+	$scope.ghct = [];
 
 	$scope.load_all = function() {
 		var url = `${host}/index`; // Sử dụng dấu nháy kép để bao quanh biểu thức ${host}
@@ -11,31 +12,39 @@ app.controller("orderMngtCtrl", function($scope, $http) {
 		$http
 			.get(url)
 			.then((resp) => {
-				
+
 				$scope.items = resp.data;
 			})
 			.catch((error) => {
 				alert("Lỗi");
 			});
 	};
-	
-	
+
+
 
 	$scope.invoiceDetail = function(id) {
 		var url = `${host}/details/${id}`;
-		$scope.ghct = [];
+
 
 		$http
 			.get(url)
 			.then((resp) => {
-				
+
 				$scope.ghct = resp.data;
 				$scope.orderActivity(id);
+				
 			})
 			.catch((error) => {
 				alert("Lỗi");
 			});
 	};
+	$scope.total = function() {
+		let sum =0;
+		for (let i = 0; i < $scope.ghct.length; i++) {
+				sum += $scope.ghct[i].donGia * $scope.ghct[i].soLuong;
+		}
+		return sum;
+	}
 	$scope.orderActivity = function(orderId) {
 		var url = `${host}/activity/${orderId}`;
 		$http
@@ -48,10 +57,10 @@ app.controller("orderMngtCtrl", function($scope, $http) {
 				alert("Lỗi");
 			});
 	}
-	
-	$scope.huyDon = function(id){
+
+	$scope.huyDon = function(id) {
 		var url = `${host}/cancelOrder/${id}`;
-		
+
 		$http
 			.put(url)
 			.then((resp) => {
@@ -62,9 +71,9 @@ app.controller("orderMngtCtrl", function($scope, $http) {
 				alert("Lỗi");
 			});
 	};
-	$scope.khongHuyDon = function(id){
+	$scope.khongHuyDon = function(id) {
 		var url = `${host}/notCancelOrder/${id}`;
-		
+
 		$http
 			.put(url)
 			.then((resp) => {
@@ -75,7 +84,7 @@ app.controller("orderMngtCtrl", function($scope, $http) {
 				alert("Lỗi");
 			});
 	};
-	$scope.vanChuyen = function(id){
+	$scope.vanChuyen = function(id) {
 		var url = `${host}/delivery/${id}`;
 		$http
 			.put(url)
@@ -87,7 +96,7 @@ app.controller("orderMngtCtrl", function($scope, $http) {
 				alert("Lỗi");
 			});
 	};
-	$scope.hoanTat = function(id){
+	$scope.hoanTat = function(id) {
 		var url = `${host}/successfulDelivery/${id}`;
 		$http
 			.put(url)
@@ -99,19 +108,19 @@ app.controller("orderMngtCtrl", function($scope, $http) {
 				alert("Lỗi");
 			});
 	}
-	$scope.loadMessage = function(){
+	$scope.loadMessage = function() {
 		var url = `${host}/loadMessage`;
 		$scope.msg = [];
 		$http
 			.get(url)
 			.then((resp) => {
-			$scope.msg = resp.data
+				$scope.msg = resp.data
 			})
 			.catch((error) => {
 				alert("Lỗi");
 			});
 	}
-	$scope.seeMessage = function(id,orderId){
+	$scope.seeMessage = function(id, orderId) {
 		var url = `${host}/seeMessage/${id}`;
 		$http
 			.put(url)
@@ -122,7 +131,7 @@ app.controller("orderMngtCtrl", function($scope, $http) {
 				alert("Lỗi");
 			});
 	}
-	
+
 	$scope.load_all();
 	$scope.loadMessage();
 });
