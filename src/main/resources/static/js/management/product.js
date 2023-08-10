@@ -63,12 +63,14 @@ app.controller("AdminSpCtrl", function($scope, $http) {
 
 	$scope.update = function() {
 		var item = angular.copy($scope.form);
-		var url = `${host}/sanpham/${$scope.form.id}`;
+		var nsx = angular.copy($scope.form.nhaSanXuat.id);
+		var url = `${host}/sanpham/${$scope.form.id}?nhaSX=${nsx}`;
+
 		$http
 			.put(url, item).then(resp => {
 				var index = $scope.items.findIndex(item =>
 					item.id == $scope.form.id);
-					
+
 				alert("cập nhật thành công!")
 				$scope.items[index] = resp.data;
 
@@ -94,24 +96,26 @@ app.controller("AdminSpCtrl", function($scope, $http) {
 
 	$scope.delete = function(id) {
 		var url = `${host}/sanpham/${id}`;
-		$http.delete(url).then(resp => {
-			var index = $scope.items.findIndex(item => item.id == id);
+		if (confirm("Bạn có chắc muốn xóa sản phẩm này?")) {
+			$http.delete(url).then(resp => {
+				var index = $scope.items.findIndex(item => item.id == id);
 
-			$scope.items.splice(index, 1);
-			alert("xóa thành công")
-			$scope.reset();
-			console.log("Succes", resp);
-		}).catch((error) => {
-			alert("xóa không thành công")
-			console.log("Error", error)
-		});
+				$scope.items.splice(index, 1);
+				alert("xóa thành công")
+				$scope.reset();
+				console.log("Succes", resp);
+			}).catch((error) => {
+				alert("xóa không thành công")
+				console.log("Error", error)
+			});
+		}
 	}
-	
-	
+
+
 	//upload image
 	$scope.imageChanged = function(files) {
 		var data = new FormData();
-		
+
 		data.append('file', files[0]);
 		$http.post('/rest/upload/images', data, {
 			transformRequest: angular.identity,

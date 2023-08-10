@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fpoly.model.NhaSanXuat;
 import com.fpoly.model.SanPham;
+import com.fpoly.repository.NhaSanXuatRepository;
 import com.fpoly.repository.SanPhamRepository;
 import com.fpoly.service.UploadService;
 
@@ -37,6 +39,8 @@ public class SanPhamRestController {
 
 	@Autowired
 	UploadService uploadService;
+	@Autowired
+	NhaSanXuatRepository nsxRepository;
 
 	@Autowired
 	SanPhamRepository daosp;
@@ -59,7 +63,7 @@ public class SanPhamRestController {
 	public SanPham post(@RequestBody SanPham sp, @PathParam("folder") MultipartFile folder) {
 
 		if (sp.getSoLuongTon() == 0) {
-			sp.setTrangThai(false); 
+			sp.setTrangThai(false);
 		} else {
 			sp.setTrangThai(true);
 		}
@@ -69,11 +73,15 @@ public class SanPhamRestController {
 	}
 
 	@PutMapping("/sanpham/{id}")
-	public ResponseEntity<SanPham> put(@PathVariable("id") Integer id, @RequestBody SanPham sp) {
+	public ResponseEntity<SanPham> put( @RequestParam("nhaSX") Integer nsx,@PathVariable("id") Integer id, @RequestBody SanPham sp) {
 
 		if (!daosp.existsById(id)) {
 			return ResponseEntity.notFound().build();
 		}
+		NhaSanXuat nhaSX =	nsxRepository.findById(nsx).get();
+		sp.setNhaSanXuat(nhaSX);
+		System.out.println(sp.getTenSanPham());
+		System.out.println(sp.getNhaSanXuat().getTenNsx());
 
 		/*
 		 * if (sp.getSoLuongTon() == 0) { sp.setTrangThai(false); // set trạng thái là
