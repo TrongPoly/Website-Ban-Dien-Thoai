@@ -20,6 +20,7 @@ import com.fpoly.model.KhachHang;
 import com.fpoly.model.TaiKhoan;
 import com.fpoly.repository.KhachHangRepository;
 import com.fpoly.repository.TaiKhoanRepository;
+import com.fpoly.service.AccountService;
 import com.fpoly.service.SessionService;
 
 @CrossOrigin("*")
@@ -37,8 +38,8 @@ public class KhachHangRestController {
 	SessionService sessionService;
 
 	@Autowired
-	TaiKhoanRepository tkdao;
-
+	AccountService accountService;
+	
 	@GetMapping("/khachhang")
 	public ResponseEntity<List<KhachHang>> getAll(Model model) {
 		return ResponseEntity.ok(daokh.findAll());
@@ -70,6 +71,20 @@ public class KhachHangRestController {
 		}
 		daokh.save(kh);
 		return ResponseEntity.ok(kh);
+	}
+	@PutMapping("/khachhang/chan/{id}")
+	public  ResponseEntity<KhachHang> chan(@PathVariable("id") Integer id) {
+		TaiKhoan taiKhoan = accountService.findByEmail(daokh.findById(id).get().getEmail().getEmail());
+		taiKhoan.setTrangThai(false);
+		accountService.luu(taiKhoan);
+		return ResponseEntity.ok().build();
+	}
+	@PutMapping("/khachhang/boChan/{id}")
+	public  ResponseEntity<KhachHang> boChan(@PathVariable("id") Integer id) {
+		TaiKhoan taiKhoan = accountService.findByEmail(daokh.findById(id).get().getEmail().getEmail());
+		taiKhoan.setTrangThai(true);
+		accountService.luu(taiKhoan);
+		return ResponseEntity.ok().build();
 	}
 	
 //	@PostMapping("/chanuser")

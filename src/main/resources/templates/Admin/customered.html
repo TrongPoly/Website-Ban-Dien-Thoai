@@ -57,7 +57,7 @@
 						<div class="x_content">
 							<br />
 							<form action="" id="demo-form2" data-parsley-validate
-								class="form-horizontal form-label-left" >
+								class="form-horizontal form-label-left">
 
 								<div class="item form-group" style="display: none;">
 									<label class="col-form-label col-md-3 col-sm-3 label-align"
@@ -93,7 +93,8 @@
 										for="">Email<span>*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 ">
-										<input ng-model="form.email.email" type="text" id="" name="" class="form-control">
+										<input ng-model="form.email.email" type="text" id="" name=""
+											class="form-control">
 
 									</div>
 									<!-- i style="color: red; font-family: sans-serif;" th:errors="*{email.email}"></i> -->
@@ -105,7 +106,8 @@
 										for="price">Điểm Tích Lũy<span>*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 ">
-										<input ng-model="form.diemTichLuy" ng-type="number" id="" name="price" class="form-control">
+										<input ng-model="form.diemTichLuy" ng-type="number" id=""
+											name="price" class="form-control">
 									</div>
 
 								</div>
@@ -114,20 +116,23 @@
 										*</label>
 									<div class="col-md-6 col-sm-6 ">
 										<select ng-model="form.hangKhachHang.id">
-								<option value=""> <-- chọn hạng--></option>
-										<option  ng-repeat="item in hkhs"
-											ng-value="{{item.id}}">{{item.tenHang}}</option>
-									</select>
+											<option value=""><-- chọn hạng--></option>
+											<option ng-repeat="item in hkhs" ng-value="{{item.id}}">{{item.tenHang}}</option>
+										</select>
 									</div>
 								</div>
 								<div class="ln_solid"></div>
 								<div class="item form-group">
 									<div class="col-md-6 col-sm-6 offset-md-3">
 
-									<button ng-click="create()" type="submit" class="btn btn-success">Create</button>
-									<button ng-click="update()" type="submit" class="btn btn-success">Update</button>
-									<button ng-click="delete(form.id)" type="submit" class="btn btn-success">Delete</button>
-									<button ng-click="reset()" type="submit" class="btn btn-success">Reset</button>
+										<button ng-click="create()" type="submit"
+											class="btn btn-success">Create</button>
+										<button ng-click="update()" type="submit"
+											class="btn btn-success">Update</button>
+										<button ng-click="delete(form.id)" type="submit"
+											class="btn btn-success">Delete</button>
+										<button ng-click="reset()" type="submit"
+											class="btn btn-success">Reset</button>
 									</div>
 								</div>
 
@@ -161,14 +166,14 @@
 											style="width: 100%">
 											<thead>
 												<tr>
-													<h5 class="text-primary" ></h5>
+													<h5 class="text-primary"></h5>
 													<th>Mã Khách Hàng</th>
 													<th>Tên Khách Hàng</th>
 													<th>Số Điện Thoại</th>
 													<th>Email</th>
 													<th>Điểm Tích Lũy</th>
 													<th>Hạng</th>
-													<th>Action</th>
+													<th>Trạng thái</th>
 													<th></th>
 												</tr>
 											</thead>
@@ -177,69 +182,52 @@
 											<tbody>
 												<tr ng-repeat="item in pager.items">
 													<td>{{item.id}}</td>
-													<td class ="{{item.email.phanQuyen? 'text-danger' : 'text-info'}}">{{item.tenKhachHang}}</td>
+													<td
+														class="{{item.email.phanQuyen? 'text-danger' : 'text-info'}}">{{item.tenKhachHang}}</td>
 													<td>{{item.soDienThoai}}</td>
 													<td>{{item.email.email}}</td>
 													<td>{{item.diemTichLuy}}</td>
 													<td>{{item.hangKhachHang.tenHang}}</td>
-													<td>{{item.email.trangThai? 'Còn Hoạt Động' : 'Đã Chặn'}}</td>
-													<td>
-													<a ng-click="edit(item.id)" class="btn btn-warning">Sửa</a>
-													<a ng:if="item.email.trangThai == true" class="btn btn-warning">Chặn</a>
-													<a ng-click="bochan(item.id)" ng:if="item.email.trangThai == false" class="btn btn-warning">Bỏ Chặn</a>
-												
-													</td>
-
-
-
-												</tr>
-
-
-
-
-
-
-
-
-
-												<!-- 	<td><a th:href="@{/admin/customer/edit/__${kh.id}__}"
+													<td>{{item.email.trangThai? 'Đã kích hoạt' : 'Ngừng
+														kích hoạt'}}</td>
+													<td><a ng-click="edit(item.id)"
 														class="btn btn-warning">Sửa</a> <a
-														th:if="${kh.email.trangThai}" class="btn btn-info"
-														th:href="@{/admin/chanuser(email=${kh.email.email},trangThai=false)}">Chặn</a>
-														<a th:unless="${kh.email.trangThai}" class="btn btn-info"
-														th:href="@{/admin/chanuser(email=${kh.email.email},trangThai=true)}">Bỏ
-															Chặn</a></td> -->
-												<!-- th:class="${kh.email.phanQuyen}? 'text-danger' : 'text-info' "
-														th:text="${kh.tenKhachHang}" -->
+														ng:if="item.email.trangThai == true"
+														ng-click="chan(item.id)" class="btn btn-warning">Ngưng
+															kích hoạt</a> <a ng-click="boChan(item.id)"
+														ng:if="item.email.trangThai == false"
+														class="btn btn-warning">Kích hoạt lại</a></td>
+												</tr>
 											</tbody>
 										</table>
 										<div class="panel-footer text-center">
-										<button ng-click="pager.first()" class="btn btn-danger">
-											<b class="glyphicon glyphicon-hand-up"></b>
-										</button>
+											<button ng-click="pager.first()" class="btn btn-danger">
+												<b class="glyphicon glyphicon-hand-up"></b>
+											</button>
 
-									<button ng-click="pager.prev()" class="btn btn-danger">
-											<b class="glyphicon glyphicon-hand-left"></b>
-										</button>
-										
-										<button class="btn btn-success">{{pager.page + 1}} of {{pager.count}}</button>
-									
-									<button ng-click="pager.next()" class="btn btn-danger">
-											<b class="glyphicon glyphicon-hand-right"></b>
-										</button>
-										
-									<button ng-click="pager.last()" class="btn btn-danger">
-											<b class="glyphicon glyphicon-hand-down"></b>
-										</button>
+											<button ng-click="pager.prev()" class="btn btn-danger">
+												<b class="glyphicon glyphicon-hand-left"></b>
+											</button>
 
-									</div>
+											<button class="btn btn-success">{{pager.page + 1}}
+												of {{pager.count}}</button>
+
+											<button ng-click="pager.next()" class="btn btn-danger">
+												<b class="glyphicon glyphicon-hand-right"></b>
+											</button>
+
+											<button ng-click="pager.last()" class="btn btn-danger">
+												<b class="glyphicon glyphicon-hand-down"></b>
+											</button>
+
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				
+
 
 
 			</div>
@@ -254,6 +242,6 @@
 		</div>
 	</div>
 
-<script th:src="@{/js/management/customer.js}"></script>
+	<script th:src="@{/js/management/customer.js}"></script>
 </body>
 </html>

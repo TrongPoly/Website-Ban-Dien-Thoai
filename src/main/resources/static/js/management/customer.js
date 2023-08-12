@@ -60,6 +60,30 @@ app.controller("AdminKhCtrl", function($scope, $http) {
 		});
 	}
 
+	$scope.chan = function(customerId) {
+		var url = `${host}/khachhang/chan/${customerId}`;
+			$http
+				.put(url)
+				.then((resp) => {
+					alert("Chặn thành công!");
+					location.reload();
+				})
+				.catch((error) => {
+					alert("Lỗi");
+				});
+	}
+	$scope.boChan = function(customerId) {
+		var url = `${host}/khachhang/boChan/${customerId}`;
+			$http
+				.put(url)
+				.then((resp) => {
+					alert("Bỏ chặn thành công!");
+					location.reload();
+				})
+				.catch((error) => {
+					alert("Lỗi");
+				});
+	}
 	$scope.update = function() {
 		var item = angular.copy($scope.form);
 		var url = `${host}/khachhang/${$scope.form.id}`;
