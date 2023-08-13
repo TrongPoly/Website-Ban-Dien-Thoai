@@ -2,6 +2,7 @@ package com.fpoly.service;
 
 import java.util.List;
 
+
 import com.fpoly.model.DonHangChiTiet;
 
 public interface OrderDetailsService {
@@ -12,4 +13,5 @@ public interface OrderDetailsService {
 	void luu(DonHangChiTiet dhct);
 
 
+	
 }

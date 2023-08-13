@@ -3,6 +3,7 @@ package com.fpoly.service;
 import java.util.List;
 
 import com.fpoly.model.DonHang;
+import com.fpoly.model.ReportDoanhThu;
 
 public interface OrderService {
 
@@ -15,5 +16,6 @@ public interface OrderService {
 	List<DonHang> findAll();
 
 	void xoa(DonHang donHang);
+
 
 }

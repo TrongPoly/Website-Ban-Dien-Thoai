@@ -2,8 +2,9 @@ let host = "http://localhost:8080/rest";
 const app = angular.module("AdminPfApp", []);
 app.controller("AdminPfCtrl", function($scope, $http) {
 	$scope.form = {};
-	$scope.items = [];
-
+	$scope.diaChi = [];
+	$scope.editProfile = false;
+	$scope.editAddress = false;
 
 
 	$scope.reset = function() {
@@ -11,10 +12,13 @@ app.controller("AdminPfCtrl", function($scope, $http) {
 		$scope.key = null;
 	}
 
+
+
 	$scope.load_all = function() {
 		var url = `${host}/profile/getUser`;
+		$scope.khachHang={};
 		$http.get(url).then(resp => {
-			$scope.items = resp.data;
+			$scope.khachHang = resp.data;
 			console.log("Succes", resp);
 		}).catch((error) => {
 			console.log("Error", error);
@@ -24,23 +28,73 @@ app.controller("AdminPfCtrl", function($scope, $http) {
 	$scope.load_all_dc = function() {
 		var url = `${host}/address/getAll`;
 		$http.get(url).then(resp => {
-			$scope.items = resp.data;
+			$scope.diaChi = resp.data;
 			console.log("Succes", resp);
 		}).catch((error) => {
 			console.log("Error", error);
 		});
 	}
 
+	$scope.load_tinh = function() {
+		var url = `${host}/address/getProvince`;
+		$scope.tinh = [];
+		$http
+			.get(url)
+			.then((resp) => {
+				$scope.tinh = resp.data;
+
+			})
+			.catch((error) => {
+				alert(error.status)
+			});
+	}
+	$scope.load_quan = function() {
+		let idTinh = $scope.form.tinh;
+		var url = `${host}/address/getDistrict/${idTinh}`;
+		$scope.quan = [];
+		$http
+			.get(url)
+			.then((resp) => {
+				$scope.quan = resp.data;
+			})
+			.catch((error) => {
+				alert(error.status)
+			});
+	}
+	$scope.load_phuong = function() {
+		let idQuan = $scope.form.quan;
+		var url = `${host}/address/getWards/${idQuan}`;
+		$scope.phuong = [];
+		$http
+			.get(url)
+			.then((resp) => {
+				$scope.phuong = resp.data;
+			})
+			.catch((error) => {
+				alert(error.status)
+			});
+	}
+
+	$scope.create_address = function() {
+		var url = `${host}/address/create`; // Sử dụng dấu nháy kép để bao quanh biểu thức ${host}
+		var data = angular.copy($scope.form);
+
+		$http
+			.post(url, data)
+			.then((resp) => {
+				$scope.editAddress = false;
+				$scope.load_all_dc();
+				alert("Thêm địa chỉ thành công");
+			})
+			.catch((error) => {
+				alert(error.status)
+			});
+
+
+	};
 
 	$scope.edit = function(id) {
-		var url = `${host}/profile/${id}`;
-		$http.get(url).then(resp => {
-			$scope.form = resp.data;
-
-			console.log("Success", resp);
-		}).catch((error) => {
-			console.log("Error", error);
-		})
+		$scope.editProfile = !id;
 	}
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
@@ -62,41 +116,41 @@ app.controller("AdminPfCtrl", function($scope, $http) {
 		});
 	}
 
+	$scope.editADR = function(id) {
+		$scope.editAddress=!id;
+	};
 
 	$scope.update = function() {
-		
+
 		//Lỗi bỏ trống tên khách hàng
-		if (!$scope.form.tenKhachHang) {
+		if (!$scope.khachHang.tenKhachHang) {
 			alert("Vui lòng nhập tên khách hàng!!")
-			
+
 			return;
 		}
 		//Lỗi bỏ trống số điện thoại 
-		if (!$scope.form.soDienThoai) {
+		if (!$scope.khachHang.soDienThoai) {
 			alert("Vui lòng nhập tên khách hàng!!")
 			$scope.errorMessage = "Vui lòng nhập tên sản phẩm!!";
 			$('#errorModal').modal('show'); // Show the modal
 			return;
 		}
 		//Lỗi sai cú pháp số điện thoại 
-		if (isNaN($scope.form.soDienThoai) || $scope.form.soDienThoai.length < 10 || $scope.form.soDienThoai.length > 11) {
+		if (isNaN($scope.khachHang.soDienThoai) || $scope.khachHang.soDienThoai.length < 10 || $scope.khachHang.soDienThoai.length > 11) {
 			alert("Số điện thoại không hợp lệ!");
 			return;
 		}
-		
-		
-		var item = angular.copy($scope.form);
-		var url = `${host}/profile/${$scope.form.id}`;
+
+
+		var item = angular.copy($scope.khachHang);
+		var url = `${host}/profile/${$scope.khachHang.id}`;
 		$http
 			.put(url, item).then(resp => {
-				var index = $scope.items.findIndex(item =>
-					item.id == $scope.form.id);
 				alert("cập nhật thành công!")
-				$scope.items[index] = resp.data;
-
+				$scope.editProfile = false;
 				console.log("Succes", resp);
 			}).catch((error) => {
-				alert("cập nhật thất bại!")
+				alert(error.status)
 				console.log("Error", error)
 			});
 
@@ -152,4 +206,5 @@ app.controller("AdminPfCtrl", function($scope, $http) {
 	$scope.load_all();
 	$scope.load_all_dc();
 	$scope.reset();
+	$scope.load_tinh();
 })

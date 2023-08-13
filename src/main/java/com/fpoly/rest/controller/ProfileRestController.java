@@ -45,12 +45,8 @@ public class ProfileRestController {
 	
 	
 	@GetMapping("/profile/getUser")
-	public KhachHang findUser(@RequestBody KhachHang kh){
-		
-	
-		
+	public KhachHang findUser(){
 		return customerService.findByUser();
-		
 	}
 	@GetMapping("/profile/{id}")
 	public KhachHang getOne(@PathVariable("id") Integer id) {

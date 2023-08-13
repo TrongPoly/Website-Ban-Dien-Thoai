@@ -56,8 +56,6 @@ public class KhachHangRestController {
 		if(!daokh.existsById(id)) {
 			return ResponseEntity.notFound().build();
 		}
-		
-		
 		return ResponseEntity.ok(daokh.findById(id).get());
 	}
 

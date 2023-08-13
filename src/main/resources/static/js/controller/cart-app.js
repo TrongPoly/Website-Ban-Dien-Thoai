@@ -3,6 +3,47 @@ var app = angular.module("cartApp", []);
 app.controller("cartCtrl", function($scope, $http) {
 	$scope.form = {};
 	$scope.ghct = [];
+
+	$scope.load_tinh = function() {
+		var url = `${host}/address/getProvince`; 
+		$scope.tinh = [];
+		$http
+			.get(url)
+			.then((resp) => {
+				$scope.tinh = resp.data;
+				
+			})
+			.catch((error) => {
+				alert(error.status)
+			});
+	}
+	$scope.load_quan = function() {
+		let idTinh = $scope.form.tinh;
+		var url = `${host}/address/getDistrict/${idTinh}`; 
+		$scope.quan = [];
+		$http
+			.get(url)
+			.then((resp) => {
+				$scope.quan = resp.data;
+			})
+			.catch((error) => {
+				alert(error.status)
+			});
+	}
+	$scope.load_phuong = function() {
+		let idQuan = $scope.form.quan;
+		var url = `${host}/address/getWards/${idQuan}`; 
+		$scope.phuong = [];
+		$http
+			.get(url)
+			.then((resp) => {
+				$scope.phuong= resp.data;
+			})
+			.catch((error) => {
+				alert(error.status)
+			});
+	}
+
 	$scope.load_all = function() {
 		var url = `${host}/cart/get`; // Sử dụng dấu nháy kép để bao quanh biểu thức ${host}
 
@@ -108,6 +149,7 @@ app.controller("cartCtrl", function($scope, $http) {
 			});
 	}
 
+	
 	$scope.load_address();
 	$scope.load_all();
 
@@ -178,8 +220,8 @@ app.controller("indexCtrl", function($scope, $http) {
 
 	$scope.addToCart = function(productId) {
 		var sl = angular.copy($scope.soluong);
-		if(sl==null){
-			sl=1;
+		if (sl == null) {
+			sl = 1;
 		}
 		var url = `${host}/cart/add/${productId}?soLuong=${sl}`;
 		$http

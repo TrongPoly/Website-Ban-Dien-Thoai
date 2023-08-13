@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{/Admin/layout:: viewAdmin(~{::body})}">
 <head>
-
 </head>
 
 <body ng-app="orderMngt" ng-controller="orderMngtCtrl">
@@ -90,13 +89,13 @@
 															<td>{{dh.diaChi.dcChiTiet}},{{dh.diaChi.phuong}},{{dh.diaChi.quan}},{{dh.diaChi.tinh}}</td>
 															<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
 
-															<td><a class="btn btn-success btn-block"
-																ng-click="huyDon(dh.id)">Hủy đơn</a> <a
-																class="btn btn-info btn-block"
-																ng-click="vanChuyen(dh.id)">Xác nhận đang vận chuyển</a>
+															<td><a class="btn btn-danger"
+																ng-click="huyDon(dh.id)"><i
+																	class='bx bxs-calendar-x'></i></a> <a class="btn btn-info"
+																ng-click="vanChuyen(dh.id)"><i class='bx bxs-truck'></i></a>
 																<a data-toggle="modal" data-target="#seeMessage"
-																class="btn btn-warning btn-block"
-																ng-click="invoiceDetail(dh.id)">Chi tiết</a></td>
+																class="btn btn-warning" ng-click="invoiceDetail(dh.id)"><i
+																	class='bx bxs-zoom-in'></i></a></td>
 														</tr>
 													</tbody>
 												</table>
@@ -123,12 +122,12 @@
 															<td>{{dh.ngayLap | date: "dd/MM/yyyy, HH:mm"}}</td>
 															<td>{{dh.diaChi.dcChiTiet}},{{dh.diaChi.phuong}},{{dh.diaChi.quan}},{{dh.diaChi.tinh}}</td>
 															<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
-															<td><a data-toggle="modal" data-target="#seeMessage"
-																class="btn btn-warning btn-block"
-																ng-click="invoiceDetail(dh.id)">Chi tiết</a> <br> <a
-																class="btn btn-success btn-block"
-																ng-click="hoanTat(dh.id)">Xác nhận giao hàng thành
-																	công</a></td>
+															<td><a ng-click="hoanTat(dh.id)"
+																class="btn btn-success"> <i
+																	class='bx bxs-check-square'></i></a> <a data-toggle="modal"
+																data-target="#seeMessage" class="btn btn-warning"
+																ng-click="invoiceDetail(dh.id)"><i
+																	class='bx bxs-zoom-in'></i></a></td>
 														</tr>
 													</tbody>
 												</table>
@@ -157,7 +156,8 @@
 															<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
 															<td><a data-toggle="modal" data-target="#seeMessage"
 																class="btn btn-warning btn-block"
-																ng-click="invoiceDetail(dh.id)">Chi tiết</a>
+																ng-click="invoiceDetail(dh.id)"><i
+																	class='bx bxs-zoom-in'></i></a>
 														</tr>
 													</tbody>
 												</table>
@@ -184,13 +184,14 @@
 															<td>{{dh.ngayLap | date: "dd/MM/yyyy, HH:mm"}}</td>
 															<td>{{dh.diaChi.dcChiTiet}},{{dh.diaChi.phuong}},{{dh.diaChi.quan}},{{dh.diaChi.tinh}}</td>
 															<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
-															<td><a data-toggle="modal" data-target="#seeMessage"
-																class="btn btn-warning btn-block"
-																ng-click="invoiceDetail(dh.id)">Chi tiết</a> <a
-																class="btn btn-success btn-block"
-																ng-click="huyDon(dh.id)">Đồng ý</a> <a
-																class="btn btn-success btn-block"
-																ng-click="khongHuyDon(dh.id)">Từ chối</a></td>
+															<td><a class="btn btn-success "
+																ng-click="huyDon(dh.id)"><i
+																	class='bx bxs-comment-check'></i></a> <a
+																class="btn btn-danger " ng-click="khongHuyDon(dh.id)"><i
+																	class='bx bxs-comment-x'></i></a> <a data-toggle="modal"
+																data-target="#seeMessage" class="btn btn-warning "
+																ng-click="invoiceDetail(dh.id)"><i
+																	class='bx bxs-zoom-in'></i></a></td>
 														</tr>
 													</tbody>
 												</table>
@@ -220,7 +221,8 @@
 															<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
 															<td><a data-toggle="modal" data-target="#seeMessage"
 																class="btn btn-warning btn-block"
-																ng-click="invoiceDetail(dh.id)">Chi tiết</a></td>
+																ng-click="invoiceDetail(dh.id)"><i
+																	class='bx bxs-zoom-in'></i></a></td>
 														</tr>
 													</tbody>
 												</table>

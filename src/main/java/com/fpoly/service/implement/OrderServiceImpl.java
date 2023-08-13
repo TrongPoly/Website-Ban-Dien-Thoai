@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.fpoly.model.DonHang;
+import com.fpoly.model.ReportDoanhThu;
 import com.fpoly.repository.DonHangRepository;
 import com.fpoly.service.OrderService;
 import com.fpoly.service.SessionService;
@@ -45,5 +46,7 @@ public class OrderServiceImpl implements OrderService {
 	public void xoa(DonHang donHang) {
 		donHangRepository.delete(donHang);
 	}
+
+
 
 }

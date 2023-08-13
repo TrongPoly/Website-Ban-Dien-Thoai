@@ -14,7 +14,7 @@
 
 </head>
 
-<body ng-app="orderMngt" ng-controller="orderMngtCtrl">
+<body ng-app="reportApp" ng-controller="reportCtrl">
 
 
 	<!-- page content -->
@@ -58,8 +58,31 @@
 							</ul>
 							<div class="clearfix"></div>
 						</div>
+						<div class="row">
+							<div class="col-4 form-group">
+								<label>Tháng</label> <select ng-model="thang"
+									class="form-control">
+									<option ng-value="0" selected="selected">Tất cả</option>
+									<option th:each="i: ${#numbers.sequence(1, 12)}" th:text="${i}"></option>
+								</select> <br>
+								<button class=" btn btn-info" ng-click="getDoanhThu()">Lọc</button>
+							</div>
+							<div class="col-4 form-group">
+								<label>Năm</label> <select ng-model="nam" class="form-control">
+									<option selected="selected" ng-value="0">Tất cả</option>
+									<option ng-repeat="year in years">{{year}}</option>
+								</select>
+							</div>
+							<div class="col-4 form-group">
+								<label>Trạng Thái</label> <select ng-model="trangThai"
+									class="form-control">
 
+									<option ng-value="3" selected="selected">Đã giao</option>
+									<option ng-value="2">Đang giao</option>
+								</select>
+							</div>
 
+						</div>
 						<div class="x_content">
 							<div class="row">
 								<div class="col-sm-12">
@@ -70,38 +93,23 @@
 											style="width: 100%">
 											<thead>
 												<tr>
-													<th>Hãng SP</th>
+													<th>Tên sản phẩm</th>
 													<th>Tổng Số Lượng Bán</th>
 													<th>Tổng Tiền</th>
-
-
-
 												</tr>
 											</thead>
-
-
 											<tbody>
-												<tr>
-													<td>Iphone 14</td>
-													<td>11</td>
-													<td>900000</td>
+												<tr ng-repeat="item in doanhThu">
+													<td>{{item.tenSanPham}}</td>
+													<td>{{item.soLuong}}</td>
+													<td>{{item.tongTien | number :0}} VNĐ</td>
 												</tr>
-
-												<tr>
-													<td>Iphone 14</td>
-													<td>11</td>
-													<td>900000</td>
-												</tr>
-												<tr>
-													<td>Iphone 14</td>
-													<td>11</td>
-													<td>900000</td>
-												</tr>
-
-
-
-
 											</tbody>
+											<tfoot>
+											<tr>
+												<td colspan="3">Tổng: {{total() |number : 0}} VNĐ</td>
+											</tr>
+											</tfoot>
 										</table>
 									</div>
 								</div>
@@ -167,20 +175,13 @@
 													<th>Hãng SP</th>
 													<th>Tổng SP đã bán</th>
 													<th>Số Lượng hiện có</th>
-
-
-
 												</tr>
 											</thead>
-
-
 											<tbody>
 												<tr>
 													<td>Apple</td>
 													<td>9</td>
 													<td>2</td>
-
-
 												</tr>
 												<tr>
 													<td>Apple</td>
@@ -193,12 +194,7 @@
 													<td>Apple</td>
 													<td>9</td>
 													<td>2</td>
-
-
 												</tr>
-
-
-
 											</tbody>
 										</table>
 									</div>
@@ -207,22 +203,11 @@
 						</div>
 					</div>
 				</div>
-
-
-
-
 			</div>
 		</div>
 	</div>
 
-	<!-- /page content -->
-
-	<!-- footer content -->
-
-	<!-- /footer content -->
-
-
-	<script th:src="@{/js/management/order.js}"></script>
+	<script th:src="@{/js/management/report.js}"></script>
 
 
 </body>

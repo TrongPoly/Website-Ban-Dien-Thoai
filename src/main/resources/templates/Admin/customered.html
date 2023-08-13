@@ -115,8 +115,7 @@
 									<label class="col-form-label col-md-3 col-sm-3 label-align">Hạng
 										*</label>
 									<div class="col-md-6 col-sm-6 ">
-										<select ng-model="form.hangKhachHang.id">
-											<option value=""><-- chọn hạng--></option>
+										<select class="form-control" ng-model="form.hangKhachHang.id">
 											<option ng-repeat="item in hkhs" ng-value="{{item.id}}">{{item.tenHang}}</option>
 										</select>
 									</div>
@@ -215,12 +214,11 @@
 													<td>{{item.email.trangThai? 'Đã kích hoạt' : 'Ngừng
 														kích hoạt'}}</td>
 													<td><a ng-click="edit(item.id)"
-														class="btn btn-warning">Sửa</a> <a
+														class="btn btn-warning"><i class='bx bxs-cog'></i></a> <a
 														ng:if="item.email.trangThai == true"
-														ng-click="chan(item.id)" class="btn btn-warning">Ngưng
-															kích hoạt</a> <a ng-click="boChan(item.id)"
+														ng-click="chan(item.id)" class="btn btn-warning"><i class='bx bxs-lock'></i></a> <a ng-click="boChan(item.id)"
 														ng:if="item.email.trangThai == false"
-														class="btn btn-warning">Kích hoạt lại</a></td>
+														class="btn btn-warning"><i class='bx bxs-lock-open'></i></a></td>
 												</tr>
 											</tbody>
 										</table>
