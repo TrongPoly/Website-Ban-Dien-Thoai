@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{/Admin/layout:: viewAdmin(~{::body})}">
+	th:replace="~{/User/layout.html :: dynamic(~{::body})}">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
@@ -17,46 +17,22 @@
 <body ng-app="AdminKhApp" ng-controller="AdminKhCtrl">
 
 
-
+	<br>
+	<br>
+	<br>
+	<br>
 	<!-- page content -->
-	<div class="right_col" role="main">
+	<div  >
 		<div class="">
-			<div class="page-title">
-				<div class="title_left">
-					<h3>Form Khách Hàng</h3>
-				</div>
-
-				<div class="title_right">
-					<div class="col-md-5 col-sm-5  form-group pull-right top_search">
-						<div class="input-group">
-							<input type="text" class="form-control"
-								placeholder="Search for..."> <span
-								class="input-group-btn">
-								<button class="btn btn-default" type="button">Go!</button>
-							</span>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 			<div class="clearfix"></div>
 			<div class="row">
 				<div class="col-md-12 col-sm-12 ">
-					<div class="x_panel">
-						<div class="x_title">
-							<h2>
-								Form Khách Hàng <small></small>
-							</h2>
-							<ul class="nav navbar-right panel_toolbox">
-								<li><a class="collapse-link"><i
-										class="fa fa-chevron-up"></i></a></li>
-
-								<li><a class="close-link"><i class="fa fa-close"></i></a></li>
-							</ul>
-							<div class="clearfix"></div>
-						</div>
-						<div class="x_content">
+					<div class="">
+						
+						<div class="">
 							<br />
-							<form action="" id="demo-form2" data-parsley-validate
+							<form action="" id="" data-parsley-validate
 								class="form-horizontal form-label-left">
 
 								<div class="item form-group" style="display: none;">
@@ -94,33 +70,15 @@
 									</label>
 									<div class="col-md-6 col-sm-6 ">
 										<input ng-model="form.email.email" type="text" id="" name=""
-											class="form-control" readonly="true">
+											class="form-control">
 
 									</div>
 									<!-- i style="color: red; font-family: sans-serif;" th:errors="*{email.email}"></i> -->
 
 								</div>
 
-								<div class="item form-group">
-									<label class="col-form-label col-md-3 col-sm-3 label-align"
-										for="price">Điểm Tích Lũy<span>*</span>
-									</label>
-									<div class="col-md-6 col-sm-6 ">
-										<input ng-model="form.diemTichLuy" ng-type="number" id=""
-											name="price" class="form-control">
-									</div>
-
-								</div>
-								<div class="item form-group ">
-									<label class="col-form-label col-md-3 col-sm-3 label-align">Hạng
-										*</label>
-									<div class="col-md-6 col-sm-6 ">
-										<select ng-model="form.hangKhachHang.id">
-											<option value=""><-- chọn hạng--></option>
-											<option ng-repeat="item in hkhs" ng-value="{{item.id}}">{{item.tenHang}}</option>
-										</select>
-									</div>
-								</div>
+								
+							 	
 								<div class="ln_solid"></div>
 								<div class="item form-group">
 									<div class="col-md-6 col-sm-6 offset-md-3">
@@ -129,7 +87,7 @@
 											class="btn btn-success">Create</button> -->
 										<button ng-click="update()" type="submit"
 											class="btn btn-success">Update</button>
-										<!-- <button ng-click="delete(form.id)" type="submit"
+									<!-- 	<button ng-click="delete(form.id)" type="submit"
 											class="btn btn-success">Delete</button> -->
 										<button ng-click="reset()" type="submit"
 											class="btn btn-success">Reset</button>
@@ -142,45 +100,16 @@
 				</div>
 			</div>
 			<div class="row">
-			<div class="page-title">
-				<div class="title_left">
-					<h3>
-						Khách Hàng <small>nơi lưu trữ thông tin của khách hàng</small>
-					</h3>
-				</div>
-
-				<div class="title_right">
-					<form>
-						<div
-							class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-							<div class="input-group">
-								<input ng-model="searchKeyword" type="text" class="form-control"
-									id="search_input" placeholder="Search for..."> <span
-									class="input-group-btn">
-									<button ng-click="searchCustomerByName()"
-										class="btn btn-secondary" type="submit" n>Go!</button>
-								</span>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
 				<div class="col-md-12 col-sm-12 ">
 					<div class="x_panel">
 						<div class="x_title">
 							<h2>
 								Bảng Khách Hàng <small>Customers</small>
 							</h2>
-						
-							<ul class="nav navbar-right panel_toolbox">
-								<li><a class="collapse-link"><i
-										class="fa fa-chevron-up"></i></a></li>
-
-								<li><a class="close-link"><i class="fa fa-close"></i></a></li>
-							</ul>
-							<div class="clearfix"></div>
+							
+							
 						</div>
-						<div class="x_content">
+						<div class="">
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="card-box table-responsive">
@@ -196,7 +125,7 @@
 													<th>Số Điện Thoại</th>
 													<th>Email</th>
 													<th>Điểm Tích Lũy</th>
-													<th>Hạng</th>
+													
 													<th>Trạng thái</th>
 													<th></th>
 												</tr>
@@ -206,42 +135,37 @@
 											<tbody>
 												<tr ng-repeat="item in pager.items">
 													<td>{{item.id}}</td>
-													<td
-														class="{{item.email.phanQuyen? 'text-danger' : 'text-info'}}">{{item.tenKhachHang}}</td>
-													<td>{{item.soDienThoai}}</td>
-													<td>{{item.email.email}}</td>
-													<td>{{item.diemTichLuy}}</td>
-													<td>{{item.hangKhachHang.tenHang}}</td>
-													<td>{{item.email.trangThai? 'Đã kích hoạt' : 'Ngừng
+													<td>
+														{{item.tenKhachHang}}</td>
+													<td>{{item.maKhachHang.soDienThoai}}</td>
+													<td>{{item.maKhachHang.email.email}}</td>
+													<td>{{item.maKhachHang.diemTichLuy}}</td>
+													
+													<td>{{item.maKhachHang.email.trangThai? 'Đã kích hoạt' : 'Ngừng
 														kích hoạt'}}</td>
 													<td><a ng-click="edit(item.id)"
-														class="btn btn-warning">Sửa</a> <a
-														ng:if="item.email.trangThai == true"
-														ng-click="chan(item.id)" class="btn btn-warning">Ngưng
-															kích hoạt</a> <a ng-click="boChan(item.id)"
-														ng:if="item.email.trangThai == false"
-														class="btn btn-warning">Kích hoạt lại</a></td>
+														class="btn btn-warning">Sửa</a></td>
 												</tr>
 											</tbody>
 										</table>
 										<div class="panel-footer text-center">
 											<button ng-click="pager.first()" class="btn btn-danger">
-												<b class="glyphicon glyphicon-hand-up"></b>
+												<b class="">First</b>
 											</button>
 
 											<button ng-click="pager.prev()" class="btn btn-danger">
-												<b class="glyphicon glyphicon-hand-left"></b>
+												<b class="">Prev</b>
 											</button>
 
 											<button class="btn btn-success">{{pager.page + 1}}
 												of {{pager.count}}</button>
 
 											<button ng-click="pager.next()" class="btn btn-danger">
-												<b class="glyphicon glyphicon-hand-right"></b>
+												<b class="">Next</b>
 											</button>
 
 											<button ng-click="pager.last()" class="btn btn-danger">
-												<b class="glyphicon glyphicon-hand-down"></b>
+												<b class="">Last</b>
 											</button>
 
 										</div>
@@ -266,6 +190,6 @@
 		</div>
 	</div>
 
-	<script th:src="@{/js/management/customer.js}"></script>
+	<script th:src="@{/js/management/profile.js}"></script>
 </body>
 </html>

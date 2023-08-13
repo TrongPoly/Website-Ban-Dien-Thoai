@@ -135,28 +135,28 @@ public class SanPhamController {
 		return "Admin/productadd";
 	}
 	
-	@RequestMapping("/product/search")
-	public String searchName(Model model, @RequestParam("name") Optional<String> name,
-			@RequestParam(name = "page", defaultValue = "0") Integer pageNo) {
-
-//		Pageable pageable = PageRequest.of(pageNo, 4);
-//		
-//		int totalPages = pageable.getPageSize();
-//		
-//		
-//		
-//		model.addAttribute("totalPages", totalPages);
-//		
-//		model.addAttribute("currenIdenx", pageNo);
-		var numberOfRecords = daosp.count();
-		var numberOfPages = (int) Math.ceil(numberOfRecords / 5.0);
-		model.addAttribute("numberOfPages", numberOfPages);
-		Pageable sort = PageRequest.of(pageNo, 5, Sort.by("id").descending());
-		model.addAttribute("currIndex", pageNo);
-
-		var sps = daosp.findByTenSanPham("%" + name.orElse("") + "%", sort);
-		model.addAttribute("sps", sps);
-
-		return "Admin/productTabled";
-	}
+//	@RequestMapping("/product/search")
+//	public String searchName(Model model, @RequestParam("name") Optional<String> name,
+//			@RequestParam(name = "page", defaultValue = "0") Integer pageNo) {
+//
+////		Pageable pageable = PageRequest.of(pageNo, 4);
+////		
+////		int totalPages = pageable.getPageSize();
+////		
+////		
+////		
+////		model.addAttribute("totalPages", totalPages);
+////		
+////		model.addAttribute("currenIdenx", pageNo);
+//		var numberOfRecords = daosp.count();
+//		var numberOfPages = (int) Math.ceil(numberOfRecords / 5.0);
+//		model.addAttribute("numberOfPages", numberOfPages);
+//		Pageable sort = PageRequest.of(pageNo, 5, Sort.by("id").descending());
+//		model.addAttribute("currIndex", pageNo);
+//
+//		var sps = daosp.findByTenSanPham("%" + name.orElse("") + "%", sort);
+//		model.addAttribute("sps", sps);
+//
+//		return "Admin/productTabled";
+//	}
 }

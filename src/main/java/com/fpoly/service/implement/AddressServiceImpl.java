@@ -31,5 +31,11 @@ public class AddressServiceImpl implements AddressService{
 	public void luu(DiaChi diachi) {
 		diaChi.save(diachi);
 	}
+	@Override
+	public void xoa(DiaChi diachi) {
+		diaChi.deleteById(diachi);
+	}
+	
+	
 
 }

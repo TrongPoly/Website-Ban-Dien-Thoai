@@ -1,6 +1,9 @@
 package com.fpoly.service.implement;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Sort;
 import org.springframework.stereotype.Service;
 
 import com.fpoly.model.KhachHang;
@@ -31,5 +34,16 @@ public class CustomerServiceImpl implements CustomerService {
 	public void luu(KhachHang kh) {
 		khachHang.save(kh);
 	}
-
+	
+	@Override
+	public List<KhachHang> findAll(){
+		return khachHang.findAll();
+	}
+	
+	@Override
+	public List<KhachHang> searchByName(String keyword){
+		return khachHang.findByTenKhachHangContaining(keyword);
+		
+		
+	}
 }

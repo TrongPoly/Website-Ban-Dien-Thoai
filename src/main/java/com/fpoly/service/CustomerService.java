@@ -1,5 +1,7 @@
 package com.fpoly.service;
 
+import java.util.List;
+
 import com.fpoly.model.KhachHang;
 
 public interface CustomerService {
@@ -9,5 +11,9 @@ public interface CustomerService {
 	KhachHang findByMaKhach(Integer maKhach);
 
 	void luu(KhachHang khachHang);
+
+	List<KhachHang> findAll();
+
+	List<KhachHang> searchByName(String keyword);
 
 }

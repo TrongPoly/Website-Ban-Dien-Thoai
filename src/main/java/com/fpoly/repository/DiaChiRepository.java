@@ -6,4 +6,6 @@ import com.fpoly.model.DiaChi;
 
 public interface DiaChiRepository extends JpaRepository<DiaChi, Integer>{
 
+	void deleteById(DiaChi diachi);
+
 }

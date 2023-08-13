@@ -12,9 +12,9 @@ import org.hibernate.annotations.Nationalized;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-@NamedQueries({
-	@NamedQuery(name="findByTenSanPham", query = "select sp from SanPham sp "
-			+ "where sp.tenSanPham like ?1")})
+//@NamedQueries({
+//	@NamedQuery(name="findByTenSanPham", query = "select sp from SanPham sp "
+//			+ "where sp.tenSanPham like ?1")})
 
 @Entity
 @Table(name = "san_pham")
@@ -25,7 +25,7 @@ public class SanPham implements Serializable{
     private Integer id;
     
     @Nationalized
-    @NotBlank(message = "Không được để trống tên")
+    
     @Column(name = "ten_san_pham", length = 100)
     private String tenSanPham;
 
@@ -37,36 +37,30 @@ public class SanPham implements Serializable{
     private NhaSanXuat nhaSanXuat;
     
     
-    @PositiveOrZero(message = "Giá không được nhỏ hơn 0")
-    @NotNull(message = "Không được để trống giá")
+    
     @Column(name = "don_gia", precision = 19, scale = 4)
     private BigDecimal donGia;
     
-    @PositiveOrZero(message = "Số lượng không được nhỏ hơn 0")
-    @NotNull(message = "Không được để trống số lượng")
+  
     @Column(name = "so_luong_ton")
     private Integer soLuongTon;
 
     @Column(name = "trang_thai")
     private Boolean trangThai;
 
-    @PositiveOrZero(message = "Ram không được nhỏ hơn 0")
-    @NotNull(message = "Vui lòng nhập Ram")
+    
     @Column(name = "ram")
     private Integer ram;
 
-    @PositiveOrZero(message = "Rom không được nhỏ hơn 0")
-    @NotNull(message = "Vui lòng nhập Rom")
     @Column(name = "rom")
     private Integer rom;
 
-    @PositiveOrZero(message = "Pin không được nhỏ hơn 0")
-    @NotNull(message = "Vui lòng nhập Pin")
+    
     @Column(name = "pin")
     private Integer pin;
 
     @Nationalized
-    @NotBlank(message = "Vui lòng nhập chip")
+
     @Column(name = "chip", length = 150)
     private String chip;
 

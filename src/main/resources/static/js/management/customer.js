@@ -4,6 +4,7 @@ app.controller("AdminKhCtrl", function($scope, $http) {
 	$scope.form = {};
 	$scope.items = [];
 	$scope.hkhs = [];
+	$scope.errorMessage = '';
 
 
 	$scope.reset = function() {
@@ -20,6 +21,7 @@ app.controller("AdminKhCtrl", function($scope, $http) {
 			console.log("Error", error);
 		});
 	}
+	
 
 	$scope.load_all = function() {
 		var url = `${host}/khachhang`;
@@ -41,19 +43,40 @@ app.controller("AdminKhCtrl", function($scope, $http) {
 		})
 	}
 	$scope.create = function() {
+
+		//Lỗi bỏ trống tên khách hàng
+		if (!$scope.form.tenKhachHang) {
+			alert("Vui lòng nhập tên khách hàng!!")
+			
+			return;
+		}
+		//Lỗi bỏ trống số điện thoại 
+		if (!$scope.form.soDienThoai) {
+			alert("Vui lòng nhập tên khách hàng!!")
+			$scope.errorMessage = "Vui lòng nhập tên sản phẩm!!";
+			$('#errorModal').modal('show'); // Show the modal
+			return;
+		}
+		if (isNaN($scope.form.soDienThoai) || $scope.form.soDienThoai.length < 10 || $scope.form.soDienThoai.length > 11) {
+			alert("Số điện thoại không hợp lệ!");
+			return;
+		}
+
+
 		var item = angular.copy($scope.form);
 		var url = `${host}/khachhang`;
 		$http.post(url, item).then(resp => {
 
 			$scope.items.push(item);
+			
+			
+			$scope.errorMessage = '';
 			alert("thêm thành công!")
-			$scope.reset();
-
 			console.log("Success", resp);
-			if (item.soluongton == 0) {
-				item.trangthai = false;
-			}
+			
+			$('#errorModal1').modal('show'); // Show the modal
 			location.reload();
+			$scope.reset();
 		}).catch((error) => {
 			alert("thêm thất bại!")
 			console.log("Error", error);
@@ -62,29 +85,51 @@ app.controller("AdminKhCtrl", function($scope, $http) {
 
 	$scope.chan = function(customerId) {
 		var url = `${host}/khachhang/chan/${customerId}`;
-			$http
-				.put(url)
-				.then((resp) => {
-					alert("Chặn thành công!");
-					location.reload();
-				})
-				.catch((error) => {
-					alert("Lỗi");
-				});
+		$http
+			.put(url)
+			.then((resp) => {
+				alert("Chặn thành công!");
+				location.reload();
+			})
+			.catch((error) => {
+				alert("Lỗi");
+			});
 	}
 	$scope.boChan = function(customerId) {
 		var url = `${host}/khachhang/boChan/${customerId}`;
-			$http
-				.put(url)
-				.then((resp) => {
-					alert("Bỏ chặn thành công!");
-					location.reload();
-				})
-				.catch((error) => {
-					alert("Lỗi");
-				});
+		$http
+			.put(url)
+			.then((resp) => {
+				alert("Bỏ chặn thành công!");
+				location.reload();
+			})
+			.catch((error) => {
+				alert("Lỗi");
+			});
 	}
 	$scope.update = function() {
+		
+		//Lỗi bỏ trống tên khách hàng
+		if (!$scope.form.tenKhachHang) {
+			alert("Vui lòng nhập tên khách hàng!!")
+			
+			return;
+		}
+		//Lỗi bỏ trống số điện thoại 
+		if (!$scope.form.soDienThoai) {
+			alert("Vui lòng nhập tên khách hàng!!")
+			$scope.errorMessage = "Vui lòng nhập tên sản phẩm!!";
+			$('#errorModal').modal('show'); // Show the modal
+			return;
+		}
+		//Lỗi sai cú pháp số điện thoại 
+		if (isNaN($scope.form.soDienThoai) || $scope.form.soDienThoai.length < 10 || $scope.form.soDienThoai.length > 11) {
+			alert("Số điện thoại không hợp lệ!");
+			return;
+		}
+		
+		
+		
 		var item = angular.copy($scope.form);
 		var url = `${host}/khachhang/${$scope.form.id}`;
 		$http
@@ -102,6 +147,26 @@ app.controller("AdminKhCtrl", function($scope, $http) {
 
 
 	}
+	
+	// Tìm kiếm sản phẩm 
+	$scope.searchCustomerByName = function() {
+		if ($scope.searchKeyword && $scope.searchKeyword.trim() !== "") {
+			$http.get("/rest/khachhang/search", {
+				params: { keyword: $scope.searchKeyword }
+			}).then(resp => {
+				$scope.items = resp.data;
+			}).catch(error => {
+				alert("lỗi tìm kiếm tên khách hàng")
+				console.log("Error", error);
+			});
+		} else {
+			// Nếu không có từ khóa tìm kiếm, hiển thị tất cả sản phảm
+			$scope.load_all_nsx();
+			$scope.load_all();
+		}
+	};
+	
+	
 
 	$scope.delete = function(id) {
 		var url = `${host}/khachhang/${id}`;
@@ -149,6 +214,7 @@ app.controller("AdminKhCtrl", function($scope, $http) {
 		}
 
 	}
+
 
 	$scope.load_all_hkh();
 	$scope.load_all();

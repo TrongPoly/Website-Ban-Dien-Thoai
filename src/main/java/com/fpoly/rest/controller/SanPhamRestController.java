@@ -28,6 +28,7 @@ import com.fpoly.model.NhaSanXuat;
 import com.fpoly.model.SanPham;
 import com.fpoly.repository.NhaSanXuatRepository;
 import com.fpoly.repository.SanPhamRepository;
+import com.fpoly.service.ProductService;
 import com.fpoly.service.UploadService;
 
 import jakarta.websocket.server.PathParam;
@@ -37,6 +38,9 @@ import jakarta.websocket.server.PathParam;
 @RequestMapping("/rest")
 public class SanPhamRestController {
 
+	@Autowired
+	ProductService prodcutService;
+	
 	@Autowired
 	UploadService uploadService;
 	@Autowired
@@ -111,6 +115,10 @@ public class SanPhamRestController {
 		daosp.deleteById(id);
 		return ResponseEntity.ok().build();
 
+	}
+	@GetMapping("/sanpham/search")
+	public List<SanPham> searchProductByName(@RequestParam("keyword") String keyword){
+		return prodcutService.searchByName(keyword);
 	}
 
 }

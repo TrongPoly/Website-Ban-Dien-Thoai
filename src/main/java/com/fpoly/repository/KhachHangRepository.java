@@ -12,4 +12,8 @@ public interface KhachHangRepository extends JpaRepository<KhachHang, Integer>{
 	
 	@Query(name = "findByTenKhachHang")
 	List<KhachHang> findByTenKhachHang(String tenKhachHang,Pageable page);
+
+	List<KhachHang> findByTenKhachHangContaining(String keyword);
+
+
 }

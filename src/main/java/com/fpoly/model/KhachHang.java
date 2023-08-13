@@ -34,7 +34,7 @@ public class KhachHang {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "email")
-    @JsonIgnoreProperties({ "matKhau","phanQuyen" })
+  
     private  TaiKhoan email;
 
     @JsonIgnore

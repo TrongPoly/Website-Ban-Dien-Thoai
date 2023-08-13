@@ -37,13 +37,14 @@
 					</div>
 					<div class="x_content">
 						<br />
-						<!-- <div class="row pull-left">
-						<div class="col-sm-4 text-center">
-						<label for="image">
-						<img alt="" ng-src="{{'img/product/' + form.anhSanPham}}" style="max-width: 1000px; height: 200px;">
-						</label>
+						<div class="row pull-left">
+							<div class="col-sm-4 text-center">
+								<label for="image"> <img alt=""
+									ng-src="{{'img/product/' + form.anhSanPham}}"
+									style="max-width: 1000px; height: 200px;">
+								</label>
+							</div>
 						</div>
-						</div> -->
 
 
 
@@ -51,13 +52,13 @@
 							class="form-horizontal form-label-left" method="post"
 							enctype="multipart/form-data" th:object="${sanpham}">
 
-							<div class="item form-group" style="display: none;" >
+							<div class="item form-group" style="display: none;">
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 									for="id-product">Mã Sản Phẩm <span>*</span>
 								</label>
-								<div class="col-md-6 col-sm-6 " style="display: none;" >
-									<input ng-model="form.id" 
-										readonly="true" type="text" id="" class="form-control ">
+								<div class="col-md-6 col-sm-6 " style="display: none;">
+									<input ng-model="form.id" readonly="true" type="text" id=""
+										class="form-control ">
 								</div>
 							</div>
 							<div class="item form-group">
@@ -66,7 +67,7 @@
 								</label>
 								<div class="col-md-6 col-sm-6 ">
 									<input ng-model="form.tenSanPham" type="text" id=""
-										name="full-name" class="form-control" required>
+										name="full-name" class="form-control">
 								</div>
 
 							</div>
@@ -75,7 +76,7 @@
 									class="col-form-label col-md-3 col-sm-3 label-align">Ảnh
 									Sản Phẩm *</label>
 								<div class="col-md-6 col-sm-6 ">
-									<input id="file" class="file" type="file" name="file" 
+									<input id="file" class="file" type="file" name="file"
 										accept="image/png, image/jpeg"
 										onchange="angular.element(this).scope().imageChanged(this.files)">
 
@@ -86,7 +87,7 @@
 									Sản Phẩm *</label>
 								<div class="col-md-6 col-sm-6 ">
 									<select class="form-control" ng-model="form.nhaSanXuat.id">
-										<option  ng-repeat="item in nhasanxuats" ng-value="{{item.id}}">{{item.tenNsx}}</option>
+										<option ng-repeat="item in nhasanxuats" ng-value="{{item.id}}">{{item.tenNsx}}</option>
 									</select>
 								</div>
 							</div>
@@ -96,7 +97,7 @@
 								</label>
 								<div class="col-md-6 col-sm-6 ">
 									<input ng-model="form.donGia" type="number" id="last-name"
-										name="price" class="form-control" required>
+										name="price" class="form-control">
 								</div>
 
 							</div>
@@ -106,7 +107,7 @@
 								</label>
 								<div class="col-md-6 col-sm-6 ">
 									<input ng-model="form.soLuongTon" type="number" id="last-name"
-										name="soLuong" class="form-control" required>
+										name="soLuong" class="form-control">
 								</div>
 
 							</div>
@@ -116,7 +117,7 @@
 								</label>
 								<div class="col-md-6 col-sm-6 ">
 									<input ng-model="form.ram" type="number" id="last-name" name=""
-										class="form-control" required>
+										class="form-control">
 								</div>
 
 							</div>
@@ -126,7 +127,7 @@
 								</label>
 								<div class="col-md-6 col-sm-6 ">
 									<input ng-model="form.rom" type="number" id="" name="rom"
-										class="form-control" required>
+										class="form-control">
 								</div>
 
 							</div>
@@ -136,7 +137,7 @@
 								</label>
 								<div class="col-md-6 col-sm-6 ">
 									<input ng-model="form.pin" type="number" id="" name="soLuong"
-										class="form-control" required>
+										class="form-control">
 								</div>
 
 							</div>
@@ -146,15 +147,15 @@
 								</label>
 								<div class="col-md-6 col-sm-6 ">
 									<input ng-model="form.chip" type="text" id="" name=""
-										class="form-control" required>
+										class="form-control">
 								</div>
 
 							</div>
 							<div class="item form-group">
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
-									 for="full-name">Trạng Thái<span>*</span>
+									for="full-name">Trạng Thái<span>*</span>
 								</label>
-								<div class="col-md-6 col-sm-6" >
+								<div class="col-md-6 col-sm-6">
 									<input ng-model="form.trangThai" type="radio" ng-value="true"
 										name="option1" id="radio_con_hang"> Còn bán <label></label>
 									<input ng-model="form.trangThai" type="radio" ng-value="false"
@@ -171,8 +172,8 @@
 										class="btn btn-success">Create</button>
 									<button ng-click="update()" type="submit"
 										class="btn btn-success">Update</button>
-									<button ng-click="delete(form.id)" type="submit"
-										class="btn btn-success">Delete</button>
+									<!-- <button ng-click="delete(form.id)" type="submit"
+										class="btn btn-success">Delete</button> -->
 									<button ng-click="reset()" type="submit"
 										class="btn btn-success">Reset</button>
 								</div>
@@ -197,10 +198,11 @@
 						<div
 							class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 							<div class="input-group">
-								<input type="text" class="form-control" id="search_input"
-									placeholder="Search for..."> <span
+								<input ng-model="searchKeyword" type="text" class="form-control"
+									id="search_input" placeholder="Search for..."> <span
 									class="input-group-btn">
-									<button class="btn btn-secondary" type="submit" n>Go!</button>
+									<button ng-click="searchProductByName()"
+										class="btn btn-secondary" type="submit" n>Go!</button>
 								</span>
 							</div>
 						</div>
@@ -257,7 +259,7 @@
 													width="100px" height="100px" /></td>
 												<td>{{item.anhSanPham}}</td>
 												<td>{{item.nhaSanXuat.tenNsx}}</td>
-												<td>{{item.donGia | number: 0}}</td>
+												<td>{{item.donGia | number: 0}}đ</td>
 												<td>{{item.soLuongTon}}</td>
 												<td>{{item.ram}}</td>
 												<td>{{item.rom}}</td>

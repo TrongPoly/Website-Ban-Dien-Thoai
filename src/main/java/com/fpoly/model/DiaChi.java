@@ -16,7 +16,6 @@ public class DiaChi {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ma_khach_hang")
-    @JsonIgnoreProperties({"tenKhachHang","soDienThoai","email"})
     private KhachHang maKhachHang;
 
     @Nationalized

@@ -21,6 +21,7 @@ import com.fpoly.model.TaiKhoan;
 import com.fpoly.repository.KhachHangRepository;
 import com.fpoly.repository.TaiKhoanRepository;
 import com.fpoly.service.AccountService;
+import com.fpoly.service.CustomerService;
 import com.fpoly.service.SessionService;
 
 @CrossOrigin("*")
@@ -39,6 +40,9 @@ public class KhachHangRestController {
 
 	@Autowired
 	AccountService accountService;
+	
+	@Autowired
+	CustomerService customerService;
 	
 	@GetMapping("/khachhang")
 	public ResponseEntity<List<KhachHang>> getAll(Model model) {
@@ -64,13 +68,11 @@ public class KhachHangRestController {
 	}
 
 	@PutMapping("/khachhang/{id}")
-	public  ResponseEntity<KhachHang> put(@PathVariable("id") Integer id, @RequestBody KhachHang kh) {
+	public KhachHang put(@PathVariable("id") Integer id, @RequestBody KhachHang kh) {
 		
-		if(!daokh.existsById(id)) {
-			return ResponseEntity.notFound().build();
-		}
+		
 		daokh.save(kh);
-		return ResponseEntity.ok(kh);
+		return kh;
 	}
 	@PutMapping("/khachhang/chan/{id}")
 	public  ResponseEntity<KhachHang> chan(@PathVariable("id") Integer id) {
@@ -87,7 +89,26 @@ public class KhachHangRestController {
 		return ResponseEntity.ok().build();
 	}
 	
-//	@PostMapping("/chanuser")
+
+	@GetMapping("/khachhang/search")
+	public List<KhachHang> searchCustomerByName(@RequestParam("keyword") String keyword){
+		return customerService.searchByName(keyword);
+	}
+	
+
+	@DeleteMapping("/khachhang/{id}")
+	public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
+		
+		if(!daokh.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		daokh.deleteById(id);
+		return ResponseEntity.ok().build();
+	}
+	
+	
+	//	@PostMapping("/chanuser")
 //    public ResponseEntity<String> blockUser(
 //            @RequestParam("email") String email,
 //            @RequestParam("trangThai") Boolean trangThai) {
@@ -106,18 +127,5 @@ public class KhachHangRestController {
 //            }
 //        }
 //    }
-	
-	
-
-	@DeleteMapping("/khachhang/{id}")
-	public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
-		
-		if(!daokh.existsById(id)) {
-			return ResponseEntity.notFound().build();
-		}
-		
-		daokh.deleteById(id);
-		return ResponseEntity.ok().build();
-	}
 
 }

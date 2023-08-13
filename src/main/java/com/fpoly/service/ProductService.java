@@ -13,6 +13,8 @@ public interface ProductService {
 	List<SanPham> findAllByNSX(String tenNsx);
 
 	void luu(SanPham sp);
+
+	List<SanPham> searchByName(String keyword);
 	
 
 

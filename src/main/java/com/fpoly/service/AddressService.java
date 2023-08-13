@@ -12,4 +12,6 @@ public interface AddressService {
 
 	void luu(DiaChi diachi);
 
+	void xoa(DiaChi diachi);
+
 }

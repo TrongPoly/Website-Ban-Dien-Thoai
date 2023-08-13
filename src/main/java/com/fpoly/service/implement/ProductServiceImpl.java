@@ -6,9 +6,11 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.fpoly.model.SanPham;
 import com.fpoly.repository.SanPhamRepository;
 import com.fpoly.service.ProductService;
+
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -36,6 +38,10 @@ public class ProductServiceImpl implements ProductService {
 		spRp.save(sp);
 	}
 	
+	@Override
+	public List<SanPham> searchByName(String keyword) {
+		return spRp.findByTenSanPhamContaining(keyword);
+	}
 
 
 }
