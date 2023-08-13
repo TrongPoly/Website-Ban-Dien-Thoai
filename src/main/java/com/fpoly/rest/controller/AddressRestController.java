@@ -42,6 +42,11 @@ public class AddressRestController {
 		addressService.luu(diachi);
 		return diachi;
 	}
+	/*
+	 * @GetMapping("/address") public List<DiaChi> findUser() {
+	 * 
+	 * return addressService.FindByUser(); }
+	 */
 	
 	
 	

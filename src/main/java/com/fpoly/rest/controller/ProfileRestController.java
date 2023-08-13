@@ -18,6 +18,7 @@ import com.fpoly.model.KhachHang;
 import com.fpoly.model.TaiKhoan;
 import com.fpoly.repository.KhachHangRepository;
 import com.fpoly.service.AccountService;
+import com.fpoly.service.AddressService;
 import com.fpoly.service.CustomerService;
 import com.fpoly.service.SessionService;
 
@@ -38,16 +39,23 @@ public class ProfileRestController {
 	@Autowired
 	AccountService accountService;
 	
-	@GetMapping("/profile")
-	public KhachHang findUser(){
+	@Autowired
+	AddressService addressService;
+	
+	
+	
+	@GetMapping("/profile/getUser")
+	public KhachHang findUser(@RequestBody KhachHang kh){
 		
+	
 		
 		return customerService.findByUser();
 		
 	}
-	
-	
-
+	@GetMapping("/profile/{id}")
+	public KhachHang getOne(@PathVariable("id") Integer id) {
+		return customerService.findByMaKhach(id);
+	}
 	@PostMapping("/profile")
 	public KhachHang post(@RequestBody KhachHang kh) {
 		customerService.luu(kh);	
@@ -55,12 +63,11 @@ public class ProfileRestController {
 	}
 
 	@PutMapping("/profile/{id}")
-	public KhachHang put(@PathVariable("id") Integer id, @RequestBody KhachHang kh) {
-		
-		
+	public KhachHang put(@PathVariable("id") Integer id, @RequestBody KhachHang kh) {	
 		customerService.luu(kh);
 		return kh;
 	}
+	
 	
 	
 }

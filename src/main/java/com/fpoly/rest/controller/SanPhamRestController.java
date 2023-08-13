@@ -66,11 +66,10 @@ public class SanPhamRestController {
 	@PostMapping("/sanpham")
 	public SanPham post(@RequestBody SanPham sp, @PathParam("folder") MultipartFile folder) {
 
-		if (sp.getSoLuongTon() == 0) {
-			sp.setTrangThai(false);
-		} else {
-			sp.setTrangThai(true);
-		}
+		/*
+		 * if (sp.getSoLuongTon() == 0) { sp.setTrangThai(false); } else {
+		 * sp.setTrangThai(true); }
+		 */
 
 		daosp.save(sp);
 		return sp;

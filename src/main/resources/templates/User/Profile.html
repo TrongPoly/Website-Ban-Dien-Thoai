@@ -14,7 +14,7 @@
 
 </head>
 
-<body ng-app="AdminKhApp" ng-controller="AdminKhCtrl">
+<body ng-app="AdminPfApp" ng-controller="AdminPfCtrl">
 
 
 	<br>
@@ -22,63 +22,85 @@
 	<br>
 	<br>
 	<!-- page content -->
-	<div  >
+	<div>
 		<div class="">
-			
+
 			<div class="clearfix"></div>
-			<div class="row">
-				<div class="col-md-12 col-sm-12 ">
-					<div class="">
-						
-						<div class="">
-							<br />
-							<form action="" id="" data-parsley-validate
-								class="form-horizontal form-label-left">
+			<!-- Start Banner Area -->
+			<section class="banner-area organic-breadcrumb">
+				<div class="container">
+					<div
+						class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+						<div class="col-first">
+							<h1>Update Profile</h1>
+							<nav class="d-flex align-items-center">
+								<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+								<a href="category.html">Profile</a>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End Banner Area -->
 
-								<div class="item form-group" style="display: none;">
-									<label class="col-form-label col-md-3 col-sm-3 label-align"
-										for="id-product">Mã Khách Hàng <span>*</span>
-									</label>
-									<div class="col-md-6 col-sm-6 " style="display: none;">
-										<input ng-model="form.id" type="text" id=""
-											class="form-control ">
-									</div>
+			<!--================Login Box Area =================-->
+			<section class="login_box_area section_gap">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="login_box_img">
+								<img class="img-fluid" src="/img/login.jpg" alt="">
+								<div class="hover">
+									<h4>Update Profile</h4>
+									<p>this is where you change your profile information</p>
+									<!--  <a class="primary-btn" href="#">Update Profile</a> -->
 								</div>
-								<div class="item form-group">
-									<label class="col-form-label col-md-3 col-sm-3 label-align"
-										for="full-name">Tên Khách Hàng<span>*</span>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="login_form_inner">
+								<h3>Update Profile</h3>
+								<form class="row login_form" action="" method="post"
+									novalidate="novalidate">
+									<label class="col-form-label  label-align"  
+										style="padding-left: 15px; display: none;" for="full-name">Customer ID<span>*</span>
 									</label>
-									<div class="col-md-6 col-sm-6 ">
-										<input ng-model="form.tenKhachHang" type="text" id=""
-											name="full-name" class="form-control">
-									</div>
-
-								</div>
-								<div class="item form-group">
-									<label class="col-form-label col-md-3 col-sm-3 label-align"
-										for="phone">Số Điện Thoại<span>*</span>
-									</label>
-									<div class="col-md-6 col-sm-6 ">
-										<input ng-model="form.soDienThoai" ng-type="number" id=""
-											name="soDienThoai" class="form-control">
-									</div>
-
-								</div>
-								<div class="item form-group">
-									<label class="col-form-label col-md-3 col-sm-3 label-align"
-										for="">Email<span>*</span>
-									</label>
-									<div class="col-md-6 col-sm-6 ">
-										<input ng-model="form.email.email" type="text" id="" name=""
-											class="form-control">
+									<div class="col-md-12 form-group" style="display: none;">
+										<input ng-model="form.id" type="text" class="form-control" name="id"
+											placeholder="" onfocus="this.placeholder = ''"
+											onblur="this.placeholder = ''" readonly="true">
 
 									</div>
-									<!-- i style="color: red; font-family: sans-serif;" th:errors="*{email.email}"></i> -->
+									<label class="col-form-label  label-align"
+										style="padding-left: 15px;" for="full-name">Fullname<span>*</span>
+									</label>
+									<div class="col-md-12 form-group">
+										<input ng-model="form.tenKhachHang" type="text" class="form-control" name="username"
+											placeholder="" onfocus="this.placeholder = ''"
+											onblur="this.placeholder = ''">
 
-								</div>
+									</div>
+									<label class="col-form-label  label-align"
+										style="padding-left: 15px;" for="full-name">Phone<span>*</span>
+									</label>
+									<div class="col-md-12 form-group">
+										<input ng-model="form.soDienThoai" ng-type="number" name="phone" class="form-control"
+											placeholder="" onfocus="this.placeholder = ''"
+											onblur="this.placeholder = ''">
+									</div>
+									<label class="col-form-label  label-align"
+										style="padding-left: 15px;" for="full-name">Email<span>*</span>
+									</label>
+									<div class="col-md-12 form-group">
+										<input ng-model="form.email.email" type="text" name="Email" class="form-control"
+											placeholder="" onfocus="this.placeholder = ''"
+											onblur="this.placeholder = ''" readonly="true">
+									</div>
 
-								
-							 	
+
+
+
+								</form>
 								<div class="ln_solid"></div>
 								<div class="item form-group">
 									<div class="col-md-6 col-sm-6 offset-md-3">
@@ -87,107 +109,110 @@
 											class="btn btn-success">Create</button> -->
 										<button ng-click="update()" type="submit"
 											class="btn btn-success">Update</button>
-									<!-- 	<button ng-click="delete(form.id)" type="submit"
+										<!-- <button ng-click="delete(form.id)" type="submit"
 											class="btn btn-success">Delete</button> -->
 										<button ng-click="reset()" type="submit"
 											class="btn btn-success">Reset</button>
-									</div>
-								</div>
-
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12 col-sm-12 ">
-					<div class="x_panel">
-						<div class="x_title">
-							<h2>
-								Bảng Khách Hàng <small>Customers</small>
-							</h2>
-							
-							
-						</div>
-						<div class="">
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="card-box table-responsive">
-
-										<table id="datatable"
-											class="table table-striped table-bordered"
-											style="width: 100%">
-											<thead>
-												<tr>
-													<h5 class="text-primary"></h5>
-													<th>Mã Khách Hàng</th>
-													<th>Tên Khách Hàng</th>
-													<th>Số Điện Thoại</th>
-													<th>Email</th>
-													<th>Điểm Tích Lũy</th>
-													
-													<th>Trạng thái</th>
-													<th></th>
-												</tr>
-											</thead>
-
-
-											<tbody>
-												<tr ng-repeat="item in pager.items">
-													<td>{{item.id}}</td>
-													<td>
-														{{item.tenKhachHang}}</td>
-													<td>{{item.maKhachHang.soDienThoai}}</td>
-													<td>{{item.maKhachHang.email.email}}</td>
-													<td>{{item.maKhachHang.diemTichLuy}}</td>
-													
-													<td>{{item.maKhachHang.email.trangThai? 'Đã kích hoạt' : 'Ngừng
-														kích hoạt'}}</td>
-													<td><a ng-click="edit(item.id)"
-														class="btn btn-warning">Sửa</a></td>
-												</tr>
-											</tbody>
-										</table>
-										<div class="panel-footer text-center">
-											<button ng-click="pager.first()" class="btn btn-danger">
-												<b class="">First</b>
-											</button>
-
-											<button ng-click="pager.prev()" class="btn btn-danger">
-												<b class="">Prev</b>
-											</button>
-
-											<button class="btn btn-success">{{pager.page + 1}}
-												of {{pager.count}}</button>
-
-											<button ng-click="pager.next()" class="btn btn-danger">
-												<b class="">Next</b>
-											</button>
-
-											<button ng-click="pager.last()" class="btn btn-danger">
-												<b class="">Last</b>
-											</button>
-
-										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+			</section>
+			<!--================End Login Box Area =================-->
 
 
-
-			</div>
-
-
-
-			<!-- /page content -->
-
-			<!-- footer content -->
-			<footer> </footer>
-			<!-- /footer content -->
 		</div>
+	</div>
+	</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 col-sm-12 ">
+			<div class="x_panel">
+				<div class="x_title">
+					<h2>
+						Thông tin của quý khách <small>Customers Info</small>
+					</h2>
+
+
+				</div>
+				<div class="">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card-box table-responsive">
+
+								<table id="datatable" class="table table-striped table-bordered"
+									style="width: 100%">
+									<thead>
+										<tr>
+											<h5 class="text-primary"></h5>
+											<th>Mã Khách Hàng</th>
+											<th>Tên Khách Hàng</th>
+											<th>Số Điện Thoại</th>
+											<th>Email</th>
+											<th>Điểm Tích Lũy</th>
+
+											<th>Trạng thái</th>
+											<th></th>
+										</tr>
+									</thead>
+
+
+									<tbody>
+										<tr ng-repeat="item in pager.items">
+											<td>{{item.id}}</td>
+											<td>{{item.tenKhachHang}}</td>
+											<td>{{item.soDienThoai}}</td>
+											<td>{{item.email.email}}</td>
+											<td>{{item.diemTichLuy}}</td>
+
+											<td>{{item.maKhachHang.email.trangThai? 'Đã kích hoạt' :
+												'Ngừng kích hoạt'}}</td>
+											<td><a ng-click="edit(item.id)" class="btn btn-warning">Sửa</a></td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="panel-footer text-center">
+									<button ng-click="pager.first()" class="btn btn-danger">
+										<b class="">First</b>
+									</button>
+
+									<button ng-click="pager.prev()" class="btn btn-danger">
+										<b class="">Prev</b>
+									</button>
+
+									<button class="btn btn-success">{{pager.page + 1}} of
+										{{pager.count}}</button>
+
+									<button ng-click="pager.next()" class="btn btn-danger">
+										<b class="">Next</b>
+									</button>
+
+									<button ng-click="pager.last()" class="btn btn-danger">
+										<b class="">Last</b>
+									</button>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
+
+
+
+	<!-- /page content -->
+
+	<!-- footer content -->
+	<footer> </footer>
+	<!-- /footer content -->
+	</div>
 	</div>
 
 	<script th:src="@{/js/management/profile.js}"></script>

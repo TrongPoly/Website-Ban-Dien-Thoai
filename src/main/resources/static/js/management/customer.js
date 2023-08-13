@@ -4,7 +4,7 @@ app.controller("AdminKhCtrl", function($scope, $http) {
 	$scope.form = {};
 	$scope.items = [];
 	$scope.hkhs = [];
-	$scope.errorMessage = '';
+	
 
 
 	$scope.reset = function() {
@@ -115,6 +115,7 @@ app.controller("AdminKhCtrl", function($scope, $http) {
 			
 			return;
 		}
+		
 		//Lỗi bỏ trống số điện thoại 
 		if (!$scope.form.soDienThoai) {
 			alert("Vui lòng nhập tên khách hàng!!")
@@ -218,5 +219,5 @@ app.controller("AdminKhCtrl", function($scope, $http) {
 
 	$scope.load_all_hkh();
 	$scope.load_all();
-	$scope.reset();
+	
 })

@@ -1,6 +1,6 @@
 let host = "http://localhost:8080/rest";
-const app = angular.module("AdminKhApp", []);
-app.controller("AdminKhCtrl", function($scope, $http) {
+const app = angular.module("AdminPfApp", []);
+app.controller("AdminPfCtrl", function($scope, $http) {
 	$scope.form = {};
 	$scope.items = [];
 
@@ -12,7 +12,7 @@ app.controller("AdminKhCtrl", function($scope, $http) {
 	}
 
 	$scope.load_all = function() {
-		var url = `${host}/profile`;
+		var url = `${host}/profile/getUser`;
 		$http.get(url).then(resp => {
 			$scope.items = resp.data;
 			console.log("Succes", resp);
@@ -64,6 +64,27 @@ app.controller("AdminKhCtrl", function($scope, $http) {
 
 
 	$scope.update = function() {
+		
+		//Lỗi bỏ trống tên khách hàng
+		if (!$scope.form.tenKhachHang) {
+			alert("Vui lòng nhập tên khách hàng!!")
+			
+			return;
+		}
+		//Lỗi bỏ trống số điện thoại 
+		if (!$scope.form.soDienThoai) {
+			alert("Vui lòng nhập tên khách hàng!!")
+			$scope.errorMessage = "Vui lòng nhập tên sản phẩm!!";
+			$('#errorModal').modal('show'); // Show the modal
+			return;
+		}
+		//Lỗi sai cú pháp số điện thoại 
+		if (isNaN($scope.form.soDienThoai) || $scope.form.soDienThoai.length < 10 || $scope.form.soDienThoai.length > 11) {
+			alert("Số điện thoại không hợp lệ!");
+			return;
+		}
+		
+		
 		var item = angular.copy($scope.form);
 		var url = `${host}/profile/${$scope.form.id}`;
 		$http
@@ -130,7 +151,5 @@ app.controller("AdminKhCtrl", function($scope, $http) {
 	}
 	$scope.load_all();
 	$scope.load_all_dc();
-
-
 	$scope.reset();
 })
