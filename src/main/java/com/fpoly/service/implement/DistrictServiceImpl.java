@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fpoly.model.District;
-import com.fpoly.model.Ward;
 import com.fpoly.repository.DistrictRepository;
 import com.fpoly.repository.WardsRepository;
 import com.fpoly.service.DistrictService;
-import com.fpoly.service.WardsService;
 
 @Service
 public class DistrictServiceImpl implements DistrictService{

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fpoly.model.DonHangChiTiet;
-import com.fpoly.model.ReportDoanhThu;
 import com.fpoly.repository.DonHangChiTietRepository;
 import com.fpoly.service.OrderDetailsService;
 

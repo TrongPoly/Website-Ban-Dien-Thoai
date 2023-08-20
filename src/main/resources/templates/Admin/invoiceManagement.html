@@ -77,7 +77,6 @@
 															<th>Người mua</th>
 															<th>Ngày đặt hàng</th>
 															<th>Địa chỉ nhận hàng</th>
-															<th>Ngày thanh toán</th>
 															<th>Action</th>
 														</tr>
 													</thead>
@@ -87,7 +86,6 @@
 															<td>{{dh.nguoiMua.email.email}}</td>
 															<td>{{dh.ngayLap | date: "dd/MM/yyyy, HH:mm"}}</td>
 															<td>{{dh.diaChi.dcChiTiet}},{{dh.diaChi.phuong}},{{dh.diaChi.quan}},{{dh.diaChi.tinh}}</td>
-															<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
 
 															<td><a class="btn btn-danger"
 																ng-click="huyDon(dh.id)"><i
@@ -111,7 +109,6 @@
 															<th>Người mua</th>
 															<th>Ngày đặt hàng</th>
 															<th>Địa chỉ nhận hàng</th>
-															<th>Ngày thanh toán</th>
 															<th>Action</th>
 														</tr>
 													</thead>
@@ -121,7 +118,6 @@
 															<td>{{dh.nguoiMua.email.email}}</td>
 															<td>{{dh.ngayLap | date: "dd/MM/yyyy, HH:mm"}}</td>
 															<td>{{dh.diaChi.dcChiTiet}},{{dh.diaChi.phuong}},{{dh.diaChi.quan}},{{dh.diaChi.tinh}}</td>
-															<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
 															<td><a ng-click="hoanTat(dh.id)"
 																class="btn btn-success"> <i
 																	class='bx bxs-check-square'></i></a> <a data-toggle="modal"
@@ -173,7 +169,6 @@
 															<th>Người mua</th>
 															<th>Ngày đặt hàng</th>
 															<th>Địa chỉ nhận hàng</th>
-															<th>Ngày thanh toán</th>
 															<th>Action</th>
 														</tr>
 													</thead>
@@ -183,7 +178,6 @@
 															<td>{{dh.nguoiMua.email.email}}</td>
 															<td>{{dh.ngayLap | date: "dd/MM/yyyy, HH:mm"}}</td>
 															<td>{{dh.diaChi.dcChiTiet}},{{dh.diaChi.phuong}},{{dh.diaChi.quan}},{{dh.diaChi.tinh}}</td>
-															<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
 															<td><a class="btn btn-success "
 																ng-click="huyDon(dh.id)"><i
 																	class='bx bxs-comment-check'></i></a> <a
@@ -208,7 +202,6 @@
 															<th>Người mua</th>
 															<th>Ngày đặt hàng</th>
 															<th>Địa chỉ nhận hàng</th>
-															<th>Ngày thanh toán</th>
 															<th>Action</th>
 														</tr>
 													</thead>
@@ -218,10 +211,8 @@
 															<td>{{dh.nguoiMua.email.email}}</td>
 															<td>{{dh.ngayLap | date: "dd/MM/yyyy, HH:mm"}}</td>
 															<td>{{dh.diaChi.dcChiTiet}},{{dh.diaChi.phuong}},{{dh.diaChi.quan}},{{dh.diaChi.tinh}}</td>
-															<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
 															<td><a data-toggle="modal" data-target="#seeMessage"
-																class="btn btn-warning btn-block"
-																ng-click="invoiceDetail(dh.id)"><i
+																class="btn btn-warning " ng-click="invoiceDetail(dh.id)"><i
 																	class='bx bxs-zoom-in'></i></a></td>
 														</tr>
 													</tbody>
@@ -257,6 +248,9 @@
 																		class='bx bxs-calendar-x'></i>Yêu cầu hủy đơn
 																</span> <span ng-if="atv.trangThai==6"> <i
 																		class='bx bxs-calendar-x'></i>Từ chối yêu cầu
+																</span> <span ng-if="atv.trangThai==7"> <i
+																		class='bx bx-message-alt-check'></i>Xác nhận đã nhận
+																		hàng
 																</span></td>
 															</tr>
 

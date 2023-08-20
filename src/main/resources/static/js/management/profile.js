@@ -16,7 +16,7 @@ app.controller("AdminPfCtrl", function($scope, $http) {
 
 	$scope.load_all = function() {
 		var url = `${host}/profile/getUser`;
-		$scope.khachHang={};
+		$scope.khachHang = {};
 		$http.get(url).then(resp => {
 			$scope.khachHang = resp.data;
 			console.log("Succes", resp);
@@ -78,46 +78,33 @@ app.controller("AdminPfCtrl", function($scope, $http) {
 	$scope.create_address = function() {
 		var url = `${host}/address/create`; // Sử dụng dấu nháy kép để bao quanh biểu thức ${host}
 		var data = angular.copy($scope.form);
+		if ($scope.form.phuong == null) {
+			alert("Chưa chọn địa chỉ");
+		} else {
 
-		$http
-			.post(url, data)
-			.then((resp) => {
-				$scope.editAddress = false;
-				$scope.load_all_dc();
-				alert("Thêm địa chỉ thành công");
-			})
-			.catch((error) => {
-				alert(error.status)
-			});
+			$http
+				.post(url, data)
+				.then((resp) => {
+					$scope.editAddress = false;
+					$scope.load_all_dc();
+					alert("Thêm địa chỉ thành công");
+				})
+				.catch((error) => {
 
+				});
 
+		}
 	};
 
 	$scope.edit = function(id) {
 		$scope.editProfile = !id;
 	}
-	$scope.create = function() {
-		var item = angular.copy($scope.form);
-		var url = `${host}/khachhang`;
-		$http.post(url, item).then(resp => {
-
-			$scope.items.push(item);
-			alert("thêm thành công!")
-			$scope.reset();
-
-			console.log("Success", resp);
-			if (item.soluongton == 0) {
-				item.trangthai = false;
-			}
-			location.reload();
-		}).catch((error) => {
-			alert("thêm thất bại!")
-			console.log("Error", error);
-		});
-	}
 
 	$scope.editADR = function(id) {
-		$scope.editAddress=!id;
+		$scope.editAddress = !id;
+	};
+	$scope.cancelEditADR = function(id) {
+		
 	};
 
 	$scope.update = function() {
@@ -136,11 +123,10 @@ app.controller("AdminPfCtrl", function($scope, $http) {
 			return;
 		}
 		//Lỗi sai cú pháp số điện thoại 
-		if (isNaN($scope.khachHang.soDienThoai) || $scope.khachHang.soDienThoai.length < 10 || $scope.khachHang.soDienThoai.length > 11) {
+		if (isNaN($scope.khachHang.soDienThoai) || $scope.khachHang.soDienThoai.length != 10) {
 			alert("Số điện thoại không hợp lệ!");
 			return;
 		}
-
 
 		var item = angular.copy($scope.khachHang);
 		var url = `${host}/profile/${$scope.khachHang.id}`;
@@ -150,8 +136,7 @@ app.controller("AdminPfCtrl", function($scope, $http) {
 				$scope.editProfile = false;
 				console.log("Succes", resp);
 			}).catch((error) => {
-				alert(error.status)
-				console.log("Error", error)
+				alert("Cập nhật thất bại")
 			});
 
 
@@ -170,6 +155,17 @@ app.controller("AdminPfCtrl", function($scope, $http) {
 			alert("xóa không thành công")
 			console.log("Error", error)
 		});
+	}
+	$scope.deleteAddress = function(id) {
+		var url = `${host}/address/delete/${id}`;
+		if (confirm("Bạn có muốn xóa địa chỉ này?")) {
+			$http.put(url).then(resp => {
+				alert("Xóa địa chỉ thành công");
+				$scope.load_all_dc();
+			}).catch((error) => {
+				alert("xóa không thành công")
+			});
+		}
 	}
 
 	$scope.pager = {

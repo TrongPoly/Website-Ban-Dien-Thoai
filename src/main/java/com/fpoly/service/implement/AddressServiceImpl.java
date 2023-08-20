@@ -19,7 +19,7 @@ public class AddressServiceImpl implements AddressService{
 	
 	@Override
 	public List<DiaChi> FindByUser() {
-		return diaChi.findAll().stream().filter(dc -> dc.getMaKhachHang().getEmail().getEmail().equals(session.get("user").getEmail())).toList();
+		return diaChi.findAll().stream().filter(dc -> dc.getMaKhachHang().getEmail().getEmail().equals(session.get("user").getEmail())&&dc.getTrangThai()==true).toList();
 	}
 
 	@Override

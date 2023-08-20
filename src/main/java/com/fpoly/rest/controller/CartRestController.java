@@ -11,17 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fpoly.model.DonHangChiTiet;
 import com.fpoly.model.GioHang;
 import com.fpoly.model.GioHangChiTiet;
 import com.fpoly.model.GioHangChiTietId;
 import com.fpoly.model.SanPham;
-import com.fpoly.model.TaiKhoan;
 import com.fpoly.service.CartDetailsService;
 import com.fpoly.service.CartService;
 import com.fpoly.service.CustomerService;
@@ -83,63 +80,4 @@ public class CartRestController {
 		cartDetailsService.xoaSanPham(ghct);
 	}
 
-//	@PostMapping("/rest/cart")
-//	public ResponseEntity<GioHangChiTiet> addToCart(@RequestParam("productId") Integer id) {
-//		TaiKhoan user = session.get("user");
-//		if (user == null)
-//			return ResponseEntity.badRequest().build();
-//		
-//		GioHang gh = cart.findByNguoiMua();
-//		SanPham sp = product.findById(id);
-//		
-//		GioHangChiTiet productExist = cartDetailsService.findByMaGioHangVaMaSanPham(gh.getId(), sp.getId());
-//		// SP Chưa có trong giỏ hàng
-//		if (productExist == null) {
-//			themVaoGH(gh.getId(), sp.getId(), gh, sp);
-//		} else {
-//			int sl = productExist.getSoLuong() + 1;
-//			productExist.setSoLuong(sl);
-//			cartDetailsService.luu(productExist);
-//		}
-//		
-//		return ResponseEntity.ok().build();
-//	}
-//
-//	@DeleteMapping("/rest/cart")
-//	public ResponseEntity<Void> deleteProduct(@RequestParam("productId") Integer productId,
-//			@RequestParam("cartId") Integer cartId) {
-//		GioHangChiTiet ghct = cartDetailsService.findByMaGioHangVaMaSanPham(cartId, productId);
-//		cartDetailsService.xoaSanPham(ghct);
-//		return ResponseEntity.ok().build();
-//	}
-//
-//	@PutMapping("/rest/cart")
-//	public ResponseEntity<Void> updateCart(@RequestParam("soLuongSP") Integer soLuong,
-//			@RequestParam("productId") Integer productId, @RequestParam("cartId") Integer cartId) {
-//		GioHangChiTiet ghct = cartDetailsService.findByMaGioHangVaMaSanPham(cartId, productId);
-//		 if (soLuong <= 0) {
-//			soLuong = 1;
-//		}
-//		ghct.setSoLuong(soLuong);
-//		cartDetailsService.luu(ghct);
-//		return ResponseEntity.ok().build();
-//	}
-//
-//	@PutMapping("/rest/cart/checked")
-//	public ResponseEntity<Void> CheckProduct(@RequestParam("productCheck") Boolean check,
-//			@RequestParam("productId") Integer productId, @RequestParam("cartId") Integer cartId) {
-//		GioHangChiTiet ghct = cartDetailsService.findByMaGioHangVaMaSanPham(cartId, productId);
-//		ghct.setChonMua(check);
-//		cartDetailsService.luu(ghct);
-//		return ResponseEntity.ok().build();
-//	}
-//
-//	private GioHangChiTiet themVaoGH(int maGH, int maSP, GioHang gh, SanPham sp) {
-//		GioHangChiTietId ghctId = new GioHangChiTietId();
-//		ghctId.setMaGioHang(maGH);
-//		ghctId.setMaSanPham(maSP);
-//		GioHangChiTiet ghct = new GioHangChiTiet(ghctId, gh, sp, 1, true);
-//		cartDetailsService.luu(ghct);
-//		return ghct;
-//	}
 }

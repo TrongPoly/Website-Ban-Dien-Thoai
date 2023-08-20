@@ -57,38 +57,7 @@
 				</div>
 			</div>
 		</div>
-	<!-- 	<div th:each="item, istat : ${dssp}" class="single-product col-md-3">
-			<a th:href="@{/product/details/__${item.id}__}"> <img
-				class="img-product" th:src="@{/img/product/__${item.anhSanPham}__}"
-				alt="Not">
-			</a>
-			<div class="product-details">
-				<h6 th:text="${item.tenSanPham}"></h6>
-				<div class="price">
-					<h6
-						th:text="${#numbers.formatDecimal(item.donGia,0,'COMMA',0,'POINT')} +' VNĐ'"></h6>
-				</div>
-				<div th:if="${item.soLuongTon}!=0" class="prd-bottom">
-					<a th:onclick="|addToCart('${item.id}')|" style="cursor: pointer;"
-						class="social-info"> <span class="ti-bag"></span>
-						<p class="hover-text">add to bag</p>
-					</a>
-				
-					 <a href="" class="social-info"> <span class="lnr lnr-heart"></span>
-						<p class="hover-text">Wishlist</p>
-					</a> <a href="" class="social-info"> <span class="lnr lnr-sync"></span>
-						<p class="hover-text">compare</p>
-					</a> <a th:href="@{/product/details/__${item.id}__}"
-						class="social-info"> <span class="lnr lnr-move"></span>
-						<p class="hover-text">view more</p>
-					</a>
-				</div>
-				<div th:unless="${item.soLuongTon}!=0">
-					<br>
-					<h3 class="text-danger">Hết hàng</h3>
-				</div>
-			</div>
-		</div> -->
+	
 	</div>
 	<!-- end product Area -->
 

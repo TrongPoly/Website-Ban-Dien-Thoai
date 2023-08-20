@@ -60,9 +60,9 @@
 							<li>Pin: <span th:text="${sp.pin}+' mAh'"></span></li>
 							<li>Chip: <span th:text="${sp.chip}"></span></li>
 						</ul>
-						<input type="number" min="1" ng-init="soluong=1" ng-model="soluong" >
+						<input type="number" class="form-control col-3" min="1" ng-init="soluong=1" ng-model="soluong" >
 						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" th:attr="ng-click='addToCart(\''+${sp.id}+'\');'" style="cursor: pointer;">Add to Cart</a> <a
+							<a class="primary-btn text-white" th:attr="ng-click='addToCart(\''+${sp.id}+'\');'" style="cursor: pointer;">Add to Cart</a> <a
 								class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
 						</div>
 					</div>

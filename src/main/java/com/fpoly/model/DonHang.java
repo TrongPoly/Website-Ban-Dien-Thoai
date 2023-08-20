@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.time.Instant;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity

@@ -5,13 +5,13 @@ app.controller("cartCtrl", function($scope, $http) {
 	$scope.ghct = [];
 
 	$scope.load_tinh = function() {
-		var url = `${host}/address/getProvince`; 
+		var url = `${host}/address/getProvince`;
 		$scope.tinh = [];
 		$http
 			.get(url)
 			.then((resp) => {
 				$scope.tinh = resp.data;
-				
+
 			})
 			.catch((error) => {
 				alert(error.status)
@@ -19,7 +19,7 @@ app.controller("cartCtrl", function($scope, $http) {
 	}
 	$scope.load_quan = function() {
 		let idTinh = $scope.form.tinh;
-		var url = `${host}/address/getDistrict/${idTinh}`; 
+		var url = `${host}/address/getDistrict/${idTinh}`;
 		$scope.quan = [];
 		$http
 			.get(url)
@@ -32,12 +32,12 @@ app.controller("cartCtrl", function($scope, $http) {
 	}
 	$scope.load_phuong = function() {
 		let idQuan = $scope.form.quan;
-		var url = `${host}/address/getWards/${idQuan}`; 
+		var url = `${host}/address/getWards/${idQuan}`;
 		$scope.phuong = [];
 		$http
 			.get(url)
 			.then((resp) => {
-				$scope.phuong= resp.data;
+				$scope.phuong = resp.data;
 			})
 			.catch((error) => {
 				alert(error.status)
@@ -83,19 +83,21 @@ app.controller("cartCtrl", function($scope, $http) {
 	$scope.create_address = function() {
 		var url = `${host}/address/create`; // Sử dụng dấu nháy kép để bao quanh biểu thức ${host}
 		var data = angular.copy($scope.form);
+		if ($scope.form.phuong == null) {
+			alert("Chưa chọn địa chỉ");
+		} else {
 
-		$http
-			.post(url, data)
-			.then((resp) => {
-				alert("Thêm địa chỉ thành công");
-				$scope.load_address();
-				$scope.load_all();
-			})
-			.catch((error) => {
-				alert(error.status)
-			});
+			$http
+				.post(url, data)
+				.then((resp) => {
+					alert("Thêm địa chỉ thành công");
+					$scope.load_address();
+					$scope.load_all();
+				})
+				.catch((error) => {
+				});
 
-
+		}
 	};
 	$scope.xoa = function(cartId, productId) {
 		var url = `${host}/cart/delete/${cartId}/${productId}`;
@@ -130,61 +132,31 @@ app.controller("cartCtrl", function($scope, $http) {
 	$scope.order = function() {
 
 		let addressId = angular.copy($scope.adr);
+
 		var url = `${host}/order?diaChiId=${addressId}`;
-		$http
-			.post(url)
-			.then((resp) => {
-				alert("Đặt hàng thành công");
-				$scope.load_all();
-				$scope.load_address();
-			})
-			.catch((error) => {
-				if (error.status === 404) {
-					alert("Số lượng sản phẩm còn lại không đủ")
-				}
-				if (error.status === 400) {
-					alert("Vui lòng chọn địa chỉ")
-				}
-				$scope.load_all();
-			});
-	}
-
-	
-	$scope.load_address();
-	$scope.load_all();
-
-
-	/*$scope.delete = function(maGioHang, maSanPham) {
-
-		var url = `${ host }/delete/${ maGioHang } /${maSanPham}`;
-		if (confirm("Bạn có muốn xóa")) {
+		if (confirm("Xác nhận đặt hàng?")) {
 			$http
-				.delete(url)
+				.post(url)
 				.then((resp) => {
-					alert("Xóa thành công")
-					location.reload();
+					alert("Đặt hàng thành công");
+					$scope.load_all();
+					$scope.load_address();
 				})
 				.catch((error) => {
 					if (error.status === 404) {
-						alert("Không tồn tại")
+						alert("Số lượng sản phẩm còn lại không đủ")
 					}
+					if (error.status === 400) {
+						alert("Vui lòng chọn địa chỉ")
+					}
+					$scope.load_all();
 				});
 		}
 	}
-	$scope.add = function(item) {
-		alert(item);
-		var url = `${host}/add/${item}`;
-		$http
-			.post(url, data)
-			.then((resp) => {
-				alert("Thêm thành công")
-			})
-			.catch((error) => {
-				alert(error.status)
-			});
 
-	} */
 
+	$scope.load_address();
+	$scope.load_all();
 
 });
 app.controller("indexCtrl", function($scope, $http) {
@@ -206,6 +178,7 @@ app.controller("indexCtrl", function($scope, $http) {
 	$scope.productDetails = function(id) {
 		var url = `${host}/sanpham/${id}`; // Sử dụng dấu nháy kép để bao quanh biểu thức ${host}
 		$scope.sp = {};
+		$scope.ghct = []
 		$http
 			.get(url)
 			.then((resp) => {
@@ -228,110 +201,29 @@ app.controller("indexCtrl", function($scope, $http) {
 			.post(url)
 			.then((resp) => {
 				alert("thêm thành công");
+				$scope.load_cart();
 			})
 			.catch((error) => {
 				alert("Vui Lòng đăng nhập");
+				location.href = "http://localhost:8080/auth/login/form";
 			});
 	}
+	$scope.load_cart = function() {
+		var url = `${host}/cart/get`; // Sử dụng dấu nháy kép để bao quanh biểu thức ${host}
+
+		$http
+			.get(url)
+			.then((resp) => {
+				$scope.ghct = resp.data;
+			})
+			.catch((error) => {
+
+			});
+
+	};
 
 	$scope.load_all();
+	$scope.load_cart();
 
 });
-
-/*
-function addToCart(id) {
-	$.ajax({
-		url: "/rest/cart",
-		type: "POST",
-		data: {
-			"productId": id
-		},
-		success: function(data) {
-			alert("Thêm thành công")
-		},
-		error: function(xhr, status, error) {
-			location.href = "http://localhost:8080/auth/login/form";
-			alert("Vui lòng đăng nhập trước")
-
-		}
-
-	});
-
-}
-
-function deleteProduct(maGH, maSP) {
-	if (confirm("Bạn có muốn xóa sản phẩm khỏi giỏ hàng?")) {
-		$.ajax({
-			url: "/rest/cart",
-			type: "DELETE",
-			data: {
-				"productId": maSP,
-				"cartId": maGH
-			},
-			success: function(data) {
-				location.href = "http://localhost:8080/cart/index"
-
-			},
-			error: function(xhr, status, error) {
-			}
-
-		});
-	}
-}
-
-function checkedProduct(input, maGH, maSP) {
-	let checked
-	if (input.checked) {
-		checked = true
-	}
-	else {
-		checked = false
-	}
-	$.ajax(
-		{
-			url: "/rest/cart/checked",
-			type: "PUT",
-			data: {
-				"productId": maSP,
-				"cartId": maGH,
-				"productCheck": checked
-			},
-			success: function(data) {
-				location.href = "http://localhost:8080/cart/index"
-
-			},
-			error: function(xhr, status, error) {
-				alert(status)
-			}
-		}
-	);
-}
-
-function updateCart(input, maGH, maSP) {
-	let soluong = $(input).val();
-
-	$.ajax(
-		{
-			url: "/rest/cart",
-			type: "PUT",
-			data: {
-				"productId": maSP,
-				"cartId": maGH,
-				"soLuongSP": soluong
-			},
-			success: function(data) {
-				location.href = "http://localhost:8080/cart/index"
-
-			},
-			error: function(error) {
-				if (error.status === 400) {
-					location.reload();
-				} else {
-					alert("Có lỗi xảy ra. Vui lòng thử lại sau.");
-				}
-			}
-		}
-	);
-}
-*/
 

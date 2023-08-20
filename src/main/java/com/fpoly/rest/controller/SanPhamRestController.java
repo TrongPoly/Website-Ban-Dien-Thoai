@@ -1,18 +1,9 @@
 package com.fpoly.rest.controller;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Map;
-import java.io.File;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +24,6 @@ import com.fpoly.service.UploadService;
 
 import jakarta.websocket.server.PathParam;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/rest")
 public class SanPhamRestController {
@@ -65,12 +55,6 @@ public class SanPhamRestController {
 
 	@PostMapping("/sanpham")
 	public SanPham post(@RequestBody SanPham sp, @PathParam("folder") MultipartFile folder) {
-
-		/*
-		 * if (sp.getSoLuongTon() == 0) { sp.setTrangThai(false); } else {
-		 * sp.setTrangThai(true); }
-		 */
-
 		daosp.save(sp);
 		return sp;
 	}
@@ -85,19 +69,6 @@ public class SanPhamRestController {
 		sp.setNhaSanXuat(nhaSX);
 		System.out.println(sp.getTenSanPham());
 		System.out.println(sp.getNhaSanXuat().getTenNsx());
-
-		/*
-		 * if (sp.getSoLuongTon() == 0) { sp.setTrangThai(false); // set trạng thái là
-		 * hết hàng nếu số lượng tồn = 0 } else { sp.setTrangThai(true); }
-		 */
-
-		/*
-		 * daosp.findById(id).get(); sp.setTenSanPham(sp.getTenSanPham());
-		 * sp.setAnhSanPham(sp.getAnhSanPham()); sp.setNhaSanXuat(sp.getNhaSanXuat());
-		 * sp.setDonGia(sp.getDonGia()); sp.setSoLuongTon(sp.getSoLuongTon());
-		 * sp.setRam(sp.getRam()); sp.setRom(sp.getRom()); sp.setPin(sp.getPin());
-		 * sp.setChip(sp.getChip());
-		 */
 
 		daosp.save(sp);
 		return ResponseEntity.ok(sp);

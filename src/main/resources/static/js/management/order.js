@@ -32,16 +32,16 @@ app.controller("orderMngtCtrl", function($scope, $http) {
 
 				$scope.ghct = resp.data;
 				$scope.orderActivity(id);
-				
+
 			})
 			.catch((error) => {
 				alert("Lỗi");
 			});
 	};
 	$scope.total = function() {
-		let sum =0;
+		let sum = 0;
 		for (let i = 0; i < $scope.ghct.length; i++) {
-				sum += $scope.ghct[i].donGia * $scope.ghct[i].soLuong;
+			sum += $scope.ghct[i].donGia * $scope.ghct[i].soLuong;
 		}
 		return sum;
 	}
@@ -60,53 +60,63 @@ app.controller("orderMngtCtrl", function($scope, $http) {
 
 	$scope.huyDon = function(id) {
 		var url = `${host}/cancelOrder/${id}`;
-
-		$http
-			.put(url)
-			.then((resp) => {
-				alert("success!")
-				location.reload();
-			})
-			.catch((error) => {
-				alert("Lỗi");
-			});
+		if (confirm("Đồng ý hủy đơn?")) {
+			$http
+				.put(url)
+				.then((resp) => {
+					alert("Đã hủy đơn!")
+					$scope.load_all();
+					$scope.loadMessage();
+				})
+				.catch((error) => {
+					alert("Lỗi");
+				});
+		}
 	};
 	$scope.khongHuyDon = function(id) {
 		var url = `${host}/notCancelOrder/${id}`;
-
-		$http
-			.put(url)
-			.then((resp) => {
-				alert("success!")
-				location.reload();
-			})
-			.catch((error) => {
-				alert("Lỗi");
-			});
+		if (confirm("Từ chối hủy đơn?")) {
+			$http
+				.put(url)
+				.then((resp) => {
+					alert("Từ chối thành công!")
+					$scope.load_all();
+					$scope.loadMessage();
+				})
+				.catch((error) => {
+					alert("Lỗi");
+				});
+		}
 	};
 	$scope.vanChuyen = function(id) {
 		var url = `${host}/delivery/${id}`;
-		$http
-			.put(url)
-			.then((resp) => {
-				alert("success!")
-				location.reload();
-			})
-			.catch((error) => {
-				alert("Lỗi");
-			});
+		if (confirm("Xác nhận giao hàng?")) {
+			$http
+				.put(url)
+				.then((resp) => {
+					alert("Xác nhận giao hàng thành công!")
+					$scope.load_all();
+					$scope.loadMessage();
+				})
+				.catch((error) => {
+					alert("Lỗi");
+				});
+		}
 	};
 	$scope.hoanTat = function(id) {
 		var url = `${host}/successfulDelivery/${id}`;
-		$http
-			.put(url)
-			.then((resp) => {
-				alert("success!")
-				location.reload();
-			})
-			.catch((error) => {
-				alert("Lỗi");
-			});
+		if (confirm("Xác nhận giao hàng thành công")) {
+			$http
+				.put(url)
+				.then((resp) => {
+					alert("Giao hàng thành công!")
+					$scope.load_all();
+					$scope.loadMessage();
+				})
+				.catch((error) => {
+					alert("Lỗi");
+				});
+		}
 	}
 	$scope.loadMessage = function() {
 		var url = `${host}/loadMessage`;

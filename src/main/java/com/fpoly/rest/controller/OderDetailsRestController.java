@@ -4,7 +4,6 @@ import java.time.Instant;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,13 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fpoly.model.DonHang;
 import com.fpoly.model.DonHangActivity;
 import com.fpoly.model.DonHangChiTiet;
-import com.fpoly.model.GioHang;
 import com.fpoly.service.DonHangActivityService;
 import com.fpoly.service.OrderDetailsService;
 import com.fpoly.service.OrderService;
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/rest/order")
 public class OderDetailsRestController {
 	@Autowired
@@ -58,8 +55,8 @@ public class OderDetailsRestController {
 	public void successOrderByUser(@PathVariable("orderId") Integer id) {
 		DonHang donHang = orderService.findByMaDonHang(id);
 		Instant ngayCapNhat = Instant.now();
+		donHang.setNgayThanhToan(ngayCapNhat);
 		DonHangActivity donHangActivity = new DonHangActivity(donHang, 7, ngayCapNhat, 1);
 		donHangActivityService.luu(donHangActivity);
-		
 	}
 }

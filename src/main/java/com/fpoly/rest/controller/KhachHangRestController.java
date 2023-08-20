@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +22,6 @@ import com.fpoly.service.AccountService;
 import com.fpoly.service.CustomerService;
 import com.fpoly.service.SessionService;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/rest")
 public class KhachHangRestController {
@@ -94,36 +91,5 @@ public class KhachHangRestController {
 	}
 	
 
-	@DeleteMapping("/khachhang/{id}")
-	public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
-		
-		if(!daokh.existsById(id)) {
-			return ResponseEntity.notFound().build();
-		}
-		
-		daokh.deleteById(id);
-		return ResponseEntity.ok().build();
-	}
-	
-	
-	//	@PostMapping("/chanuser")
-//    public ResponseEntity<String> blockUser(
-//            @RequestParam("email") String email,
-//            @RequestParam("trangThai") Boolean trangThai) {
-//        TaiKhoan currentUser = sessionService.get("user");
-//        if (currentUser != null && currentUser.getEmail().equals(email)) {
-//            return new ResponseEntity<>("Bạn không thể chặn chính mình.", HttpStatus.BAD_REQUEST);
-//        } else {
-//            // Tiến hành chặn người dùng khác
-//            TaiKhoan tk = tkdao.getById(email);
-//            tk.setTrangThai(trangThai);
-//            tkdao.save(tk);
-//            if (!trangThai) {
-//                return new ResponseEntity<>("Đã chặn người dùng thành công.", HttpStatus.OK);
-//            } else {
-//                return new ResponseEntity<>("Bỏ chặn người dùng thành công.", HttpStatus.OK);
-//            }
-//        }
-//    }
 
 }

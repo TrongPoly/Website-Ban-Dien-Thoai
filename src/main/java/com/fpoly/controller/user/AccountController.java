@@ -4,18 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fpoly.model.GioHang;
-import com.fpoly.model.TaiKhoan;
 import com.fpoly.service.CartService;
 import com.fpoly.service.CustomerService;
 import com.fpoly.service.SessionService;
 
 import jakarta.servlet.ServletContext;
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/auth")
@@ -40,7 +35,10 @@ public class AccountController {
 	}
 
 	@GetMapping("/login/success")
-	public String doLogin(Model model) {
+	public String doLogin() {
+		if(session.get("user").getPhanQuyen().getId()==1) {
+			return "redirect:/admin/invoice";
+		}
 		return "redirect:/home/index";
 	}
 
@@ -54,7 +52,6 @@ public class AccountController {
 	@RequestMapping("/login/error")
 	public String loginError() {
 		context.setAttribute("msg", "Sai tài khoản hoặc mật khẩu!");
-
 		return "redirect:/auth/login/form";
 	}
 
@@ -66,7 +63,7 @@ public class AccountController {
 
 	@RequestMapping("/access/denied")
 	public String denied() {
-		return "redirect:/home/index";
+		return "User/ErrorPage";
 	}
 
 }

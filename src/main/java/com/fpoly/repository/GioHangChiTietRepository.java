@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import com.fpoly.model.GioHangChiTiet;
 import com.fpoly.model.GioHangChiTietId;
 
-import java.util.List;
 
 
 public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTiet,GioHangChiTietId>{

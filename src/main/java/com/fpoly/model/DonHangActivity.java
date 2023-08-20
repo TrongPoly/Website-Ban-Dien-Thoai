@@ -50,6 +50,18 @@ public class DonHangActivity {
 
 
 
+	public DonHangActivity(DonHang maDonHang, Integer trangThai, Instant ngayCapNhat, TaiKhoan nguoiThucHien,
+			int checked) {
+		super();
+		this.maDonHang = maDonHang;
+		this.trangThai = trangThai;
+		this.ngayCapNhat = ngayCapNhat;
+		this.nguoiThucHien = nguoiThucHien;
+		this.checked = checked;
+	}
+
+
+
 	public String getMoTa() {
 		return moTa;
 	}

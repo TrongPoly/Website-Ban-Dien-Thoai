@@ -1,11 +1,9 @@
 package com.fpoly.rest.controller;
 
 import java.time.Instant;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fpoly.model.DonHang;
 import com.fpoly.model.DonHangActivity;
 import com.fpoly.model.DonHangChiTiet;
-import com.fpoly.model.KhachHang;
 import com.fpoly.model.SanPham;
 import com.fpoly.service.CustomerService;
 import com.fpoly.service.DonHangActivityService;
@@ -24,7 +21,6 @@ import com.fpoly.service.OrderService;
 import com.fpoly.service.ProductService;
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/admin/rest/order")
 public class OderMgmtController {
 	@Autowired

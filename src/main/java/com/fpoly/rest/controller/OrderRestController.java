@@ -1,7 +1,6 @@
 package com.fpoly.rest.controller;
 
 import java.time.Instant;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,13 +52,17 @@ public class OrderRestController {
 	@PostMapping("/order")
 	public ResponseEntity<Void> order(@RequestParam("diaChiId") Integer dchi) {
 		KhachHang khachHang = customer.findByUser();
+		//Kiểm tra chọn địa chỉ
 		DiaChi diaChi = address.findById(dchi);
 		if (diaChi == null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 		Instant ngayDatHang = Instant.now();
+		
+		//Tạo đơn hàng mới
 		DonHang donHang = new DonHang(ngayDatHang, 1, khachHang, diaChi);
 		order.luu(donHang);
+		
 		GioHang gh = cart.findByNguoiMua();
 		List<GioHangChiTiet> listGHCT = cartDetails.findByGioHang(gh.getId()).stream()
 				.filter(ghct -> ghct.getChonMua() == true).toList();
@@ -78,11 +81,14 @@ public class OrderRestController {
 			DonHangChiTiet dhct = new DonHangChiTiet(dhctId, donHang, sp, listGHCT.get(i).getSoLuong(),
 					listGHCT.get(i).getMaSanPham().getDonGia());
 			orderDetails.luu(dhct);
-			DonHangActivity activity = new DonHangActivity(donHang, 1, ngayDatHang,1);
-			donHangActivityService.luu(activity);
+			
+			//Trừ số lượng sản phẩm sau khi mua
 			sp.setSoLuongTon(sp.getSoLuongTon() - listGHCT.get(i).getSoLuong());
 			cartDetails.xoaSanPham(listGHCT.get(i));
 		}
+		//Ghi trạng thái đơn hàng
+		DonHangActivity activity = new DonHangActivity(donHang, 1, ngayDatHang,1);
+		donHangActivityService.luu(activity);
 		return ResponseEntity.ok().build();
 	}
 }

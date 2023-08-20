@@ -4,9 +4,9 @@ app.controller("reportCtrl", function($scope, $http) {
 	$scope.doanhThu = []
 
 	$scope.getDoanhThu = function() {
-		var trangThai = angular.copy($scope.trangThai);
-		var thang = angular.copy($scope.thang);
-		var nam = angular.copy($scope.nam);
+		let trangThai = angular.copy($scope.trangThai);
+		let thang = angular.copy($scope.thang);
+		let nam = angular.copy($scope.nam);
 		if (thang !== 0 && nam === 0) {
 			alert("Vui lòng chọn năm");
 		} else {

@@ -21,130 +21,13 @@
 	<!-- page content -->
 	<div class="right_col" role="main">
 		<div class="">
-			<div class="page-title">
-				<div class="title_left">
-					<h3>Form Khách Hàng</h3>
-				</div>
-
-				<div class="title_right">
-					<div class="col-md-5 col-sm-5  form-group pull-right top_search">
-						<div class="input-group">
-							<input type="text" class="form-control"
-								placeholder="Search for..."> <span
-								class="input-group-btn">
-								<button class="btn btn-default" type="button">Go!</button>
-							</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="clearfix"></div>
-			<div class="row">
-				<div class="col-md-12 col-sm-12 ">
-					<div class="x_panel">
-						<div class="x_title">
-							<h2>
-								Form Khách Hàng <small></small>
-							</h2>
-							<ul class="nav navbar-right panel_toolbox">
-								<li><a class="collapse-link"><i
-										class="fa fa-chevron-up"></i></a></li>
-
-								<li><a class="close-link"><i class="fa fa-close"></i></a></li>
-							</ul>
-							<div class="clearfix"></div>
-						</div>
-						<div class="x_content">
-							<br />
-							<form action="" id="demo-form2" data-parsley-validate
-								class="form-horizontal form-label-left">
-
-								<div class="item form-group" style="display: none;">
-									<label class="col-form-label col-md-3 col-sm-3 label-align"
-										for="id-product">Mã Khách Hàng <span>*</span>
-									</label>
-									<div class="col-md-6 col-sm-6 " style="display: none;">
-										<input ng-model="form.id" type="text" id=""
-											class="form-control ">
-									</div>
-								</div>
-								<div class="item form-group">
-									<label class="col-form-label col-md-3 col-sm-3 label-align"
-										for="full-name">Tên Khách Hàng<span>*</span>
-									</label>
-									<div class="col-md-6 col-sm-6 ">
-										<input ng-model="form.tenKhachHang" type="text" id=""
-											name="full-name" class="form-control">
-									</div>
-
-								</div>
-								<div class="item form-group">
-									<label class="col-form-label col-md-3 col-sm-3 label-align"
-										for="phone">Số Điện Thoại<span>*</span>
-									</label>
-									<div class="col-md-6 col-sm-6 ">
-										<input ng-model="form.soDienThoai" ng-type="number" id=""
-											name="soDienThoai" class="form-control">
-									</div>
-
-								</div>
-								<div class="item form-group">
-									<label class="col-form-label col-md-3 col-sm-3 label-align"
-										for="">Email<span>*</span>
-									</label>
-									<div class="col-md-6 col-sm-6 ">
-										<input ng-model="form.email.email" type="text" id="" name=""
-											class="form-control" readonly="true">
-
-									</div>
-									<!-- i style="color: red; font-family: sans-serif;" th:errors="*{email.email}"></i> -->
-
-								</div>
-
-								<div class="item form-group">
-									<label class="col-form-label col-md-3 col-sm-3 label-align"
-										for="price">Điểm Tích Lũy<span>*</span>
-									</label>
-									<div class="col-md-6 col-sm-6 ">
-										<input ng-model="form.diemTichLuy" ng-type="number" id=""
-											name="price" class="form-control">
-									</div>
-
-								</div>
-								<div class="item form-group ">
-									<label class="col-form-label col-md-3 col-sm-3 label-align">Hạng
-										*</label>
-									<div class="col-md-6 col-sm-6 ">
-										<select class="form-control" ng-model="form.hangKhachHang.id">
-											<option ng-repeat="item in hkhs" ng-value="{{item.id}}">{{item.tenHang}}</option>
-										</select>
-									</div>
-								</div>
-								<div class="ln_solid"></div>
-								<div class="item form-group">
-									<div class="col-md-6 col-sm-6 offset-md-3">
-
-										<!-- <button ng-click="create()" type="submit"
-											class="btn btn-success">Create</button> -->
-										<button ng-click="update()" type="submit"
-											class="btn btn-success">Update</button>
-										<!-- <button ng-click="delete(form.id)" type="submit"
-											class="btn btn-success">Delete</button> -->
-										<button ng-click="reset()" type="submit"
-											class="btn btn-success">Reset</button>
-									</div>
-								</div>
-
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
+		
+			
 			<div class="row">
 			<div class="page-title">
 				<div class="title_left">
 					<h3>
-						Khách Hàng <small>nơi lưu trữ thông tin của khách hàng</small>
+	Thông tin khách hàng
 					</h3>
 				</div>
 
@@ -194,8 +77,6 @@
 													<th>Tên Khách Hàng</th>
 													<th>Số Điện Thoại</th>
 													<th>Email</th>
-													<th>Điểm Tích Lũy</th>
-													<th>Hạng</th>
 													<th>Trạng thái</th>
 													<th></th>
 												</tr>
@@ -209,8 +90,6 @@
 														class="{{item.email.phanQuyen? 'text-danger' : 'text-info'}}">{{item.tenKhachHang}}</td>
 													<td>{{item.soDienThoai}}</td>
 													<td>{{item.email.email}}</td>
-													<td>{{item.diemTichLuy}}</td>
-													<td>{{item.hangKhachHang.tenHang}}</td>
 													<td>{{item.email.trangThai? 'Đã kích hoạt' : 'Ngừng
 														kích hoạt'}}</td>
 													<td><a ng-click="edit(item.id)"

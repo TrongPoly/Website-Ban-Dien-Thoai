@@ -3,8 +3,6 @@ package com.fpoly.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "dia_chi")
@@ -35,7 +33,18 @@ public class DiaChi {
     @Column(name = "dc_chi_tiet")
     private String dcChiTiet;
 
-    public Integer getId() {
+    @Column(name = "trang_thai")
+    private Boolean trangThai;
+    
+    public Boolean getTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(Boolean trangThai) {
+		this.trangThai = trangThai;
+	}
+
+	public Integer getId() {
         return id;
     }
 

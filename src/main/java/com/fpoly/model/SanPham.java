@@ -1,20 +1,11 @@
 package com.fpoly.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Negative;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
 
 import org.hibernate.annotations.Nationalized;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-
-//@NamedQueries({
-//	@NamedQuery(name="findByTenSanPham", query = "select sp from SanPham sp "
-//			+ "where sp.tenSanPham like ?1")})
 
 @Entity
 @Table(name = "san_pham")

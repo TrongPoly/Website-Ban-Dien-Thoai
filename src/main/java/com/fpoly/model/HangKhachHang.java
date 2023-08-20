@@ -1,7 +1,6 @@
 package com.fpoly.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.Nationalized;
 

@@ -106,9 +106,9 @@
 												</tr>
 											</tbody>
 											<tfoot>
-											<tr>
-												<td colspan="3">Tổng: {{total() |number : 0}} VNĐ</td>
-											</tr>
+												<tr>
+													<td colspan="3">Tổng: {{total() |number : 0}} VNĐ</td>
+												</tr>
 											</tfoot>
 										</table>
 									</div>
@@ -121,94 +121,9 @@
 
 
 			</div>
-			<br> <br>
-			<div class="page-title">
-				<div class="title_left">
-					<h3>
-						Thống Kê Sản Phẩm <small></small>
-					</h3>
-				</div>
 
-				<div class="title_right">
-					<div
-						class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-						<div class="input-group">
-							<input type="text" class="form-control"
-								placeholder="Search for..."> <span
-								class="input-group-btn">
-								<button class="btn btn-secondary" type="button">Go!</button>
-							</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="clearfix"></div>
-
-			<div class="row">
-				<div class="col-md-12 col-sm-12 ">
-					<div class="x_panel">
-						<div class="x_title">
-							<h2>
-								Bảng Thống Kê Sản Phẩm <small></small>
-							</h2>
-							<ul class="nav navbar-right panel_toolbox">
-								<li><a class="collapse-link"><i
-										class="fa fa-chevron-up"></i></a></li>
-
-								<li><a class="close-link"><i class="fa fa-close"></i></a></li>
-							</ul>
-							<div class="clearfix"></div>
-						</div>
-
-
-						<div class="x_content">
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="card-box table-responsive">
-
-										<table id="datatable"
-											class="table table-striped table-bordered"
-											style="width: 100%">
-											<thead>
-												<tr>
-													<th>Hãng SP</th>
-													<th>Tổng SP đã bán</th>
-													<th>Số Lượng hiện có</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Apple</td>
-													<td>9</td>
-													<td>2</td>
-												</tr>
-												<tr>
-													<td>Apple</td>
-													<td>9</td>
-													<td>2</td>
-
-
-												</tr>
-												<tr>
-													<td>Apple</td>
-													<td>9</td>
-													<td>2</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
-	</div>
 
-	<script th:src="@{/js/management/report.js}"></script>
-
-
+		<script th:src="@{/js/management/report.js}"></script>
 </body>
 </html>

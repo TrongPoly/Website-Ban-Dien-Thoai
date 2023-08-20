@@ -28,23 +28,23 @@
 				<ul class="nav nav-tabs">
 					<li role="nav-item" class="active"><a href="#choXuLy"
 						class="nav-link active" role="tab" data-toggle="tab"> Chờ xử
-							lý <span class="bg-blue-sky">{{(gh | filter: { trangThai:
-								1 }).length}}</span>
+							lý <span class="bg-blue-sky">{{(dhList | filter: {
+								trangThai: 1 }).length}}</span>
 					</a></li>
 					<li role="nav-item"><a href="#dangGiao" class="nav-link"
 						role="tab" data-toggle="tab">Đang giao <span class="bg-blue">
-								{{(gh | filter: { trangThai: 2 }).length}}</span></a></li>
+								{{(dhList | filter: { trangThai: 2 }).length}}</span></a></li>
 					<li role="nav-item"><a href="#giaoThanhCong" class="nav-link"
 						role="tab" data-toggle="tab">Đã giao<span class="bg-green">
-								{{(gh | filter: { trangThai: 3 }).length}}</span>
+								{{(dhList | filter: { trangThai: 3 }).length}}</span>
 					</a></li>
 					<li role="nav-item"><a href="#yeuCauHuy" class="nav-link"
 						role="tab" data-toggle="tab">Yêu cầu hủy đơn<span
-							class="bg-orange"> {{(gh | filter: { trangThai: 5
+							class="bg-orange"> {{(dhList | filter: { trangThai: 5
 								}).length}}</span></a></li>
 					<li role="nav-item"><a href="#daHuy" class="nav-link"
 						role="tab" data-toggle="tab">Đã hủy <span class="bg-orange">
-								{{(gh | filter: { trangThai: 4 }).length}}</span></a></li>
+								{{(dhList | filter: { trangThai: 4 }).length}}</span></a></li>
 
 				</ul>
 				<div>
@@ -63,21 +63,20 @@
 													<th>Mã đơn hàng</th>
 													<th>Ngày đặt hàng</th>
 													<th>Địa chỉ nhận hàng</th>
-													<th>Ngày thanh toán</th>
 													<th>Action</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr ng:repeat="dh in gh" ng-if="dh.trangThai == 1">
+												<tr ng:repeat="dh in dhList" ng-if="dh.trangThai == 1">
 													<td>{{dh.id}}</td>
 													<td>{{dh.ngayLap | date: "dd/MM/yyyy, HH:mm"}}</td>
 													<td>{{dh.diaChi.dcChiTiet}},{{dh.diaChi.phuong}},{{dh.diaChi.quan}},{{dh.diaChi.tinh}}</td>
-													<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
 													<td><a class="btn btn-danger text-white"
 														ng-if="dh.trangThai == 1" ng-click="huyDon(dh.id)">Hủy
 															đơn</a> <a data-toggle="modal" data-target="#exampleModal"
 														class="btn btn-warning text-white"
-														ng-click="invoiceDetail(dh.id) ">Chi tiết</a></td>
+														ng-click="invoiceDetail(dh.id) "><i
+																	class='bx bxs-zoom-in'></i></a></td>
 												</tr>
 											</tbody>
 										</table>
@@ -92,22 +91,21 @@
 													<th>Mã đơn hàng</th>
 													<th>Ngày đặt hàng</th>
 													<th>Địa chỉ nhận hàng</th>
-													<th>Ngày thanh toán</th>
 													<th>Action</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr ng:repeat="dh in gh" ng-if="dh.trangThai == 2">
+												<tr ng:repeat="dh in dhList" ng-if="dh.trangThai == 2">
 													<td>{{dh.id}}</td>
 													<td>{{dh.ngayLap | date: "dd/MM/yyyy, HH:mm"}}</td>
 													<td>{{dh.diaChi.dcChiTiet}},{{dh.diaChi.phuong}},{{dh.diaChi.quan}},{{dh.diaChi.tinh}}</td>
-													<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
-													<td><a class="btn btn-success text-white "
-														ng-if="dh.trangThai == 2" ng-click="hoanTat(dh.id)">Đã
-															nhận hàng</a> <a data-toggle="modal"
-														data-target="#exampleModal"
+													<td><a ng-if="dh.ngayThanhToan==null"
+														class="btn btn-success text-white "
+														ng-click="hoanTat(dh.id)">Đã nhận hàng</a> <a
+														data-toggle="modal" data-target="#exampleModal"
 														class="btn btn-warning text-white"
-														ng-click="invoiceDetail(dh.id) ">Chi tiết</a></td>
+														ng-click="invoiceDetail(dh.id) "><i
+																	class='bx bxs-zoom-in'></i></a></td>
 												</tr>
 											</tbody>
 										</table>
@@ -127,14 +125,15 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr ng:repeat="dh in gh" ng-if="dh.trangThai == 3">
+												<tr ng:repeat="dh in dhList" ng-if="dh.trangThai == 3">
 													<td>{{dh.id}}</td>
 													<td>{{dh.ngayLap | date: "dd/MM/yyyy, HH:mm"}}</td>
 													<td>{{dh.diaChi.dcChiTiet}},{{dh.diaChi.phuong}},{{dh.diaChi.quan}},{{dh.diaChi.tinh}}</td>
 													<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
 													<td><a data-toggle="modal" data-target="#exampleModal"
 														class="btn btn-warning text-white"
-														ng-click="invoiceDetail(dh.id) ">Chi tiết</a>
+														ng-click="invoiceDetail(dh.id) "><i
+																	class='bx bxs-zoom-in'></i></a>
 												</tr>
 											</tbody>
 										</table>
@@ -149,19 +148,18 @@
 													<th>Mã đơn hàng</th>
 													<th>Ngày đặt hàng</th>
 													<th>Địa chỉ nhận hàng</th>
-													<th>Ngày thanh toán</th>
 													<th>Action</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr ng:repeat="dh in gh" ng-if="dh.trangThai == 4">
+												<tr ng:repeat="dh in dhList" ng-if="dh.trangThai == 4">
 													<td>{{dh.id}}</td>
 													<td>{{dh.ngayLap | date: "dd/MM/yyyy, HH:mm"}}</td>
 													<td>{{dh.diaChi.dcChiTiet}},{{dh.diaChi.phuong}},{{dh.diaChi.quan}},{{dh.diaChi.tinh}}</td>
-													<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
 													<td><a data-toggle="modal" data-target="#exampleModal"
 														class="btn btn-warning text-white"
-														ng-click="invoiceDetail(dh.id) ">Chi tiết</a>
+														ng-click="invoiceDetail(dh.id) "><i
+															class='bx bxs-zoom-in'></i></a>
 												</tr>
 											</tbody>
 										</table>
@@ -176,19 +174,18 @@
 													<th>Mã đơn hàng</th>
 													<th>Ngày đặt hàng</th>
 													<th>Địa chỉ nhận hàng</th>
-													<th>Ngày thanh toán</th>
 													<th>Action</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr ng:repeat="dh in gh" ng-if="dh.trangThai == 5">
+												<tr ng:repeat="dh in dhList" ng-if="dh.trangThai == 5">
 													<td>{{dh.id}}</td>
 													<td>{{dh.ngayLap | date: "dd/MM/yyyy, HH:mm"}}</td>
 													<td>{{dh.diaChi.dcChiTiet}},{{dh.diaChi.phuong}},{{dh.diaChi.quan}},{{dh.diaChi.tinh}}</td>
-													<td>{{dh.ngayThanhToan | date: "dd/MM/yyyy, HH:mm"}}</td>
 													<td><a data-toggle="modal" data-target="#exampleModal"
 														class="btn btn-warning text-white"
-														ng-click="invoiceDetail(dh.id) ">Chi tiết</a>
+														ng-click="invoiceDetail(dh.id) "><i
+																	class='bx bxs-zoom-in'></i></a>
 												</tr>
 											</tbody>
 										</table>
@@ -218,16 +215,14 @@
 																class='bx bxs-check-circle'></i> Giao hàng thành công</span> <span
 															ng-if="atv.trangThai==4"> <i
 																class='bx bxs-calendar-x'></i>Đã hủy đơn
-														</span>
-														<span
-															ng-if="atv.trangThai==5"> <i
+														</span> <span ng-if="atv.trangThai==5"> <i
 																class='bx bxs-calendar-x'></i>Yêu cầu hủy đơn
-														</span>
-														<span
-															ng-if="atv.trangThai==6"> <i
-																class='bx bxs-calendar-x'></i>Từ chối yêu cầu 
-														</span>
-														</td>
+														</span> <span ng-if="atv.trangThai==6"> <i
+																class='bx bxs-calendar-x'></i>Từ chối yêu cầu
+														</span> <span ng-if="atv.trangThai==7"> <i
+																class='bx bx-message-alt-check'></i>Xác nhận đã nhận
+																hàng
+														</span></td>
 													</tr>
 
 												</table>
@@ -239,7 +234,7 @@
 														<th>Thành tiền</th>
 													</tr>
 													<tbody>
-														<tr ng:repeat="item in ghct">
+														<tr ng:repeat="item in dhct">
 															<td>{{item.maSanPham.tenSanPham}}</td>
 															<td>{{item.soLuong}}</td>
 															<td>{{item.donGia |number : 0}}</td>
@@ -248,7 +243,9 @@
 													</tbody>
 													<tfoot>
 														<tr>
-															<td class="text-primary" colspan="6"></td>
+															<td colspan="6">Tổng tiền:
+																<h4>{{total() | number : 0}} VNĐ</h4>
+															</td>
 														</tr>
 													</tfoot>
 												</table>
